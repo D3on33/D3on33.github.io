@@ -1,1 +1,459 @@
-Work in Progress
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Darshan Munkur — Senior UX Designer. Designing complex systems for the people inside them.">
+<title>Darshan Munkur — Senior UX Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ─────────────────────────────────────────────────
+   Two accents: --lime primary (9.0:1), --purple secondary (rare)
+   WCAG AA: --t1 14.2:1  --t2 8.1:1  --t3 4.7:1
+──────────────────────────────────────────────────────────── */
+:root {
+  --bg:#0D0D0D; --bg2:#141414; --bg3:#1C1C1C;
+  --bd:#2A2A2E; --bd2:rgba(255,255,255,0.13);
+  --t1:#E2E0DB; --t2:#B0ACA6; --t3:#7C7A78;
+  --lime:#D4F53C; --purple:#7C6CFC;
+  --lime-d:rgba(212,245,60,0.07);
+  --mono:'DM Mono',monospace; --sans:'DM Sans',sans-serif; --disp:'Syne',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--t1);font-family:var(--sans);font-weight:300;overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%} a{color:inherit;text-decoration:none}
+
+/* ── LOADER ─────────────────────────────────────────────── */
+#loader{
+  position:fixed;inset:0;z-index:9999;background:var(--bg);
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity .5s ease;
+}
+#loader.done{opacity:0;pointer-events:none}
+.loader-inner{display:flex;flex-direction:column;align-items:center;gap:32px;width:240px}
+.loader-icons{display:flex;gap:32px;align-items:flex-end;justify-content:center}
+.loader-icon-wrap{
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  opacity:0.2;transition:opacity .25s ease;
+}
+.loader-icon-wrap.active{opacity:1}
+.loader-icon-wrap svg{width:36px;height:36px;stroke:var(--lime);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.loader-icon-label{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--t3);white-space:nowrap;
+}
+.loader-icon-wrap.active .loader-icon-label{color:var(--lime)}
+.loader-bar-wrap{width:100%}
+.loader-bar-track{width:100%;height:1px;background:var(--bd);position:relative}
+.loader-bar-fill{
+  position:absolute;left:0;top:0;height:100%;
+  background:var(--lime);width:0%;
+  transition:width .08s linear;
+}
+.loader-pct{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.14em;
+  color:var(--t3);margin-top:10px;text-align:right;
+}
+
+/* ── CURSOR ─────────────────────────────────────────────── */
+#cursor{width:8px;height:8px;background:var(--lime);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:8999;transform:translate(-50%,-50%);mix-blend-mode:difference}
+#cursor-ring{width:28px;height:28px;border:1px solid rgba(212,245,60,0.35);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:8998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s}
+
+/* ── SCROLL BAR ──────────────────────────────────────────── */
+#scroll-bar{position:fixed;right:0;top:0;bottom:0;width:2px;z-index:500;background:var(--bd);pointer-events:none}
+#scroll-fill{width:100%;background:var(--lime);height:0%}
+
+/* ── NAV ─────────────────────────────────────────────────── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:400;padding:20px 52px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(13,13,13,0.97),transparent);transition:background .3s,backdrop-filter .3s}
+.nav.scrolled{background:rgba(13,13,13,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--bd)}
+.nav-logo{font-family:var(--disp);font-weight:800;font-size:16px;letter-spacing:-0.03em;color:var(--t1)}
+.nav-links{display:flex;gap:40px;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--t2);transition:color .2s}
+.nav-links a:hover{color:var(--lime)}
+.nav-right{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;letter-spacing:0.1em;color:var(--t2)}
+.nav-led{width:6px;height:6px;background:#39ff14;border-radius:50%;box-shadow:0 0 5px #39ff14;animation:pulse 2.5s ease infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+
+/* ── HERO ─────────────────────────────────────────────────── */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 52px 60px;position:relative;overflow:hidden}
+/* retro grid floor — lime only */
+.hero::before{content:'';position:absolute;bottom:0;left:0;right:0;height:44%;pointer-events:none;background:repeating-linear-gradient(90deg,transparent 0,transparent calc(100%/14 - 1px),rgba(212,245,60,0.045) calc(100%/14 - 1px),rgba(212,245,60,0.045) calc(100%/14)),repeating-linear-gradient(0deg,transparent 0,transparent calc(100%/8 - 1px),rgba(212,245,60,0.045) calc(100%/8 - 1px),rgba(212,245,60,0.045) calc(100%/8));clip-path:polygon(7% 0%,93% 0%,100% 100%,0% 100%);mask:linear-gradient(to bottom,transparent,rgba(0,0,0,.65) 40%,rgba(0,0,0,.88));-webkit-mask:linear-gradient(to bottom,transparent,rgba(0,0,0,.65) 40%,rgba(0,0,0,.88))}
+
+/* location tag — same eyebrow style as section labels */
+.hero-tag{
+  position:absolute;top:92px;left:52px;z-index:2;
+  font-family:var(--mono);font-size:9px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--t3);
+  display:flex;align-items:center;gap:14px;
+  opacity:0;animation:fadeUp .6s ease .2s forwards;
+}
+.hero-tag::before{content:'';width:20px;height:1px;background:var(--bd2)}
+
+/* headline */
+.hero-hl{position:relative;z-index:2;font-family:var(--disp);font-size:clamp(60px,9vw,132px);font-weight:800;letter-spacing:-0.04em;line-height:0.9;margin-bottom:40px;overflow:hidden}
+.hero-hl .hl{display:block;overflow:hidden}
+.hero-hl .hl span{display:block;animation:slideUp .95s cubic-bezier(0.16,1,0.3,1) both}
+.hero-hl .hl:nth-child(1) span{animation-delay:.1s;color:var(--t1)}
+.hero-hl .hl:nth-child(2) span{animation-delay:.22s;color:var(--t2)}
+.hero-hl .hl:nth-child(3) span{animation-delay:.34s;color:var(--t1)}
+@keyframes slideUp{from{transform:translateY(110%);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* bottom row */
+.hero-bottom{position:relative;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;gap:40px;opacity:0;animation:fadeUp .7s ease .72s forwards}
+.hero-desc{font-size:14px;color:var(--t2);line-height:1.74;max-width:300px}
+.hero-cta{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--lime);display:flex;align-items:center;gap:10px;transition:gap .2s}
+.hero-cta:hover{gap:16px}
+.hero-cta-box{width:28px;height:28px;border:1px solid var(--bd2);display:flex;align-items:center;justify-content:center;font-size:13px;transition:border-color .2s,background .2s}
+.hero-cta:hover .hero-cta-box{border-color:var(--lime);background:var(--lime-d)}
+
+/* scroll cue */
+.scroll-cue{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeUp .8s ease 1.2s forwards}
+.scroll-cue-label{font-family:var(--mono);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--t3)}
+.scroll-track{width:1px;height:36px;background:var(--bd);position:relative;overflow:hidden}
+.scroll-pip{width:1px;background:var(--lime);animation:scrollPip 1.8s ease infinite;position:absolute;top:-100%}
+@keyframes scrollPip{0%{top:-100%;height:40%}100%{top:150%;height:40%}}
+
+/* ── WORK SECTION ──────────────────────────────────────────── */
+.work{padding:96px 52px 80px}
+
+/* Unified eyebrow — identical style to what's used on other pages */
+.section-eyebrow{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--lime);margin-bottom:48px;
+  display:flex;align-items:center;gap:14px;
+}
+.section-eyebrow::after{content:'';flex:1;max-width:48px;height:1px;background:var(--bd2)}
+
+/* full-width vertical stack */
+.project-list{display:flex;flex-direction:column;gap:1px;background:var(--bd)}
+.project-card{
+  background:var(--bg);display:grid;grid-template-columns:1fr 58%;
+  text-decoration:none;color:var(--t1);
+  border:none;transition:background .25s;
+  opacity:0;transform:translateY(16px);
+}
+.project-card.in{opacity:1;transform:translateY(0);transition:opacity .55s ease,transform .55s ease,background .25s}
+.project-card:hover{background:var(--bg2)}
+
+/* LEFT — text content */
+.card-left{padding:40px 44px;border-right:1px solid var(--bd);display:flex;flex-direction:column;justify-content:center}
+.card-label{font-family:var(--mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--t3);margin-bottom:12px}
+.card-title{font-family:var(--disp);font-size:clamp(20px,2.2vw,27px);font-weight:800;letter-spacing:-0.025em;line-height:1.1;color:var(--t1);margin-bottom:14px;transition:color .2s}
+.project-card:hover .card-title{color:var(--lime)}
+.card-summary{font-size:13px;color:var(--t2);line-height:1.72;max-width:400px;margin-bottom:18px}
+/* Tags — higher contrast */
+.card-tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--t2);           /* bumped from t3 */
+  border:1px solid var(--bd2); /* more visible border */
+  background:rgba(255,255,255,0.04);
+  padding:4px 9px;
+}
+.card-action{
+  margin-top:20px;font-family:var(--mono);font-size:10px;
+  letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--lime);display:flex;align-items:center;gap:8px;
+  transition:gap .2s;
+}
+.project-card:hover .card-action{gap:14px}
+
+/* RIGHT — image with KPI overlay */
+.card-right{position:relative;overflow:hidden;background:var(--bg3);min-height:260px}
+.card-right img{width:100%;height:100%;object-fit:cover;opacity:.65;transition:opacity .4s,transform .5s}
+.project-card:hover .card-right img{opacity:.85;transform:scale(1.03)}
+.card-ph{position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 18px,rgba(255,255,255,0.008) 18px,rgba(255,255,255,0.008) 19px);display:flex;align-items:center;justify-content:center}
+.card-ph-label{font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(226,224,219,.15);text-align:center;padding:0 20px}
+
+/* KPI overlay — bottom-left of image */
+.card-kpi-overlay{
+  position:absolute;bottom:0;left:0;
+  padding:20px 24px;
+  background:linear-gradient(to top,rgba(13,13,13,0.92) 0%,transparent 100%);
+  width:100%;
+}
+.card-kpi{
+  font-family:var(--disp);font-size:clamp(40px,4.5vw,60px);
+  font-weight:800;letter-spacing:-0.04em;color:var(--lime);line-height:1;
+}
+.card-kpi-label{font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--t2);margin-top:4px}
+
+/* hover: lime left border — single accent only */
+.project-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--lime);opacity:0;transition:opacity .2s;z-index:2}
+.project-card{position:relative}
+.project-card:hover::before{opacity:1}
+
+/* ── CREDENTIALS ───────────────────────────────────────────── */
+.credentials{border-top:1px solid var(--bd)}
+.credentials-header{
+  padding:40px 52px 0;
+}
+/* reuse same eyebrow */
+.spec-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bd);margin-top:24px}
+.spec-box{background:var(--bg);padding:36px 32px}
+.spec-val{font-family:var(--disp);font-size:42px;font-weight:800;letter-spacing:-0.04em;color:var(--t1);line-height:1;margin-bottom:8px}
+.spec-val b{color:var(--lime);font-weight:800}
+.spec-label{font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--t3)}
+
+/* ── FOOTER ─────────────────────────────────────────────────── */
+.site-footer{padding:36px 52px;border-top:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between}
+.footer-copy{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:0.08em}
+.footer-copy strong{color:var(--t2);font-weight:400}
+.footer-links{display:flex;gap:24px;list-style:none}
+.footer-links a{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--t3);transition:color .2s}
+.footer-links a:hover{color:var(--lime)}
+
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+::-webkit-scrollbar{width:2px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--bd)}
+</style>
+</head>
+<body>
+
+<!-- ── LOADER ── -->
+<div id="loader">
+  <div class="loader-inner">
+    <div class="loader-icons" id="loaderIcons">
+
+      <div class="loader-icon-wrap active" data-idx="0">
+        <svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="12" rx="4"/><line x1="7" y1="11" x2="7" y2="15"/><line x1="5" y1="13" x2="9" y2="13"/><circle cx="15" cy="11" r="1.2" fill="var(--lime)" stroke="none"/><circle cx="17" cy="13" r="1.2" fill="var(--lime)" stroke="none"/></svg>
+        <span class="loader-icon-label">Gaming</span>
+      </div>
+
+      <div class="loader-icon-wrap" data-idx="1">
+        <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        <span class="loader-icon-label">Photography</span>
+      </div>
+
+      <div class="loader-icon-wrap" data-idx="2">
+        <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="16" rx="1"/><polyline points="2 10 22 10"/><line x1="7" y1="2" x2="5" y2="6"/><line x1="12" y1="2" x2="10" y2="6"/><line x1="17" y1="2" x2="15" y2="6"/></svg>
+        <span class="loader-icon-label">Movies</span>
+      </div>
+
+      <div class="loader-icon-wrap" data-idx="3">
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <span class="loader-icon-label">TV Shows</span>
+      </div>
+
+    </div>
+    <div class="loader-bar-wrap">
+      <div class="loader-bar-track">
+        <div class="loader-bar-fill" id="loaderFill"></div>
+      </div>
+      <div class="loader-pct" id="loaderPct">0%</div>
+    </div>
+  </div>
+</div>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<div id="scroll-bar"><div id="scroll-fill"></div></div>
+
+<!-- ── NAV ── -->
+<header class="nav" id="mainNav">
+  <a href="./index.html" class="nav-logo">Darshan Munkur</a>
+  <nav aria-label="Main navigation">
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="./about.html">About</a></li>
+      <li><a href="mailto:darshan.munkur@gmail.com">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="nav-right">
+    <div class="nav-led" aria-hidden="true"></div>
+    Open to work
+  </div>
+</header>
+
+<!-- ── HERO ── -->
+<section class="hero" aria-label="Introduction">
+  <!-- consistent eyebrow style: same as section labels -->
+  <div class="hero-tag">Senior Product Designer &nbsp;·&nbsp; Harrison, NJ</div>
+
+  <h1 class="hero-hl">
+    <span class="hl"><span>Designing complex</span></span>
+    <span class="hl"><span>systems for the</span></span>
+    <span class="hl"><span>people inside them.</span></span>
+  </h1>
+
+  <div class="hero-bottom">
+    <p class="hero-desc">5+ years designing enterprise B2B platforms for Fortune 500 clients across Banking, Wealth Management, and Telecom. Translating operational friction into products that move numbers.</p>
+    <a href="#work" class="hero-cta" aria-label="View selected work">
+      View Selected Work
+      <span class="hero-cta-box" aria-hidden="true">→</span>
+    </a>
+  </div>
+
+  <div class="scroll-cue" aria-hidden="true">
+    <span class="scroll-cue-label">Scroll</span>
+    <div class="scroll-track"><div class="scroll-pip"></div></div>
+  </div>
+</section>
+
+<!-- ── WORK ── -->
+<section class="work" id="work" aria-label="Selected Work">
+  <div class="section-eyebrow">Selected Work — 2021–2025</div>
+
+  <div class="project-list">
+
+    <a href="./usbank.html" class="project-card" aria-label="US Bank case study">
+      <div class="card-left">
+        <div class="card-label">01 · Banking &amp; Fintech</div>
+        <h3 class="card-title">US Bank — Platform Modernization &amp; Client Acquisition</h3>
+        <p class="card-summary">Bankers couldn't share anything digitally. Redesigned the acquisition platform end-to-end — eliminating printed assets, building a multi-BU design system, and scaling delivery across Email, QR, and SMS.</p>
+        <div class="card-tags">
+          <span class="tag">Platform Design</span>
+          <span class="tag">Design System</span>
+          <span class="tag">End-to-End UX</span>
+        </div>
+        <div class="card-action">View Case Study →</div>
+      </div>
+      <div class="card-right">
+        <!-- <img src="./images/usbank.jpg" alt="US Bank Platform"> -->
+        <div class="card-ph"><div class="card-ph-label">Add project image</div></div>
+        <div class="card-kpi-overlay">
+          <div class="card-kpi">+20%</div>
+          <div class="card-kpi-label">Application rate uplift</div>
+        </div>
+      </div>
+    </a>
+
+    <a href="./verizon.html" class="project-card" aria-label="Verizon case study">
+      <div class="card-left">
+        <div class="card-label">02 · Telecom</div>
+        <h3 class="card-title">Verizon — Unified Change Management Platform</h3>
+        <p class="card-summary">A platform that worked but nobody wanted to use. Led discovery across 19 user interviews and 150+ survey responses, then rearchitected wireless, wireline, and fiber management under one roof.</p>
+        <div class="card-tags">
+          <span class="tag">Enterprise Platform</span>
+          <span class="tag">Research-Led</span>
+          <span class="tag">Agile UX</span>
+        </div>
+        <div class="card-action">View Case Study →</div>
+      </div>
+      <div class="card-right">
+        <!-- <img src="./images/verizon.jpg" alt="Verizon Platform"> -->
+        <div class="card-ph"><div class="card-ph-label">Add project image</div></div>
+        <div class="card-kpi-overlay">
+          <div class="card-kpi">+40%</div>
+          <div class="card-kpi-label">CSAT score increase</div>
+        </div>
+      </div>
+    </a>
+
+    <a href="./lpl.html" class="project-card" aria-label="LPL Financial case study">
+      <div class="card-left">
+        <div class="card-label">03 · Wealth Management</div>
+        <h3 class="card-title">LPL Financial — Advisor Onboarding Platform</h3>
+        <p class="card-summary">1,000+ hours to onboard a prospect. Redesigned the experience for the largest independent broker-dealer in the US — targeting NPS and time-to-value with research-validated decisions.</p>
+        <div class="card-tags">
+          <span class="tag">Onboarding</span>
+          <span class="tag">NPS Strategy</span>
+          <span class="tag">Research</span>
+        </div>
+        <div class="card-action">View Case Study →</div>
+      </div>
+      <div class="card-right">
+        <!-- <img src="./images/lpl.jpg" alt="LPL Financial"> -->
+        <div class="card-ph"><div class="card-ph-label">Add project image</div></div>
+        <div class="card-kpi-overlay">
+          <div class="card-kpi">−50%</div>
+          <div class="card-kpi-label">Onboarding time reduced</div>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ── CREDENTIALS ── -->
+<div class="credentials">
+  <div class="credentials-header">
+    <div class="section-eyebrow">Credentials</div>
+  </div>
+  <div class="spec-grid">
+    <div class="spec-box"><div class="spec-val">5<b>+</b></div><div class="spec-label">Years Experience</div></div>
+    <div class="spec-box"><div class="spec-val">6<b>+</b></div><div class="spec-label">Enterprise Projects</div></div>
+    <div class="spec-box"><div class="spec-val"><b>F</b>500</div><div class="spec-label">Client Scale</div></div>
+    <div class="spec-box"><div class="spec-val"><b>SF</b></div><div class="spec-label">Salesforce Certified</div></div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer class="site-footer">
+  <div class="footer-copy"><strong>Darshan Munkur</strong> · darshan.munkur@gmail.com · © 2025</div>
+  <ul class="footer-links">
+    <li><a href="https://linkedin.com/in/darshan-munkur" target="_blank" rel="noopener">LinkedIn</a></li>
+    <li><a href="./about.html">About</a></li>
+  </ul>
+</footer>
+
+<script>
+(function(){
+  /* ── LOADER ── */
+  var wraps = document.querySelectorAll('.loader-icon-wrap');
+  var fill  = document.getElementById('loaderFill');
+  var pctEl = document.getElementById('loaderPct');
+  var ci = 0, n = wraps.length, startTime = Date.now(), duration = 1800;
+  var iconInterval = setInterval(function(){
+    wraps[ci].classList.remove('active');
+    ci = (ci + 1) % n;
+    wraps[ci].classList.add('active');
+  }, duration / n);
+  var progInterval = setInterval(function(){
+    var pct = Math.min((Date.now() - startTime) / duration * 100, 100);
+    fill.style.width = pct + '%';
+    pctEl.textContent = Math.round(pct) + '%';
+    if(pct >= 100) {
+      clearInterval(progInterval); clearInterval(iconInterval);
+      setTimeout(function(){
+        var loader = document.getElementById('loader');
+        loader.style.opacity = '0';
+        setTimeout(function(){ loader.style.display = 'none'; }, 500);
+      }, 200);
+    }
+  }, 30);
+
+  /* ── CURSOR ── */
+  var cur = document.getElementById('cursor'), ring = document.getElementById('cursor-ring');
+  var mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove', function(e){ mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
+  (function loop(){ rx+=(mx-rx)*.1; ry+=(my-ry)*.1; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(loop); })();
+  document.querySelectorAll('a,button').forEach(function(el){
+    el.addEventListener('mouseenter',function(){ ring.style.width='42px'; ring.style.height='42px'; ring.style.borderColor='rgba(212,245,60,0.6)'; });
+    el.addEventListener('mouseleave',function(){ ring.style.width='28px'; ring.style.height='28px'; ring.style.borderColor='rgba(212,245,60,0.35)'; });
+  });
+
+  /* ── SCROLL PROGRESS ── */
+  var sfill = document.getElementById('scroll-fill');
+  window.addEventListener('scroll', function(){
+    sfill.style.height = Math.min(window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100, 100) + '%';
+  }, {passive:true});
+
+  /* ── NAV ── */
+  var nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', function(){ nav.classList.toggle('scrolled', window.scrollY > 60); }, {passive:true});
+
+  /* ── SMOOTH SCROLL ── */
+  document.querySelectorAll('a[href="#work"]').forEach(function(a){
+    a.addEventListener('click', function(e){ e.preventDefault(); document.getElementById('work').scrollIntoView({behavior:'smooth'}); });
+  });
+
+  /* ── CARD REVEAL ── */
+  var cards = document.querySelectorAll('.project-card');
+  var co = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ var i = Array.from(cards).indexOf(e.target); setTimeout(function(){ e.target.classList.add('in'); }, i*110); co.unobserve(e.target); }
+    });
+  },{threshold:0.07});
+  cards.forEach(function(c){ co.observe(c); });
+
+  /* ── REVEAL ── */
+  var ro = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); ro.unobserve(e.target); } }); },{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(function(el){ ro.observe(el); });
+})();
+</script>
+</body>
+</html>
