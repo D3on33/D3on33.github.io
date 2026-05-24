@@ -1,0 +1,276 @@
+/* ═══════════════════════════════════════════════
+   style.css — shared across all pages
+   Darshan Munkur Portfolio
+═══════════════════════════════════════════════ */
+
+/* ── TOKENS ── */
+:root {
+  --bg:        #F7F5F1;
+  --bg2:       #EEECE7;
+  --bg3:       #E5E3DD;
+  --bd:        rgba(0,0,0,0.07);
+  --bd2:       rgba(0,0,0,0.13);
+  --t1:        #18181B;
+  --t2:        #6B6965;
+  --t3:        #888682;
+  --accent:    #5B3FBE;
+  --accent-d:  rgba(91,63,190,0.09);
+  --accent-r:  91,63,190;
+  --dot:       #5B3FBE;
+  --nav-bg:    rgba(247,245,241,0.94);
+  --hero-fade: rgba(247,245,241,0.90);
+  --panel-bg:  #2a2535;
+  --serif:     'Instrument Serif', Georgia, serif;
+  --sans:      'DM Sans', sans-serif;
+  --mono:      'DM Mono', monospace;
+  --pad:       clamp(24px, 5vw, 80px);
+  --nav-h:     64px;
+  --max:       1440px;
+  --space-sm:  clamp(56px, 8vh, 96px);
+  --space-lg:  clamp(64px, 9vh, 112px);
+}
+
+[data-theme="dark"] {
+  --bg:        #0E0E0E;
+  --bg2:       #161616;
+  --bg3:       #1E1E1E;
+  --bd:        rgba(255,255,255,0.07);
+  --bd2:       rgba(255,255,255,0.12);
+  --t1:        #EDEBE6;
+  --t2:        #8A8884;
+  --t3:        #676563;
+  --accent:    #9B84FF;
+  --accent-d:  rgba(155,132,255,0.12);
+  --accent-r:  155,132,255;
+  --dot:       #9B84FF;
+  --nav-bg:    rgba(14,14,14,0.96);
+  --hero-fade: rgba(14,14,14,0.90);
+  --panel-bg:  #1a1520;
+}
+
+/* ── RESET ── */
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; scrollbar-gutter: stable; }
+body {
+  background: var(--bg); color: var(--t1);
+  font-family: var(--sans); font-weight: 300;
+  overflow-x: hidden; -webkit-font-smoothing: antialiased;
+  animation: pageFade .4s ease both;
+}
+@keyframes pageFade { from { opacity: 0 } to { opacity: 1 } }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+
+/* ── CURSOR ── removed for consistency (using browser default) ── */
+
+/* ── SCROLL PROGRESS ── */
+#scroll-bar { position: fixed; bottom: 0; left: 0; right: 0; height: 3px; z-index: 9999; pointer-events: none; background: rgba(var(--accent-r),.12); }
+#scroll-fill { height: 100%; background: var(--accent); width: 0%; transition: width .06s linear; box-shadow: 0 0 8px rgba(var(--accent-r),.4); }
+
+/* ── BACK TO TOP ── */
+#btt { position: fixed; bottom: 28px; right: 28px; z-index: 400; width: 36px; height: 36px; border: 1px solid var(--bd2); display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--t3); opacity: 0; pointer-events: none; transition: opacity .3s, border-color .2s, color .2s; cursor: none; background: var(--bg); }
+#btt.visible { opacity: 1; pointer-events: auto; }
+#btt:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ── NAV ── */
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 800; height: var(--nav-h); padding: 0 var(--pad); display: flex; align-items: center; justify-content: space-between; background: var(--nav-bg); backdrop-filter: blur(16px); border-bottom: 1px solid var(--bd); }
+.nav-logo { font-family: var(--serif); font-size: 17px; letter-spacing: -.01em; color: var(--t1); }
+.nav-links { display: flex; gap: 36px; list-style: none; position: absolute; left: 50%; transform: translateX(-50%); }
+.nav-links a { font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--t2); transition: color .2s; }
+.nav-links a:hover, .nav-links a.active { color: var(--accent); }
+.nav-right { display: flex; align-items: center; gap: 16px; }
+.nav-status { display: flex; align-items: center; gap: 7px; font-family: var(--mono); font-size: 10px; color: var(--t2); }
+.nav-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--dot); box-shadow: 0 0 6px rgba(var(--accent-r),.4); animation: pulse 2.5s ease infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+/* ── THEME TOGGLE ── */
+.theme-toggle { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--bd2); background: transparent; color: var(--t3); font-size: 14px; cursor: none; display: flex; align-items: center; justify-content: center; transition: border-color .2s, color .2s; }
+.theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.theme-icon { display: inline-flex; align-items: center; justify-content: center; width: 1em; height: 1em; }
+
+/* ── PAGE OFFSET ── */
+.page { padding-top: var(--nav-h); }
+
+/* ── SHARED FOOTER ── */
+.site-footer { border-top: 1px solid var(--bd); max-width: var(--max); margin: 0 auto; }
+.footer-cta { padding: clamp(56px,8vh,96px) var(--pad); border-bottom: 1px solid var(--bd); }
+.footer-cta h2 { font-family: var(--serif); font-size: clamp(32px,4.5vw,60px); font-weight: 400; letter-spacing: -.025em; line-height: 1.05; margin-bottom: 20px; }
+.footer-cta h2 em { font-style: italic; color: var(--accent); }
+.footer-cta p { font-size: 14px; color: var(--t2); line-height: 1.75; max-width: 400px; margin-bottom: 32px; }
+.footer-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.footer-btn { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--t2); border: 1px solid var(--bd2); padding: 12px 22px; display: inline-flex; align-items: center; gap: 8px; transition: all .22s; }
+.footer-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-d); }
+.footer-bottom { padding: clamp(18px,2.5vh,24px) var(--pad); display: flex; align-items: center; justify-content: space-between; }
+.footer-copy { font-family: var(--mono); font-size: 10px; color: var(--t3); letter-spacing: .06em; }
+.footer-copy strong { color: var(--t2); font-weight: 400; }
+.footer-nav-links { display: flex; gap: 24px; list-style: none; }
+.footer-nav-links a { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--t3); transition: color .2s; }
+.footer-nav-links a:hover { color: var(--accent); }
+
+/* ── SHARED UTILITIES ── */
+.mag { display: inline-flex; transition: transform .35s cubic-bezier(.23,1,.32,1); }
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+.section-label { font-family: var(--mono); font-size: 9px; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 14px; margin-bottom: clamp(40px, 6vh, 64px); }
+.section-label::after { content: ''; flex: 1; max-width: 40px; height: 1px; background: var(--bd2); }
+
+/* ── ACCESSIBILITY ── */
+.skip-link { position: absolute; top: -100%; left: 16px; background: var(--accent); color: #fff; font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; padding: 10px 18px; z-index: 99999; text-decoration: none; }
+.skip-link:focus { top: 16px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* ── REDUCED MOTION ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  html { scroll-behavior: auto; }
+  body::before { display: none; }
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 0; }
+
+/* ── EDITORIAL EM — purple italic accent ── */
+h1 em, h2 em, .hero-h1 em, .about-name em, .cs-h em,
+.section-heading em, .footer-cta h2 em, .case-h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+
+/* ══════════════════════════════════════════════
+   TEXTURE — organic grain, purely decorative
+   SVG feTurbulence filter as inline data URI
+   Fixed position, pointer-events:none
+   Exempt from WCAG 1.4.11 (decorative)
+══════════════════════════════════════════════ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  /* Subtle grain using SVG turbulence */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  background-repeat: repeat;
+  opacity: 0.28;
+  mix-blend-mode: multiply;
+}
+[data-theme="dark"] body::before {
+  mix-blend-mode: screen;
+  opacity: 0.10;
+}
+/* All page content stays above texture */
+.nav, .page, main, section, footer,
+#loader, #cur, #cur-ring, #scroll-bar, #btt {
+  position: relative;
+  z-index: 1;
+}
+
+/* ══════════════════════════════════════════════
+   HOVER DISTORTION — Case study pages (Subtle A)
+   backdrop-filter blur on hovered cards/sections
+   CSS transform perspective for magnetic feel
+   No opacity change on text = zero contrast impact
+══════════════════════════════════════════════ */
+
+/* Section cards & project cards — subtle lift + grid smear */
+.proj-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: background .22s, transform .35s cubic-bezier(.23,1,.32,1), box-shadow .35s;
+}
+.proj-card:hover {
+  transform: translateY(-2px) scale(1.005);
+  box-shadow: 0 8px 32px rgba(var(--accent-r),.08), 0 2px 8px rgba(0,0,0,.06);
+}
+/* Grid spotlight on card hover — brightens grid lines beneath */
+.proj-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    ellipse 80% 60% at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(var(--accent-r), 0.06) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity .3s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+.proj-card:hover::after { opacity: 1; }
+/* Ensure card content sits above spotlight */
+.proj-card > * { position: relative; z-index: 1; }
+
+/* Case study section hover — faint grid cell highlight */
+.cs-sec {
+  transition: background .3s ease;
+  position: relative;
+}
+.cs-sec::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 60% 40% at var(--mouse-x, 50%) var(--mouse-y, 40%),
+    rgba(var(--accent-r), 0.04) 0%,
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity .4s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+.cs-sec:hover::before { opacity: 1; }
+.cs-sec > * { position: relative; z-index: 1; }
+
+/* Footer CTA hover — same treatment */
+.footer-cta {
+  position: relative;
+  transition: background .3s;
+}
+.footer-cta::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(
+    ellipse 50% 70% at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(var(--accent-r), 0.05) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity .4s ease;
+  pointer-events: none;
+}
+.footer-cta:hover::before { opacity: 1; }
+
+/* Nav link hover — grid cell underline shimmer */
+.nav-links a {
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0; right: 0;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .25s cubic-bezier(.23,1,.32,1);
+}
+.nav-links a:hover::after { transform: scaleX(1); }
+
+/* ══════════════════════════════════════════════
+   REDUCED MOTION — disable all grid animations
+   Grid stays visible but static, no transitions
+══════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  body::before { display: none; }  /* remove grid entirely for motion-sensitive */
+  .proj-card,
+  .proj-card::after,
+  .cs-sec::before,
+  .footer-cta::before { transition: none !important; }
+  .proj-card:hover { transform: none; box-shadow: none; }
+}
