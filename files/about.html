@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="About Darshan Munkur — Senior UX Designer with 5+ years in enterprise B2B.">
+<meta property="og:title" content="About Darshan Munkur — Senior UX Designer">
+<meta property="og:description" content="5+ years designing enterprise B2B platforms. MS in Human-Computer Interaction. Currently at Incedo Inc.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://darshanmunkur.com/about.html">
+<meta property="og:image" content="https://darshanmunkur.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://darshanmunkur.com/about.html">
+<title>About — Darshan Munkur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+<style>
+.about-hero { position: relative; max-width: var(--max); margin: 0 auto; }
+
+/* Full-bleed portrait */
+.about-hero-img {
+  width: 100%; aspect-ratio: 16/8; overflow: hidden;
+  background: var(--bg2); position: relative;
+}
+@media (max-width: 700px) { .about-hero-img { aspect-ratio: 3/4; } }
+.about-hero-img img { width: 100%; height: 100%; object-fit: cover; object-position: 45% 35%; }
+.about-hero-img::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 30%, var(--hero-fade) 100%);
+}
+
+/* Headline overlaps bottom edge of photo */
+.about-hero-text {
+  position: relative; margin-top: -80px; z-index: 2;
+  padding: 0 var(--pad) clamp(48px,7vh,80px);
+  max-width: var(--max); margin-left: auto; margin-right: auto;
+}
+.about-eyebrow {
+  font-family: var(--mono); font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--accent); display: flex; align-items: center; gap: 10px; margin-bottom: 20px;
+}
+.about-eyebrow::before { content: ''; width: 16px; height: 1px; background: var(--accent); }
+.about-name {
+  font-family: var(--serif); font-size: clamp(52px, 8vw, 96px);
+  font-weight: 400; letter-spacing: -.03em; line-height: 1.0;
+  color: var(--t1); margin-bottom: 28px;
+}
+.about-tagline {
+  font-family: var(--serif); font-size: clamp(17px, 2vw, 22px);
+  font-style: italic; color: var(--t2); line-height: 1.45;
+  max-width: 52ch; margin-bottom: 0;
+}
+
+/* ── STATUS BAR ── */
+.status-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px var(--pad);
+  border-top: 1px solid var(--bd); border-bottom: 1px solid var(--bd);
+  max-width: var(--max); margin: 0 auto;
+}
+.status-left { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 11px; letter-spacing: .1em; color: var(--t2); }
+.s-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--dot); box-shadow: 0 0 4px rgba(var(--accent-r),.4); animation: pulse 2s infinite; flex-shrink: 0; }
+.status-right { font-family: var(--mono); font-size: 10px; color: var(--t3); }
+
+/* ── BIO ── */
+.bio-section {
+  max-width: var(--max); margin: 0 auto;
+  padding: clamp(64px,9vh,112px) var(--pad);
+  border-bottom: 1px solid var(--bd);
+  display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px,6vw,96px);
+  align-items: start;
+}
+@media (max-width: 720px) { .bio-section { grid-template-columns: 1fr; } }
+.bio-label { font-family: var(--mono); font-size: 9px; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 28px; display: flex; align-items: center; gap: 10px; }
+.bio-label::after { content: ''; flex: 1; max-width: 36px; height: 1px; background: var(--bd2); }
+.bio-text { font-size: 15px; color: var(--t2); line-height: 1.85; max-width: 55ch; }
+.bio-text p + p { margin-top: 18px; }
+.bio-text strong { color: var(--t1); font-weight: 500; }
+.bio-image { width: 100%; aspect-ratio: 3/4; overflow: hidden; background: var(--bg2); position: relative; }
+.bio-image img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.bio-aside { display: flex; flex-direction: column; justify-content: flex-end; gap: 24px; }
+.bio-stat-row { display: flex; flex-direction: column; gap: 4px; padding-bottom: 20px; border-bottom: 1px solid var(--bd); }
+.bio-stat-row:last-child { border-bottom: none; padding-bottom: 0; }
+.bio-stat-num { font-family: var(--serif); font-size: clamp(28px,3.5vw,40px); font-weight: 400; font-style: italic; color: var(--accent); line-height: 1; }
+.bio-stat-label { font-family: var(--mono); font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: var(--t3); }
+
+/* ── WORK HISTORY — spine + branches ── */
+.history-section {
+  max-width: var(--max); margin: 0 auto;
+  padding: clamp(64px,9vh,112px) var(--pad);
+  border-bottom: 1px solid var(--bd);
+}
+.section-heading { font-family: var(--serif); font-size: clamp(36px,4.5vw,56px); font-weight: 400; letter-spacing: -.025em; line-height: 1.08; color: var(--t1); margin-bottom: clamp(40px,6vh,64px); }
+.history-spine { position: relative; padding-left: 28px; }
+.history-spine::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 1px; background: var(--bd2); }
+
+.history-node { position: relative; padding-bottom: clamp(32px,5vh,52px); opacity: 0; transform: translateX(-8px); transition: opacity .55s ease, transform .55s ease; }
+.history-node.in { opacity: 1; transform: translateX(0); }
+.history-node:last-child { padding-bottom: 0; }
+
+/* Branch dot */
+.history-node::before { content: ''; position: absolute; left: -28px; top: 8px; width: 9px; height: 9px; border-radius: 50%; background: var(--bg); border: 1.5px solid var(--bd2); transition: border-color .2s, background .2s; }
+.history-node:first-child::before { background: var(--accent); border-color: var(--accent); }
+.history-node:hover::before { border-color: var(--accent); }
+
+.history-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-bottom: 4px; }
+.history-company { font-family: var(--serif); font-size: clamp(20px,2.5vw,28px); font-weight: 400; color: var(--t1); letter-spacing: -.015em; line-height: 1.1; }
+.history-company-link { transition: color .2s; }
+.history-company-link:hover .history-company { color: var(--accent); }
+.history-period { font-family: var(--mono); font-size: 9px; letter-spacing: .12em; color: var(--t3); white-space: nowrap; padding-top: 5px; }
+.history-role { font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+.history-desc { font-size: 14px; color: var(--t2); line-height: 1.78; max-width: 65ch; }
+.history-desc strong { color: var(--t1); font-weight: 500; }
+
+/* ── SKILLS — open grid, no boxes ── */
+.skills-section {
+  max-width: var(--max); margin: 0 auto;
+  padding: clamp(64px,9vh,112px) var(--pad);
+  border-bottom: 1px solid var(--bd);
+}
+.skills-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: clamp(32px,4vw,56px) clamp(24px,3vw,40px);
+  margin-top: clamp(40px,6vh,64px);
+}
+@media (max-width: 900px) { .skills-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 500px) { .skills-grid { grid-template-columns: 1fr; } }
+
+.skill-group { display: flex; flex-direction: column; gap: 12px; }
+.skill-cat {
+  font-family: var(--serif); font-size: clamp(19px, 2vw, 24px);
+  font-weight: 400; font-style: italic; color: var(--t1);
+  letter-spacing: -.01em; line-height: 1.1;
+  padding-bottom: 10px; border-bottom: 1px solid var(--bd);
+}
+.skill-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+.skill-list li { font-size: 13px; color: var(--t2); line-height: 1.8; }
+
+/* ── CREDENTIALS ── */
+.cred-section {
+  max-width: var(--max); margin: 0 auto;
+  border-bottom: 1px solid var(--bd);
+  display: grid; grid-template-columns: 1fr 1fr;
+}
+@media (max-width: 640px) { .cred-section { grid-template-columns: 1fr; } }
+.cred-block { padding: clamp(32px,5vh,52px) var(--pad); border-right: 1px solid var(--bd); }
+.cred-block:last-child { border-right: none; }
+.cred-label { font-family: var(--mono); font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+.cred-item { display: flex; flex-direction: column; gap: 3px; padding: 12px 0; border-bottom: 1px solid var(--bd); }
+.cred-item:last-child { border-bottom: none; }
+.cred-name { font-size: 14px; color: var(--t1); font-weight: 400; }
+.cred-sub { font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--t3); }
+
+/* ── OFF THE CLOCK — Ben Roach style ── */
+.otc-section {
+  max-width: var(--max); margin: 0 auto;
+  padding: clamp(64px,9vh,112px) var(--pad);
+  border-bottom: 1px solid var(--bd);
+}
+.otc-text { font-size: 15px; color: var(--t2); line-height: 1.85; max-width: 58ch; margin-bottom: clamp(40px,6vh,64px); }
+.otc-photos { display: grid; grid-template-columns: repeat(3,1fr); gap: clamp(12px,2vw,20px); }
+@media (max-width: 600px) { .otc-photos { grid-template-columns: 1fr; } }
+.otc-photo {
+  aspect-ratio: 4/5; background: var(--bg2); overflow: hidden;
+  position: relative;
+}
+.otc-photo img { width: 100%; height: 100%; object-fit: cover; }
+.otc-photo-ph {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--t3); padding: 20px; text-align: center;
+}
+
+/* ── RECOGNITION ── */
+.rec-section {
+  max-width: var(--max); margin: 0 auto;
+  padding: clamp(28px,4vh,40px) var(--pad);
+  border-bottom: 1px solid var(--bd);
+}
+.rec-inner { display: flex; align-items: flex-start; gap: 20px; }
+.rec-mark { font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); white-space: nowrap; padding-top: 2px; }
+.rec-text { font-size: 14px; color: var(--t2); line-height: 1.75; }
+.rec-text em { color: var(--t1); font-style: normal; font-weight: 500; }
+
+/* ── FOOTER ── */
+
+/* ANIMATIONS */
+
+/* ── THEME TOGGLE ── */
+
+/* ABOUT — hover distortions (Option A subtle) */
+.history-node {
+  transition: padding-left .3s cubic-bezier(.23,1,.32,1);
+  position: relative;
+}
+.history-node::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(
+    ellipse 80% 60% at var(--mouse-x,50%) var(--mouse-y,50%),
+    rgba(var(--accent-r),0.05) 0%, transparent 70%
+  );
+  opacity: 0; transition: opacity .35s; pointer-events: none;
+}
+.history-node:hover { padding-left: 6px; }
+.history-node:hover::before { opacity: 1; }
+.history-node > * { position: relative; z-index: 1; }
+
+.skill-group {
+  transition: transform .3s cubic-bezier(.23,1,.32,1);
+}
+.skill-group:hover { transform: translateY(-2px); }
+
+.cred-item {
+  transition: border-color .25s, padding-left .25s cubic-bezier(.23,1,.32,1);
+}
+.cred-item:hover {
+  border-color: rgba(var(--accent-r),.3);
+  padding-left: 8px;
+}
+
+.otc-photo {
+  transition: transform .4s cubic-bezier(.23,1,.32,1);
+  overflow: hidden;
+}
+.otc-photo:hover { transform: scale(1.02); }
+
+.bio-stat-row {
+  transition: border-color .25s, transform .3s cubic-bezier(.23,1,.32,1);
+}
+.bio-stat-row:hover {
+  border-color: rgba(var(--accent-r),.3);
+  transform: translateX(4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .history-node, .skill-group, .cred-item,
+  .otc-photo, .bio-stat-row { transition: none !important; }
+  .history-node:hover { padding-left: 0; }
+  .history-node::before { display: none; }
+  .skill-group:hover, .otc-photo:hover { transform: none; }
+  .bio-stat-row:hover { transform: none; }
+}
+
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div id="scroll-bar"><div id="scroll-fill"></div></div>
+
+<header class="nav">
+  <a href="./index.html" class="nav-logo">Darshan Munkur</a>
+  <ul class="nav-links">
+    <li><a href="./index.html#work">Work</a></li>
+    <li><a href="./about.html" class="active">About</a></li>
+    <li><a href="mailto:darshan.munkur@gmail.com">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="nav-status"><div class="nav-dot"></div><span>Open to work</span></div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle colour theme"><span class="theme-icon">☀</span></button>
+  </div>
+</header>
+
+<main id="main-content">
+<div class="page">
+
+  <!-- HERO — full-bleed portrait, headline overlaps bottom -->
+  <section class="about-hero" aria-label="About Darshan Munkur">
+    <div class="about-hero-img">
+      <!-- Replace with your actual photo — ideally landscape crop showing environment -->
+      <img src="./photo-about.jpg" alt="Darshan Munkur — Senior UX Designer" loading="eager" fetchpriority="high" width="2400" height="1200">
+    </div>
+    <div class="about-hero-text">
+      <div class="about-eyebrow">Senior UX Designer · Harrison, NJ</div>
+      <h1 class="about-name">Darshan<br>Munkur</h1>
+      <p class="about-tagline">Senior UX Designer. Enterprise products. Measurable outcomes.</p>
+    </div>
+  </section>
+
+  <!-- STATUS -->
+  <div class="status-bar">
+    <div class="status-left"><div class="s-dot"></div>Open to Senior UX Designer opportunities</div>
+    <div class="status-right">darshan.munkur@gmail.com</div>
+  </div>
+
+  <!-- BIO -->
+  <section class="bio-section">
+    <div>
+      <div class="bio-label">About</div>
+      <div class="bio-text">
+        <p>I began my career not as a designer, but as a <strong>content programmer</strong> — building algorithmic eLearning experiences to WCAG standards using HTML, CSS, and Python. That engineering foundation taught me to think in systems before I ever opened Figma.</p>
+        <p>Craving a deeper understanding of why people interact with interfaces the way they do, I pivoted into <strong>Human-Computer Interaction</strong> at IUPUI — where I ran usability studies, shipped a pet health app concept, and taught Python to 30+ graduate students while finishing my MS.</p>
+        <p>That pivot led me to <strong>Incedo Inc.</strong>, where I've spent the last four years embedded inside Fortune 500 product teams across Banking, Wealth Management, and Telecom. I've designed platforms used by thousands of bankers, advisors, and treasury teams globally — and learned that the best UX decisions happen at the intersection of user evidence and business constraint.</p>
+        <p>My background in engineering means I think in systems — how components connect, where edge cases live, and how design survives handoff. I don't just ship screens; I ship the rationale behind them.</p>
+      </div>
+    </div>
+    <div class="bio-image">
+      <img src="./photo-about-bio.jpg" alt="Darshan Munkur" loading="lazy" width="600" height="800">
+    </div>
+  </section>
+
+  <!-- BIO STATS -->
+  <section style="max-width: var(--max); margin: 0 auto; padding: clamp(56px,8vh,96px) var(--pad); border-bottom: 1px solid var(--bd);">
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(40px,6vw,96px);">
+      <div class="bio-stat-row reveal" style="border-bottom: none; padding-bottom: 0;">
+        <div class="bio-stat-num">5+</div>
+        <div class="bio-stat-label">Years consulting for Fortune 500 clients</div>
+      </div>
+      <div class="bio-stat-row reveal" style="border-bottom: none; padding-bottom: 0;">
+        <div class="bio-stat-num">6+</div>
+        <div class="bio-stat-label">Enterprise transformation projects</div>
+      </div>
+      <div class="bio-stat-row reveal" style="border-bottom: none; padding-bottom: 0;">
+        <div class="bio-stat-num">44</div>
+        <div class="bio-stat-label">Markets reached — Citi DSM platform</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK HISTORY -->
+  <section class="history-section">
+    <h2 class="section-heading reveal">Work <em>History</em></h2>
+    <div class="history-spine">
+
+      <div class="history-node">
+        <div class="history-header">
+          <div>
+            <a href="./password.html?next=usbank.html" class="history-company-link">
+              <div class="history-company">Incedo Inc. — US Bank</div>
+            </a>
+            <div class="history-role">Senior UX Designer</div>
+          </div>
+          <div class="history-period">Jan 2024 – Present</div>
+        </div>
+        <p class="history-desc">Lead designer on the CardLink platform — redesigning end-to-end banker and customer workflows for credit card acquisition across 6 business units. Shipped a unified white-labeled design system in Figma, collaborated daily with PMs and engineering leads, and presented design rationale to C-suite stakeholders. <strong>+20% application uplift · −30% funnel drop-off.</strong></p>
+      </div>
+
+      <div class="history-node">
+        <div class="history-header">
+          <div>
+            <a href="./password.html?next=verizon.html" class="history-company-link">
+              <div class="history-company">Incedo Inc. — Verizon</div>
+            </a>
+            <div class="history-role">UX Designer</div>
+          </div>
+          <div class="history-period">Sep 2023 – Dec 2023</div>
+        </div>
+        <p class="history-desc">Redesigned Verizon Kirke — the internal System of Record for wireless, wireline, and fiber change management. Led 19 interviews and 150+ surveys, ran a Design Thinking workshop with core stakeholders, and shipped a top-to-bottom redesign in lockstep with agile engineering. <strong>+40% CSAT.</strong></p>
+      </div>
+
+      <div class="history-node">
+        <div class="history-header">
+          <div>
+            <a href="./password.html?next=lpl.html" class="history-company-link">
+              <div class="history-company">Incedo Inc. — LPL Financial</div>
+            </a>
+            <div class="history-role">UX Designer</div>
+          </div>
+          <div class="history-period">Feb 2023 – Aug 2023</div>
+        </div>
+        <p class="history-desc">Redesigned LPL's Advisor Onboarding Portal — consolidating 1,000+ hours and 2,478 manual actions into a unified 0→1 self-service experience. Worked closely with product managers and engineers to close an 8–24pt NPS gap against competitors and address a 48% advisor dissatisfaction rate.</p>
+      </div>
+
+      <div class="history-node">
+        <div class="history-header">
+          <div>
+            <a href="./password.html?next=citi.html" class="history-company-link">
+              <div class="history-company">Incedo Inc. — Citi</div>
+            </a>
+            <div class="history-role">Associate UX Designer</div>
+          </div>
+          <div class="history-period">Feb 2022 – Feb 2023</div>
+        </div>
+        <p class="history-desc">Contributed to Citi's Digital Signer Management platform — a centralized experience for global treasury teams across 44 markets and 80% of transaction volume. Co-led persona creation and journey mapping across 20 enterprise clients alongside senior researchers and executive stakeholders. <strong>GTB Innovation Award 2025.</strong></p>
+      </div>
+
+      <div class="history-node">
+        <div class="history-header">
+          <div>
+            <div class="history-company">Furtrieve, LLC</div>
+            <div class="history-role">Product Designer</div>
+          </div>
+          <div class="history-period">Aug 2020 – May 2021</div>
+        </div>
+        <p class="history-desc">Led concept development for a pet health app targeting 60M+ pet-owning households. Synthesized 9+ interviews and 110+ survey responses into personas and high-fidelity prototypes, running rapid usability iterations.</p>
+      </div>
+
+      <div class="history-node">
+        <div class="history-header">
+          <div>
+            <div class="history-company">Ansrsource India</div>
+            <div class="history-role">Content Programmer</div>
+          </div>
+          <div class="history-period">Aug 2017 – Mar 2019</div>
+        </div>
+        <p class="history-desc">Designed algorithmic K–12 eLearning content to WCAG AA standards using HTML, CSS, JavaScript, and Python. Led a 5-member team building in-house productivity tools, improving output by 20%.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS — open grid, no boxes -->
+  <section class="skills-section">
+    <div class="bio-label">Skills &amp; Stack</div>
+    <div class="skills-grid">
+      <div class="skill-group reveal">
+        <div class="skill-cat">Design Systems</div>
+        <ul class="skill-list">
+          <li>Architecture &amp; multi-BU white-labeling</li>
+          <li>Component libraries &amp; Figma tokens</li>
+          <li>Design-to-dev handoff</li>
+          <li>Pattern documentation</li>
+        </ul>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-cat">Interaction Design</div>
+        <ul class="skill-list">
+          <li>End-to-end flows &amp; IA</li>
+          <li>Micro-interactions &amp; edge states</li>
+          <li>Wireframing &amp; prototyping</li>
+          <li>WCAG 2.2 AA accessibility</li>
+        </ul>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-cat">User Research</div>
+        <ul class="skill-list">
+          <li>Moderated interviews &amp; usability testing</li>
+          <li>Contextual inquiry &amp; surveys</li>
+          <li>Journey mapping &amp; service blueprints</li>
+          <li>Affinity diagramming &amp; synthesis</li>
+        </ul>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-cat">Strategy</div>
+        <ul class="skill-list">
+          <li>Stakeholder alignment &amp; exec presentation</li>
+          <li>Roadmapping &amp; prioritization</li>
+          <li>Design thinking facilitation</li>
+          <li>Agile / Scrum collaboration</li>
+        </ul>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-cat">Tools</div>
+        <ul class="skill-list">
+          <li>Figma (AI), Figma Make</li>
+          <li>Maze, Miro, Jira, Confluence</li>
+          <li>Illustrator, Webflow</li>
+          <li>HTML / CSS, Cursor</li>
+        </ul>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-cat">AI &amp; Emerging</div>
+        <ul class="skill-list">
+          <li>AI-augmented design workflows</li>
+          <li>Prompt design &amp; LLM tooling</li>
+          <li>Anthropic AI Fundamentals (in progress)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREDENTIALS -->
+  <div class="cred-section">
+    <div class="cred-block reveal">
+      <div class="cred-label">Education</div>
+      <div class="cred-item">
+        <div class="cred-name">MS, Human-Computer Interaction</div>
+        <div class="cred-sub">Indiana University-Purdue University, Indianapolis · 2019–2021</div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-name">BE, Information Science &amp; Engineering</div>
+        <div class="cred-sub">RNS Institute of Technology, Bengaluru · 2013–2017</div>
+      </div>
+    </div>
+    <div class="cred-block reveal">
+      <div class="cred-label">Certifications</div>
+      <div class="cred-item">
+        <div class="cred-name">Salesforce Certified UX Designer</div>
+        <div class="cred-sub">Salesforce · 2024</div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-name">AI Fundamentals</div>
+        <div class="cred-sub">Anthropic · In Progress</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OFF THE CLOCK -->
+  <section class="otc-section">
+    <div class="bio-label">Off the Clock</div>
+    <p class="otc-text reveal">
+      When I'm not designing, I'm usually exploring NYC's best cafes and photo spots or getting lost in a book. You might also find me building Lego and Gundam sets or diving into a game on my PC, PS5, or Switch. I'm a constant explorer of movies, music, and local restaurants — always on the hunt for a great story or a new dessert. Whether I'm behind a camera or a controller, I thrive on discovering new hobbies and hidden gems in the city.
+    </p>
+    <div class="otc-photos">
+      <div class="otc-photo reveal">
+        <!-- Replace with your photo -->
+        <div class="otc-photo-ph">[ Photo 01 — Cafes / NYC ]</div>
+      </div>
+      <div class="otc-photo reveal">
+        <div class="otc-photo-ph">[ Photo 02 — Lego / Gundam ]</div>
+      </div>
+      <div class="otc-photo reveal">
+        <div class="otc-photo-ph">[ Photo 03 — Gaming / Hobby ]</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECOGNITION -->
+  <div class="rec-section">
+    <div class="rec-inner">
+      <div class="rec-mark">Recognition</div>
+      <p class="rec-text">FDIC Innovation Tech Sprint 2021 Finalist — <em>"Breaking Down Barriers: Reaching the Last Mile of the Unbanked"</em> — designed solutions to improve financial inclusion for underserved communities.</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-cta">
+      <h2>Let's build something<br><em>worth using.</em></h2>
+      <p>Open to Senior UX Designer roles — complex enterprise products, fintech, and design systems work.</p>
+      <div class="footer-btns">
+        <a href="mailto:darshan.munkur@gmail.com" class="footer-btn mag">Email Me →</a>
+        <a href="https://linkedin.com/in/darshan-munkur" target="_blank" rel="noopener" class="footer-btn mag">LinkedIn ↗</a>
+        <a href="#" class="footer-btn mag">Download Resume ↓</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy"><strong>Darshan Munkur</strong> · darshan.munkur@gmail.com · © 2025</div>
+      <ul class="footer-nav-links">
+        <li><a href="./index.html#work">Work</a></li>
+        <li><a href="https://linkedin.com/in/darshan-munkur" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+  </footer>
+</div>
+</main>
+
+<script>
+(function(){
+  var html=document.documentElement;
+
+
+  /* SCROLL PROGRESS */
+  var sf=document.getElementById('scroll-fill');
+  window.addEventListener('scroll',function(){
+    var p=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight);
+    sf.style.width=Math.min(p*100,100)+'%';
+  },{passive:true});
+
+  /* REVEAL on scroll */
+  var revEls=document.querySelectorAll('.reveal');
+  var revCount=revEls.length;
+  var ro=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        ro.unobserve(e.target);
+        if(--revCount<=0)ro.disconnect();
+      }
+    });
+  },{threshold:.08});
+  revEls.forEach(function(el){ro.observe(el);});
+
+  /* HISTORY nodes staggered reveal */
+  var no=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        var ns=document.querySelectorAll('.history-node');
+        var i=Array.from(ns).indexOf(e.target);
+        setTimeout(function(){e.target.classList.add('in');},i*80);
+        no.unobserve(e.target);
+      }
+    });
+  },{threshold:.1});
+  document.querySelectorAll('.history-node').forEach(function(el){no.observe(el);});
+
+  /* MAGNETIC effect */
+  var magEls=document.querySelectorAll('.mag');
+  document.addEventListener('mousemove',function(e){
+    magEls.forEach(function(el){
+      var r=el.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;
+      var dx=e.clientX-cx,dy=e.clientY-cy,dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<60){
+        var s=(1-dist/60)*8;
+        el.style.transform='translate('+(dx/dist*s)+'px,'+(dy/dist*s)+'px)';
+      }else{
+        el.style.transform='';
+      }
+    });
+  },{passive:true});
+
+  /* THEME */
+  var tBtn=document.getElementById('themeToggle');
+  var stored=localStorage.getItem('dm-theme');
+  var prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var theme=stored||(prefersDark?'dark':'light');
+  html.setAttribute('data-theme',theme);
+
+  function updateThemeIcon(t){
+    var icon=tBtn.querySelector('.theme-icon');
+    if(icon){icon.textContent=t==='dark'?'☾':'☀';}
+  }
+
+  updateThemeIcon(theme);
+
+  if(tBtn){
+    tBtn.addEventListener('click',function(){
+      var t=html.getAttribute('data-theme')==='dark'?'light':'dark';
+      html.setAttribute('data-theme',t);
+      localStorage.setItem('dm-theme',t);
+      updateThemeIcon(t);
+    });
+  }
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(e){
+    if(!localStorage.getItem('dm-theme')){
+      var t=e.matches?'dark':'light';
+      html.setAttribute('data-theme',t);
+      updateThemeIcon(t);
+    }
+  });
+
+  /* MOUSE-TRACKING CSS VAR */
+  (function(){
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    document.querySelectorAll('.footer-cta, .bio-section, .history-section, .skills-section').forEach(function(el){
+      el.addEventListener('mousemove', function(e){
+        var r = el.getBoundingClientRect();
+        el.style.setProperty('--mouse-x', ((e.clientX-r.left)/r.width*100).toFixed(1)+'%');
+        el.style.setProperty('--mouse-y', ((e.clientY-r.top)/r.height*100).toFixed(1)+'%');
+      },{passive:true});
+    });
+  })();
+})();
+</script>
+</body>
+</html>

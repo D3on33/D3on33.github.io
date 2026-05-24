@@ -1,0 +1,272 @@
+/* ═══════════════════════════════════════════════
+   style-case.css — case study pages only
+   Darshan Munkur Portfolio
+═══════════════════════════════════════════════ */
+
+/* ── CASE HERO — full bleed ── */
+.case-hero{position:relative;max-width:var(--max);margin:0 auto}
+
+/* Full-bleed cover image */
+.case-cover{
+  width:100%;aspect-ratio:16/6;overflow:hidden;
+  background:var(--bg2);position:relative;
+}
+@media(max-width:700px){.case-cover{aspect-ratio:4/3}}
+.case-cover img{width:100%;height:100%;object-fit:cover}
+.case-cover::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 25%,var(--hero-fade) 100%)}
+.cover-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--t3)}
+
+/* Hero text overlaps bottom of image */
+.case-hero-text{
+  position:relative;margin-top:clamp(-80px,-12vw,-120px);z-index:2;
+  padding:0 var(--pad) 0;
+  max-width:var(--max);margin-left:auto;margin-right:auto;
+}
+.case-breadcrumb{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);margin-bottom:20px;display:flex;align-items:center;gap:8px}
+.case-breadcrumb a{transition:color .2s}.case-breadcrumb a:hover{color:var(--accent)}
+.case-eyebrow{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.case-eyebrow::before{content:'';width:16px;height:1px;background:var(--accent)}
+.case-h1{font-family:var(--serif);font-size:clamp(36px,5.5vw,80px);font-weight:400;letter-spacing:-.03em;line-height:1.12;color:var(--t1);margin-bottom:20px}
+.case-role-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(var(--accent-r),.25);padding:5px 14px;margin-bottom:24px}
+.case-lead{font-size:15px;color:var(--t2);line-height:1.8;max-width:58ch;margin-bottom:40px}
+
+/* Meta — glassmorphism card */
+.case-meta{
+  display:inline-grid;grid-template-columns:repeat(4,1fr);gap:0;
+  background:rgba(var(--accent-r),0.04);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid var(--bd);
+  margin-bottom:0;
+}
+@media(max-width:720px){.case-meta{grid-template-columns:repeat(2,1fr);width:100%}}
+.meta-cell{padding:16px 24px;border-right:1px solid var(--bd)}
+.meta-cell:last-child{border-right:none}
+.meta-key{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);margin-bottom:4px}
+.meta-val{font-size:13px;color:var(--t2)}
+
+/* ── FLOATING METRICS — open space, no strip ── */
+.case-metrics{
+  max-width:var(--max);margin:0 auto;
+  padding:clamp(80px,12vh,140px) var(--pad);
+  border-bottom:1px solid var(--bd);
+}
+.metrics-inner{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(32px,5vw,64px)}
+@media(max-width:640px){.metrics-inner{grid-template-columns:1fr;gap:40px}}
+.metric-item{display:flex;flex-direction:column;gap:10px}
+.metric-num{font-family:var(--serif);font-size:clamp(56px,7vw,96px);font-weight:400;font-style:italic;color:var(--accent);line-height:.95;letter-spacing:-.03em}
+.metric-label{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--t3);line-height:1.7;max-width:28ch}
+
+/* ── BODY — linear scroll, no sidebar ── */
+.case-body{max-width:var(--max);margin:0 auto}
+
+/* Section shared */
+.cs-sec{padding:clamp(64px,9vh,112px) var(--pad);border-bottom:1px solid var(--bd);scroll-margin-top:calc(var(--nav-h) + 20px)}
+.cs-label{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.cs-label::before{font-family:var(--mono);font-size:9px;color:var(--t3);opacity:.6}
+.cs-h{font-family:var(--serif);font-size:clamp(26px,3.5vw,44px);font-weight:400;letter-spacing:-.02em;line-height:1.1;color:var(--t1);margin-bottom:clamp(32px,5vh,52px)}
+
+/* Standard prose */
+.cs-prose{font-size:15px;color:var(--t2);line-height:1.85;max-width:65ch}
+.cs-prose p+p{margin-top:16px}
+.cs-prose strong{color:var(--t1);font-weight:500}
+
+/* Callout — no box, just left border + serif text */
+.cs-callout{border-left:2px solid var(--accent);padding:0 0 0 24px;margin:32px 0}
+.cs-callout-label{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.cs-callout-text{font-size:14px;color:var(--t2);line-height:1.78}
+.cs-callout-text strong{color:var(--t1);font-weight:500}
+
+/* Why callout — serif italic */
+.cs-why{margin:36px 0;padding-left:24px;border-left:2px solid var(--accent)}
+.cs-why p{font-family:var(--serif);font-size:clamp(16px,2vw,21px);font-style:italic;color:var(--t1);line-height:1.45;margin:0}
+.cs-why cite{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-top:10px;font-style:normal}
+
+/* Center pull quote — massive, grid-breaking */
+.cs-pullquote{
+  padding:clamp(56px,8vh,96px) var(--pad);
+  text-align:center;border-bottom:1px solid var(--bd);
+}
+.cs-pullquote p{font-family:var(--serif);font-size:clamp(22px,3.5vw,44px);font-weight:400;font-style:italic;color:var(--t1);line-height:1.3;letter-spacing:-.02em;max-width:820px;margin:0 auto}
+
+/* Image slots — full bleed, no border-radius for editorial feel */
+.img-full{width:100%;background:var(--bg2);position:relative;overflow:hidden}
+.img-full img{width:100%;height:100%;object-fit:cover}
+.img-full-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px}
+.img-ph-label{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--t3)}
+.is-landscape{aspect-ratio:16/9}
+.is-wide{aspect-ratio:21/9}
+.is-portrait{aspect-ratio:4/5}
+.img-caption{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-top:10px}
+
+/* ── ZIGZAG — 65/35 asymmetric ── */
+.zigzag{display:grid;grid-template-columns:35% 65%;gap:0;align-items:stretch}
+.zigzag.reverse{grid-template-columns:65% 35%}
+@media(max-width:760px){.zigzag,.zigzag.reverse{grid-template-columns:1fr}}
+.zz-text{padding:clamp(40px,6vh,72px) clamp(28px,3vw,56px);display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--bd)}
+.zigzag.reverse .zz-text{border-right:none;border-left:1px solid var(--bd)}
+@media(max-width:760px){.zz-text,.zigzag.reverse .zz-text{border:none;border-bottom:1px solid var(--bd)}}
+.zz-img{background:var(--bg2);position:relative;overflow:hidden;min-height:320px}
+.zz-img img{width:100%;height:100%;object-fit:cover}
+.zz-img-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;text-align:center;padding:20px}
+
+/* Research grid — no backgrounds */
+.research-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3vw,40px) clamp(32px,4vw,56px);margin-top:32px}
+@media(max-width:580px){.research-grid{grid-template-columns:1fr}}
+.r-item{padding-top:16px;border-top:1px solid var(--bd)}
+.r-num{font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--accent);margin-bottom:8px}
+.r-title{font-size:14px;font-weight:400;color:var(--t1);margin-bottom:6px}
+.r-desc{font-size:13px;color:var(--t2);line-height:1.7}
+
+/* Process steps — open */
+.p-steps{display:flex;flex-direction:column;margin-top:32px}
+.p-step{display:grid;grid-template-columns:36px 1fr;gap:16px;padding:20px 0;border-top:1px solid var(--bd);align-items:start}
+.p-step:last-child{border-bottom:1px solid var(--bd)}
+.p-n{font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:.08em;padding-top:2px}
+.p-title{font-size:14px;font-weight:400;color:var(--t1);margin-bottom:4px}
+.p-desc{font-size:13px;color:var(--t2);line-height:1.72}
+
+/* BEFORE / AFTER SLIDER */
+.ba-section{margin:40px 0}
+.ba-labels{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--bd2);margin-bottom:2px}
+.ba-lbl{padding:8px 16px;font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--t3);background:var(--bg)}
+.ba-lbl.after{color:var(--accent)}
+.ba-wrap{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;user-select:none;background:var(--bg2)}
+.ba-before,.ba-after-inner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.ba-before{background:var(--bg3)}
+.ba-clip{position:absolute;inset:0;overflow:hidden;width:50%}
+.ba-after-inner{width:200%;background:var(--bg2)}
+.ba-divider-line{position:absolute;top:0;bottom:0;width:2px;background:var(--accent);left:50%;transform:translateX(-50%);cursor:ew-resize;z-index:3}
+.ba-handle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:32px;height:32px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;box-shadow:0 2px 12px rgba(var(--accent-r),.35);pointer-events:none}
+.ba-ph{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);text-align:center;padding:20px}
+
+/* Outcomes — floating numbers, open space */
+.outcomes-open{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(32px,5vw,64px);padding:clamp(56px,8vh,96px) 0 0;margin-top:0}
+@media(max-width:560px){.outcomes-open{grid-template-columns:1fr;gap:32px}}
+.out-num{font-family:var(--serif);font-size:clamp(48px,6vw,80px);font-weight:400;font-style:italic;color:var(--accent);line-height:.95;letter-spacing:-.03em;margin-bottom:10px}
+.out-label{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);line-height:1.65;max-width:28ch}
+
+/* PREV/NEXT */
+.case-nav{display:grid;gap:1px;background:var(--bd);max-width:var(--max);margin:0 auto}
+.case-nav.has-both{grid-template-columns:1fr 1fr}
+.cnav-link{background:var(--bg);padding:clamp(24px,3.5vh,36px) var(--pad);display:flex;flex-direction:column;justify-content:center;transition:background .2s}
+.cnav-link:hover{background:var(--bg2)}
+.cnav-dir{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--t3);margin-bottom:8px}
+.cnav-title{font-family:var(--serif);font-size:clamp(16px,2vw,24px);color:var(--t1);transition:color .2s;letter-spacing:-.01em}
+.cnav-link:hover .cnav-title{color:var(--accent)}
+.cnav-link.next{align-items:flex-end;text-align:right}
+
+
+/* ── SECTION NAV DOTS — left side, inside margin ── */
+.section-dots{position:fixed;left:clamp(24px,3vw,48px);top:50%;transform:translateY(-50%);z-index:300;display:flex;flex-direction:column;gap:14px;pointer-events:none}
+@media(max-width:1200px){.section-dots{display:none}}
+.section-dot{display:flex;align-items:center;gap:10px;pointer-events:auto;cursor:pointer;background:none;border:none;padding:0;text-decoration:none}
+.dot-pip{width:6px;height:6px;border-radius:50%;background:rgba(var(--accent-r),.2);border:1px solid rgba(var(--accent-r),.3);transition:all .25s;flex-shrink:0}
+.dot-label{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);opacity:0;transform:translateX(-4px);transition:opacity .2s,transform .2s;white-space:nowrap;pointer-events:none}
+.section-dot:hover .dot-pip{background:var(--accent);border-color:var(--accent);transform:scale(1.4)}
+.section-dot:hover .dot-label,.section-dot.active .dot-label{opacity:1;transform:translateX(0)}
+.section-dot.active .dot-pip{background:var(--accent);border-color:var(--accent);width:8px;height:8px}
+/* ── INLINE SECTION STRIP — removed, using only left-side dots ── */
+
+
+
+/* ══════════════════════════════════════════════
+   CASE STUDY — subtle hover distortion (Option A)
+   Spotlight follows cursor via --mouse-x/y CSS var
+   set by JS. backdrop-filter creates grid smear.
+   No text opacity change = no contrast impact.
+══════════════════════════════════════════════ */
+
+/* Image slots — grid shimmer on hover */
+.img-slot, .zz-img, .ba-wrap {
+  position: relative;
+  transition: transform .4s cubic-bezier(.23,1,.32,1);
+}
+.img-slot:hover, .zz-img:hover {
+  transform: scale(1.008);
+}
+.img-slot::after, .zz-img::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(
+    ellipse 70% 50% at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(var(--accent-r), 0.07) 0%,
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity .35s ease;
+  pointer-events: none;
+  z-index: 3;
+}
+.img-slot:hover::after, .zz-img:hover::after { opacity: 1; }
+
+/* Callout blocks — edge glow on hover */
+.cs-callout {
+  transition: border-color .3s ease, box-shadow .3s ease;
+}
+.cs-callout:hover {
+  border-color: rgba(var(--accent-r), 0.5);
+  box-shadow: inset 2px 0 0 rgba(var(--accent-r), 0.3),
+              4px 0 20px rgba(var(--accent-r), 0.06);
+}
+
+/* Why callout — lift */
+.cs-why {
+  transition: border-color .3s, padding-left .3s cubic-bezier(.23,1,.32,1);
+}
+.cs-why:hover { border-color: var(--accent); padding-left: 28px; }
+
+/* Research grid items — card pop */
+.r-item {
+  transition: border-color .25s, transform .3s cubic-bezier(.23,1,.32,1),
+              background .25s;
+}
+.r-item:hover {
+  border-color: rgba(var(--accent-r), 0.35);
+  transform: translateY(-2px);
+  background: rgba(var(--accent-r), 0.03);
+}
+
+/* Process steps — subtle indent */
+.p-step {
+  transition: padding-left .25s cubic-bezier(.23,1,.32,1), border-color .25s;
+}
+.p-step:hover { padding-left: 8px; border-color: rgba(var(--accent-r), 0.3); }
+
+/* Metric boxes — scale pop */
+.hero-outcome-box, .o-box {
+  transition: transform .35s cubic-bezier(.23,1,.32,1), background .25s;
+  position: relative;
+}
+.hero-outcome-box:hover, .o-box:hover {
+  transform: scale(1.015);
+  background: rgba(var(--accent-r), 0.03);
+}
+
+/* Prev/next nav — slide indicator */
+.cnav-link {
+  overflow: hidden;
+}
+.cnav-link::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(var(--accent-r), 0.05) 0%, transparent 50%);
+  transform: translateX(-100%);
+  transition: transform .4s cubic-bezier(.23,1,.32,1);
+}
+.cnav-link:hover::before { transform: translateX(0); }
+
+/* Section nav dots — grow on active */
+.section-dot.active .dot-pip {
+  box-shadow: 0 0 8px rgba(var(--accent-r), 0.5);
+}
+
+/* Reduced motion overrides */
+@media (prefers-reduced-motion: reduce) {
+  .img-slot, .zz-img, .ba-wrap,
+  .cs-callout, .cs-why, .r-item,
+  .p-step, .hero-outcome-box, .o-box,
+  .cnav-link, .cnav-link::before,
+  .img-slot::after, .zz-img::after { transition: none !important; }
+  .img-slot:hover, .zz-img:hover { transform: none; }
+  .img-slot::after, .zz-img::after { display: none; }
+}

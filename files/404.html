@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Darshan Munkur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #F7F5F1;
+  --bg2:       #EEECE7;
+  --bg3:       #E5E3DD;
+  --bd:        rgba(0,0,0,0.08);
+  --bd2:       rgba(0,0,0,0.14);
+  --t1:        #18181B;
+  --t2:        #6B6965;
+  --t3:        #888682;
+  --accent:    var(--accent);
+  --accent-d:  var(--accent-d);
+  --accent-r:  58,122,74;
+  --dot:       var(--dot);
+  --nav-bg:    var(--nav-bg);
+  --hero-fade: var(--hero-fade);
+  --serif:     'Instrument Serif', Georgia, serif;
+  --sans:      'DM Sans', sans-serif;
+  --mono:      'DM Mono', monospace;
+  --pad:       clamp(24px, 5vw, 80px);
+  --nav-h:     64px;
+  --max:       1440px;
+}
+[data-theme="dark"] {
+  --bg:        var(--bg);
+  --bg2:       var(--bg2);
+  --bg3:       var(--bg3);
+  --bd:        rgba(255,255,255,0.08);
+  --bd2:       rgba(255,255,255,0.14);
+  --t1:        #EDEBE6;
+  --t2:        #8A8884;
+  --t3:        #676563;
+  --accent:    var(--accent);
+  --accent-d:  var(--accent-d);
+  --accent-r:  109,184,124;
+  --dot:       var(--accent);
+  --nav-bg:    var(--nav-bg);
+  --hero-fade: var(--hero-fade);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px}
+body{background:var(--bg);color:var(--t1);font-family:var(--sans);font-weight:300;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;cursor:none;animation:fade .4s ease both}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+a{color:inherit;text-decoration:none}
+#cur{width:7px;height:7px;background:var(--accent);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9000;transform:translate(-50%,-50%)}
+#cur-ring{width:26px;height:26px;border:1px solid rgba(var(--accent-r),.3);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:8999;transform:translate(-50%,-50%);transition:width .2s,height .2s}
+.nav{padding:0 var(--pad);height:64px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--bd)}
+.nav-logo{font-family:var(--serif);font-size:17px;letter-spacing:-.01em}
+.nav-back{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);transition:color .2s}
+.nav-back:hover{color:var(--accent)}
+.main{flex:1;display:flex;align-items:center;padding:clamp(48px,8vh,96px) var(--pad)}
+.inner{max-width:600px}
+.err-num{font-family:var(--serif);font-size:clamp(96px,18vw,200px);font-weight:400;font-style:italic;color:var(--accent);line-height:.9;letter-spacing:-.04em;margin-bottom:8px}
+.err-label{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--t3);margin-bottom:28px}
+.err-title{font-family:var(--serif);font-size:clamp(22px,3vw,36px);font-weight:400;letter-spacing:-.02em;line-height:1.15;margin-bottom:16px}
+.err-desc{font-size:14px;color:var(--t2);line-height:1.75;margin-bottom:36px;max-width:44ch}
+.err-links{display:flex;gap:12px;flex-wrap:wrap}
+.err-btn{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--t2);border:1px solid var(--bd2);padding:12px 22px;display:inline-flex;align-items:center;gap:8px;transition:all .2s}
+.err-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-d)}
+.foot{padding:18px var(--pad);border-top:1px solid var(--bd);font-family:var(--mono);font-size:10px;color:var(--t3)}
+</style>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="nav">
+  <a href="./index.html" class="nav-logo">Darshan Munkur</a>
+  <a href="./index.html" class="nav-back">← Back to Home</a>
+</header>
+<main class="main">
+  <div class="inner">
+    <div class="err-num">404</div>
+    <div class="err-label">Page not found</div>
+    <h1 class="err-title">This page doesn't exist — but the work does.</h1>
+    <p class="err-desc">You might have followed a broken link or typed the wrong address. Either way, let's get you somewhere useful.</p>
+    <div class="err-links">
+      <a href="./index.html" class="err-btn">View Work →</a>
+      <a href="./about.html" class="err-btn">About Me →</a>
+      <a href="mailto:darshan.munkur@gmail.com" class="err-btn">Get in Touch →</a>
+    </div>
+  </div>
+</main>
+<footer class="foot">Darshan Munkur · darshan.munkur@gmail.com · © 2025</footer>
+<script>
+(function(){
+
+  /* THEME — OS preference → localStorage override */
+  var html=document.documentElement,tBtn=document.getElementById('themeToggle');
+  var stored=localStorage.getItem('dm-theme');
+  var prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var theme=stored||(prefersDark?'dark':'light');
+  html.setAttribute('data-theme',theme);
+  if(tBtn){tBtn.textContent=theme==='dark'?'☾':'☀';}
+  if(tBtn){tBtn.addEventListener('click',function(){
+    var t=html.getAttribute('data-theme')==='dark'?'light':'dark';
+    html.setAttribute('data-theme',t);localStorage.setItem('dm-theme',t);
+    tBtn.textContent=t==='dark'?'☾':'☀';
+  });}
+  /* Listen for OS changes when no manual override */
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(e){
+    if(!localStorage.getItem('dm-theme')){
+      var t=e.matches?'dark':'light';
+      html.setAttribute('data-theme',t);
+      if(tBtn)tBtn.textContent=t==='dark'?'☾':'☀';
+    }
+  });
+})();
+</script>
+</body>
+</html>
