@@ -625,6 +625,12 @@
   /* MOUSE-TRACKING CSS VAR */
   (function(){
     if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    /* Global page-wide tracking */
+    document.addEventListener('mousemove', function(e){
+      html.style.setProperty('--mouse-x', ((e.clientX/window.innerWidth)*100).toFixed(1)+'%');
+      html.style.setProperty('--mouse-y', ((e.clientY/window.innerHeight)*100).toFixed(1)+'%');
+    },{passive:true});
+    /* Element-specific tracking */
     document.querySelectorAll('.footer-cta, .bio-section, .history-section, .skills-section').forEach(function(el){
       el.addEventListener('mousemove', function(e){
         var r = el.getBoundingClientRect();
