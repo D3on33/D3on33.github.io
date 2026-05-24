@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="About Darshan Munkur — Senior UX Designer, 5+ years enterprise B2B experience.">
+<title>About — Darshan Munkur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS (identical to index) ── */
+:root {
+  --bg:#0D0D0D; --bg2:#141414; --bg3:#1C1C1C;
+  --bd:#2A2A2E; --bd2:rgba(255,255,255,0.13);
+  --t1:#E2E0DB; --t2:#B0ACA6; --t3:#7C7A78;
+  --lime:#D4F53C; --purple:#7C6CFC;
+  --lime-d:rgba(212,245,60,0.07);
+  --mono:'DM Mono',monospace; --sans:'DM Sans',sans-serif; --disp:'Syne',sans-serif;
+  --nav-h:65px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--t1);font-family:var(--sans);font-weight:300;overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%} a{color:inherit;text-decoration:none}
+
+/* ── CURSOR ── */
+#cursor{width:8px;height:8px;background:var(--lime);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:8999;transform:translate(-50%,-50%);mix-blend-mode:difference}
+#cursor-ring{width:28px;height:28px;border:1px solid rgba(212,245,60,0.35);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:8998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s}
+#scroll-bar{position:fixed;right:0;top:0;bottom:0;width:2px;z-index:500;background:var(--bd);pointer-events:none}
+#scroll-fill{width:100%;background:var(--lime);height:0%}
+
+/* ── NAV (identical) ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:400;padding:20px 52px;display:flex;align-items:center;justify-content:space-between;background:rgba(13,13,13,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--bd)}
+.nav-logo{font-family:var(--disp);font-weight:800;font-size:16px;letter-spacing:-0.03em;color:var(--t1)}
+.nav-links{display:flex;gap:40px;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--t2);transition:color .2s}
+.nav-links a:hover{color:var(--lime)} .nav-links a.active{color:var(--lime)}
+.nav-right{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;letter-spacing:0.1em;color:var(--t2)}
+.nav-led{width:6px;height:6px;background:#39ff14;border-radius:50%;box-shadow:0 0 5px #39ff14;animation:pulse 2.5s ease infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── SHARED SECTION STYLES ── */
+/* Eyebrow — same on every page */
+.section-eyebrow{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--lime);margin-bottom:40px;
+  display:flex;align-items:center;gap:14px;
+}
+.section-eyebrow::after{content:'';flex:1;max-width:48px;height:1px;background:var(--bd2)}
+
+/* Section heading — same size and style as index */
+.section-heading{
+  font-family:var(--disp);font-weight:800;
+  font-size:clamp(32px,4vw,48px);
+  letter-spacing:-0.035em;line-height:1;
+  color:var(--t1);margin-bottom:48px;
+}
+.section-heading span{color:var(--lime)}
+
+.page{padding-top:var(--nav-h)}
+
+/* ── HERO — 1fr 1fr ── */
+.about-hero{
+  display:grid;grid-template-columns:1fr 1fr;
+  border-bottom:1px solid var(--bd);
+  min-height:76vh;
+}
+.hero-left{
+  padding:64px 52px;
+  display:flex;flex-direction:column;justify-content:center;
+  border-right:1px solid var(--bd);position:relative;
+}
+.hero-left::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.01) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.01) 1px,transparent 1px);background-size:64px 64px;pointer-events:none}
+
+/* Core spec label — eyebrow style */
+.core-label{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--lime);margin-bottom:20px;
+  display:flex;align-items:center;gap:14px;
+}
+.core-label::after{content:'';width:20px;height:1px;background:var(--bd2)}
+
+/* Name — no purple, all t1 */
+.about-name{
+  font-family:var(--disp);font-size:clamp(48px,6vw,84px);
+  font-weight:800;letter-spacing:-0.04em;line-height:.92;
+  margin-bottom:20px;color:var(--t1);
+}
+.about-tagline{
+  font-family:var(--sans);font-size:15px;
+  color:var(--t2);line-height:1.6;
+  margin-bottom:24px;max-width:440px;
+}
+.about-bio{font-size:14px;color:var(--t2);line-height:1.8;max-width:460px}
+.about-bio strong{color:var(--t1);font-weight:500}
+.about-bio p+p{margin-top:12px}
+
+/* RIGHT — full half photo */
+.hero-right{
+  position:relative;background:var(--bg2);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  overflow:hidden;
+}
+.photo-area{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+}
+/* corner brackets — lime only */
+.photo-area::before{content:'';position:absolute;top:24px;left:24px;width:22px;height:22px;border-top:2px solid var(--lime);border-left:2px solid var(--lime);z-index:2}
+.photo-area::after{content:'';position:absolute;bottom:80px;right:24px;width:22px;height:22px;border-bottom:2px solid var(--lime);border-right:2px solid var(--lime);z-index:2}
+
+/* Photo fills most of the right panel */
+.photo-box{
+  width:calc(100% - 48px);height:calc(100% - 96px);
+  max-width:340px;max-height:420px;
+  border:1px solid var(--bd2);background:var(--bg3);
+  position:relative;overflow:hidden;
+}
+.photo-box img{width:100%;height:100%;object-fit:cover}
+.photo-box-inner{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  background:repeating-linear-gradient(45deg,transparent,transparent 14px,rgba(212,245,60,0.018) 14px,rgba(212,245,60,0.018) 15px);
+}
+.photo-label{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--t3)}
+
+.hero-info-bar{
+  position:relative;z-index:2;padding:22px 28px;
+  border-top:1px solid var(--bd);background:rgba(13,13,13,0.85);
+  backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.info-key{font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--t3);margin-bottom:3px}
+.info-val{font-family:var(--sans);font-size:13px;color:var(--t2)}
+
+/* ── STATUS ── */
+.status-bar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:11px 52px;border-bottom:1px solid var(--bd);background:var(--bg2);
+}
+.status-left{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11px;letter-spacing:0.1em;color:var(--t2)}
+.s-dot{width:6px;height:6px;background:#39ff14;border-radius:50%;box-shadow:0 0 4px #39ff14;animation:pulse 2s infinite;flex-shrink:0}
+.status-right{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:0.06em}
+
+/* ── CURRENTLY ── */
+.currently{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--bd)}
+.curr-item{padding:28px 40px;border-right:1px solid var(--bd);transition:background .2s}
+.curr-item:last-child{border-right:none}
+.curr-item:hover{background:rgba(255,255,255,0.018)}
+.curr-icon{font-size:16px;margin-bottom:8px;display:block}
+.curr-label{font-family:var(--mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--lime);margin-bottom:6px}
+.curr-title{font-family:var(--disp);font-size:16px;font-weight:700;letter-spacing:-0.01em;color:var(--t1);margin-bottom:3px;line-height:1.2}
+.curr-sub{font-family:var(--sans);font-size:12px;color:var(--t3)}
+
+/* ── CAREER JOURNEY — clean, professional ── */
+.journey-section{padding:80px 52px;border-bottom:1px solid var(--bd)}
+
+.journey-path{display:flex;flex-direction:column;position:relative}
+/* single lime line — no gradient, no purple/coral */
+.journey-path::before{content:'';position:absolute;left:39px;top:0;bottom:0;width:1px;background:var(--bd2)}
+
+.journey-node{
+  display:grid;grid-template-columns:80px 1fr;
+  align-items:stretch;position:relative;
+  opacity:0;transform:translateX(-10px);
+  transition:opacity .5s ease,transform .5s ease;
+}
+.journey-node.in{opacity:1;transform:translateX(0)}
+
+.node-badge{
+  display:flex;flex-direction:column;align-items:center;
+  padding:24px 0;position:relative;z-index:1;
+}
+/* Single dot — lime only, no color-per-node */
+.node-dot{
+  width:10px;height:10px;
+  border-radius:50%;
+  background:var(--bg);
+  border:2px solid var(--lime);
+  flex-shrink:0;
+}
+/* current role gets filled dot */
+.journey-node:first-child .node-dot{background:var(--lime)}
+
+.node-content{padding:22px 36px;border-bottom:1px solid var(--bd)}
+.journey-node:last-child .node-content{border-bottom:none}
+
+.node-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:5px;gap:20px}
+.node-company{font-family:var(--disp);font-size:19px;font-weight:800;letter-spacing:-0.02em;color:var(--t1)}
+.node-period{font-family:var(--mono);font-size:9px;letter-spacing:0.12em;color:var(--t3);white-space:nowrap;padding-top:4px}
+
+.node-role{font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--lime);margin-bottom:10px}
+.node-desc{font-size:13px;color:var(--t2);line-height:1.72;max-width:640px}
+
+/* ── COMPETENCY (table layout) ── */
+.skills-section{
+  display:grid;grid-template-columns:1fr 1fr;
+  border-bottom:1px solid var(--bd);
+}
+.skills-left{padding:72px 52px;border-right:1px solid var(--bd)}
+.skills-right{padding:72px 52px}
+
+/* Table layout — key/value rows */
+.competency-table{width:100%;border-collapse:collapse;margin-top:0}
+.competency-table tr{border-bottom:1px solid var(--bd)}
+.competency-table tr:last-child{border-bottom:none}
+.competency-table th{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--t3);padding:10px 0;text-align:left;
+  width:38%;vertical-align:top;
+  font-weight:400;
+}
+.competency-table td{
+  font-family:var(--sans);font-size:13px;color:var(--t2);
+  padding:10px 0 10px 16px;vertical-align:top;
+  line-height:1.5;
+}
+.competency-table tr:hover td,
+.competency-table tr:hover th{color:var(--t1)}
+
+/* ── CERTS ── */
+.cert-strip{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--bd)}
+.cert-item{padding:28px 52px;border-right:1px solid var(--bd);display:flex;align-items:flex-start;gap:16px}
+.cert-item:last-child{border-right:none}
+.cert-icon{
+  width:34px;height:34px;border:1px solid var(--bd2);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:12px;color:var(--lime);flex-shrink:0;
+}
+.cert-name{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--t1);margin-bottom:3px}
+.cert-issuer{font-family:var(--mono);font-size:9px;letter-spacing:0.12em;color:var(--t3);text-transform:uppercase}
+
+/* ── EDU ── */
+.edu-strip{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--bd)}
+.edu-item{padding:36px 52px;border-right:1px solid var(--bd)}
+.edu-item:last-child{border-right:none}
+.edu-degree{font-family:var(--disp);font-size:17px;font-weight:700;letter-spacing:-0.02em;margin-bottom:7px;color:var(--t1);line-height:1.2}
+.edu-school{font-family:var(--sans);font-size:13px;color:var(--t2);margin-bottom:5px;line-height:1.5}
+.edu-period{font-family:var(--mono);font-size:9px;letter-spacing:0.12em;color:var(--lime)}
+
+/* ── RECOGNITION ── */
+.recognition-strip{padding:24px 52px;border-bottom:1px solid var(--bd);background:var(--bg2)}
+.recognition-label{font-family:var(--mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--lime);margin-bottom:8px}
+.recognition-text{font-size:13px;color:var(--t2);line-height:1.7}
+.recognition-text em{color:var(--t1)}
+
+/* ── PAGE FOOTER ── */
+.page-footer{display:grid;grid-template-columns:1fr 1fr}
+.cta-block{padding:64px 52px;border-right:1px solid var(--bd)}
+.cta-block h2{font-family:var(--disp);font-size:clamp(24px,3.5vw,40px);font-weight:800;letter-spacing:-0.03em;line-height:1.05;margin-bottom:18px}
+.cta-block p{font-size:14px;color:var(--t2);line-height:1.75;margin-bottom:28px;max-width:380px}
+.cta-links{display:flex;flex-direction:column;gap:8px}
+.cta-row{
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--t2);border:1px solid var(--bd);padding:13px 18px;transition:all .22s;
+}
+.cta-row:hover{border-color:var(--lime);color:var(--lime);background:var(--lime-d)}
+.footer-nav{padding:64px 52px;display:flex;flex-direction:column;justify-content:space-between}
+.footer-nav-label{font-family:var(--mono);font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:var(--t3);margin-bottom:18px}
+.footer-page-links{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-page-links a{font-family:var(--disp);font-size:19px;font-weight:700;letter-spacing:-0.01em;color:var(--t3);transition:color .2s}
+.footer-page-links a:hover{color:var(--lime)}
+.footer-copy{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:.08em}
+
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+::-webkit-scrollbar{width:2px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--bd)}
+</style>
+</head>
+<body>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<div id="scroll-bar"><div id="scroll-fill"></div></div>
+
+<header class="nav" id="mainNav">
+  <a href="./index.html" class="nav-logo">Darshan Munkur</a>
+  <nav aria-label="Main navigation">
+    <ul class="nav-links">
+      <li><a href="./index.html#work">Work</a></li>
+      <li><a href="./about.html" class="active">About</a></li>
+      <li><a href="mailto:darshan.munkur@gmail.com">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="nav-right"><div class="nav-led" aria-hidden="true"></div>Open to work</div>
+</header>
+
+<div class="page">
+
+  <!-- HERO: 1fr 1fr -->
+  <section class="about-hero" aria-label="About Darshan Munkur">
+    <div class="hero-left">
+      <div class="core-label">Core Specifications</div>
+      <h1 class="about-name">Darshan Munkur</h1>
+      <!-- Consistent tagline with index about strip -->
+      <p class="about-tagline">Senior UX Designer. Enterprise products. Measurable outcomes.</p>
+      <div class="about-bio">
+        <p>5+ years designing complex B2B platforms for <strong>Fortune 500 clients</strong> across Banking, Wealth Management, and Telecom. Currently at <strong>Incedo Inc.</strong>, embedded with US Bank, Verizon, and LPL Financial.</p>
+        <p>My background in <strong>Information Science &amp; Engineering</strong> means I think in systems — how components connect, where edge cases live, and how design survives engineering handoff.</p>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="photo-area">
+        <div class="photo-box">
+          <div class="photo-box-inner">
+            <div class="photo-label">[ Your photo here ]</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-info-bar">
+        <div><div class="info-key">Based in</div><div class="info-val">Harrison, NJ</div></div>
+        <div><div class="info-key">Current</div><div class="info-val">Incedo Inc.</div></div>
+        <div><div class="info-key">Open to</div><div class="info-val">Senior IC Roles</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATUS -->
+  <div class="status-bar">
+    <div class="status-left"><div class="s-dot" aria-hidden="true"></div>Open to Senior UX Designer opportunities</div>
+    <div class="status-right">darshan.munkur@gmail.com</div>
+  </div>
+
+  <!-- CURRENTLY -->
+  <div class="currently" aria-label="Currently">
+    <div class="curr-item"><span class="curr-icon">🎮</span><div class="curr-label">Now Playing</div><div class="curr-title">Pokémon Fire Red</div><div class="curr-sub">GBA · All badges. Still grinding.</div></div>
+    <div class="curr-item"><span class="curr-icon">📺</span><div class="curr-label">Now Watching</div><div class="curr-title">Shōgun</div><div class="curr-sub">FX · Slowly. Savoring it.</div></div>
+    <div class="curr-item"><span class="curr-icon">🎧</span><div class="curr-label">On Repeat</div><div class="curr-title">Your Artist Here</div><div class="curr-sub">Update with your current listen</div></div>
+  </div>
+
+  <!-- CAREER JOURNEY -->
+  <section class="journey-section" aria-label="Career Journey">
+    <div class="section-eyebrow">Career Journey</div>
+    <h2 class="section-heading reveal">Work <span>History</span></h2>
+
+    <div class="journey-path">
+
+      <div class="journey-node">
+        <div class="node-badge" aria-hidden="true"><div class="node-dot"></div></div>
+        <div class="node-content">
+          <div class="node-header">
+            <div class="node-company">Incedo Inc.</div>
+            <div class="node-period">Aug 2021 – Present</div>
+          </div>
+          <div class="node-role">UX Designer</div>
+          <p class="node-desc">Orchestrating 0–1 design systems for Tier-1 Banking and Telecom clients. Led end-to-end UX for 6+ digital transformation projects — from discovery to engineering handoff. Built multi-BU design systems in Figma, aligned executive stakeholders, and mentored junior designers.</p>
+        </div>
+      </div>
+
+      <div class="journey-node">
+        <div class="node-badge" aria-hidden="true"><div class="node-dot"></div></div>
+        <div class="node-content">
+          <div class="node-header">
+            <div class="node-company">Furtrieve, LLC</div>
+            <div class="node-period">Aug 2020 – May 2021</div>
+          </div>
+          <div class="node-role">Product Designer</div>
+          <p class="node-desc">Led concept development for a pet health app targeting 60M+ pet-owning households. Synthesized 9+ interviews and 110+ survey responses into personas and high-fidelity prototypes. Ran usability testing with rapid iteration.</p>
+        </div>
+      </div>
+
+      <div class="journey-node">
+        <div class="node-badge" aria-hidden="true"><div class="node-dot"></div></div>
+        <div class="node-content">
+          <div class="node-header">
+            <div class="node-company">Indiana University</div>
+            <div class="node-period">Aug 2019 – May 2021</div>
+          </div>
+          <div class="node-role">Graduate Assistant</div>
+          <p class="node-desc">Advised 30+ graduate students in Python and data analysis. Facilitated in-class learning and evaluated coursework for graduate-level informatics while completing MS in HCI.</p>
+        </div>
+      </div>
+
+      <div class="journey-node">
+        <div class="node-badge" aria-hidden="true"><div class="node-dot"></div></div>
+        <div class="node-content">
+          <div class="node-header">
+            <div class="node-company">Ansrsource India</div>
+            <div class="node-period">Aug 2017 – Mar 2019</div>
+          </div>
+          <div class="node-role">Content Programmer</div>
+          <p class="node-desc">Designed algorithmic K–12 eLearning content to WCAG AA standards using HTML, CSS, JavaScript, and Python. Led a 5-member team building in-house productivity tools, improving output by 20%.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS + TOOLS — two-column table layout -->
+  <section class="skills-section" aria-label="Skills and Tools">
+
+    <div class="skills-left">
+      <div class="section-eyebrow">Competency</div>
+      <h2 class="section-heading reveal">Skills &amp; <span>Expertise</span></h2>
+      <table class="competency-table" aria-label="Skills by category">
+        <tbody>
+          <tr><th>Design Systems</th><td>Architecture, component libraries, multi-BU white-labeling</td></tr>
+          <tr><th>Product Strategy</th><td>Roadmapping, stakeholder alignment, executive presentation</td></tr>
+          <tr><th>Interaction Design</th><td>Flows, IA, micro-interactions, edge states</td></tr>
+          <tr><th>Wireframing</th><td>Rapid low-fi to structured mid-fi, concept testing</td></tr>
+          <tr><th>Rapid Prototyping</th><td>Figma interactive prototypes, handoff specs</td></tr>
+          <tr><th>User Research</th><td>Interviews, usability testing, contextual inquiry</td></tr>
+          <tr><th>Journey Mapping</th><td>Service blueprints, affinity diagramming, personas</td></tr>
+          <tr><th>Accessibility</th><td>WCAG AA compliance, inclusive design practices</td></tr>
+          <tr><th>Heuristic Evaluation</th><td>Expert review, competitive benchmarking</td></tr>
+          <tr><th>Design Thinking</th><td>Facilitation, workshops, problem framing</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="skills-right">
+      <div class="section-eyebrow">Infrastructure &amp; Tooling</div>
+      <h2 class="section-heading reveal">Tools &amp; <span>Stack</span></h2>
+      <table class="competency-table" aria-label="Tools and software">
+        <tbody>
+          <tr><th>Design</th><td>Figma, Sketch, Balsamiq</td></tr>
+          <tr><th>Collaboration</th><td>Miro, Mural, Jira</td></tr>
+          <tr><th>Motion &amp; Visual</th><td>After Effects, Illustrator, Photoshop, Procreate</td></tr>
+          <tr><th>Web</th><td>HTML, CSS, Webflow</td></tr>
+          <tr><th>Research</th><td>UserTesting, Maze, Optimal Workshop</td></tr>
+          <tr><th>Delivery</th><td>Figma Dev Mode, Zeplin, Confluence</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </section>
+
+  <!-- CERTS -->
+  <div class="cert-strip" aria-label="Certifications">
+    <div class="cert-item">
+      <div class="cert-icon" aria-hidden="true">✦</div>
+      <div><div class="cert-name">Salesforce Certified UX Designer</div><div class="cert-issuer">Salesforce · 2024</div></div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-icon" aria-hidden="true">◈</div>
+      <div><div class="cert-name">AI Fundamentals</div><div class="cert-issuer">Anthropic · In Progress</div></div>
+    </div>
+  </div>
+
+  <!-- EDU -->
+  <div class="edu-strip" aria-label="Education">
+    <div class="edu-item">
+      <div class="edu-degree">MS, Human-Computer Interaction</div>
+      <div class="edu-school">Indiana University-Purdue University, Indianapolis</div>
+      <div class="edu-period">2019 – 2021</div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-degree">BE, Information Science &amp; Engineering</div>
+      <div class="edu-school">RNS Institute of Technology, Bengaluru, India</div>
+      <div class="edu-period">2013 – 2017</div>
+    </div>
+  </div>
+
+  <!-- RECOGNITION -->
+  <div class="recognition-strip">
+    <div class="recognition-label">Recognition</div>
+    <p class="recognition-text">FDIC Innovation Tech Sprint 2021 Finalist — <em>"Breaking Down Barriers: Reaching the Last Mile of the Unbanked"</em> — designed solutions to improve financial inclusion for underserved populations.</p>
+  </div>
+
+  <!-- CTA FOOTER -->
+  <div class="page-footer">
+    <div class="cta-block">
+      <h2>Let's build something worth using.</h2>
+      <p>Open to Senior UX Designer roles — especially complex enterprise products, fintech, and design systems work.</p>
+      <nav class="cta-links" aria-label="Contact links">
+        <a href="mailto:darshan.munkur@gmail.com" class="cta-row">Email Me <span>→</span></a>
+        <a href="https://linkedin.com/in/darshan-munkur" target="_blank" rel="noopener noreferrer" class="cta-row">LinkedIn <span>↗</span></a>
+        <a href="#" class="cta-row">Download Resume <span>↓</span></a>
+      </nav>
+    </div>
+    <div class="footer-nav">
+      <div>
+        <div class="footer-nav-label">Pages</div>
+        <ul class="footer-page-links">
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./index.html#work">Work</a></li>
+          <li><a href="./usbank.html">US Bank</a></li>
+          <li><a href="./verizon.html">Verizon</a></li>
+          <li><a href="./lpl.html">LPL Financial</a></li>
+        </ul>
+      </div>
+      <div class="footer-copy">Darshan Munkur · © 2025 · darshanmunkur.com</div>
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+<script>
+(function(){
+  var cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring'),mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+  (function loop(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop)})();
+  document.querySelectorAll('a,button').forEach(function(el){
+    el.addEventListener('mouseenter',function(){ring.style.width='42px';ring.style.height='42px';ring.style.borderColor='rgba(212,245,60,0.6)'});
+    el.addEventListener('mouseleave',function(){ring.style.width='28px';ring.style.height='28px';ring.style.borderColor='rgba(212,245,60,0.35)'});
+  });
+  var sfill=document.getElementById('scroll-fill');
+  window.addEventListener('scroll',function(){sfill.style.height=Math.min(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100,100)+'%'},{passive:true});
+  var revObs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');revObs.unobserve(e.target)}})},{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(function(el){revObs.observe(el)});
+  var nObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){var nodes=document.querySelectorAll('.journey-node');var idx=Array.from(nodes).indexOf(e.target);setTimeout(function(){e.target.classList.add('in')},idx*100);nObs.unobserve(e.target)}})},{threshold:0.1});
+  document.querySelectorAll('.journey-node').forEach(function(el){nObs.observe(el)});
+})();
+</script>
+</body>
+</html>

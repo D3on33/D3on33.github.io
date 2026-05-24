@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="US Bank Platform Modernization — UX case study by Darshan Munkur.">
+<title>US Bank — Darshan Munkur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS (identical to index + about) ── */
+:root {
+  --bg:#0D0D0D; --bg2:#141414; --bg3:#1C1C1C;
+  --bd:#2A2A2E; --bd2:rgba(255,255,255,0.13);
+  --t1:#E2E0DB; --t2:#B0ACA6; --t3:#7C7A78;
+  --lime:#D4F53C; --purple:#7C6CFC;
+  --lime-d:rgba(212,245,60,0.07);
+  --mono:'DM Mono',monospace; --sans:'DM Sans',sans-serif; --disp:'Syne',sans-serif;
+  --nav-h:65px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--t1);font-family:var(--sans);font-weight:300;overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}a{color:inherit;text-decoration:none}
+
+#cursor{width:8px;height:8px;background:var(--lime);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:8999;transform:translate(-50%,-50%);mix-blend-mode:difference}
+#cursor-ring{width:28px;height:28px;border:1px solid rgba(212,245,60,0.35);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:8998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s}
+#scroll-bar{position:fixed;right:0;top:0;bottom:0;width:2px;z-index:500;background:var(--bd);pointer-events:none}
+#scroll-fill{width:100%;background:var(--lime);height:0%}
+
+/* XP bar (segmented) */
+.xp-wrap{position:fixed;top:var(--nav-h);left:0;right:0;z-index:499;height:2px;background:rgba(255,255,255,0.03);display:flex;gap:1px}
+.xp-seg{flex:1;height:100%;background:transparent;transition:background .1s ease}
+.xp-seg.filled{background:var(--lime)}
+#lv-toast{position:fixed;bottom:28px;right:28px;z-index:9000;font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--lime);background:var(--bg2);border:1px solid var(--bd);padding:12px 18px;display:flex;align-items:center;gap:8px;opacity:0;transform:translateY(8px);transition:opacity .3s ease,transform .3s ease;pointer-events:none}
+#lv-toast.show{opacity:1;transform:translateY(0)}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:18px 52px;display:flex;align-items:center;justify-content:space-between;background:rgba(13,13,13,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--bd)}
+.nav-logo{font-family:var(--disp);font-weight:800;font-size:16px;letter-spacing:-0.03em;color:var(--t1)}
+.nav-links{display:flex;gap:40px;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--t2);transition:color .2s}
+.nav-links a:hover{color:var(--lime)}
+.nav-right{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;letter-spacing:0.1em;color:var(--t2)}
+.nav-led{width:6px;height:6px;background:#39ff14;border-radius:50%;box-shadow:0 0 5px #39ff14;animation:pulse 2.5s ease infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+
+.page{padding-top:var(--nav-h)}
+
+/* CASE HERO */
+.case-hero{min-height:70vh;display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--bd);position:relative;overflow:hidden}
+.hero-glow{position:absolute;top:0;left:40%;width:420px;height:420px;background:radial-gradient(circle,rgba(212,245,60,0.04) 0%,transparent 65%);pointer-events:none}
+.case-hero-left{padding:56px 52px;display:flex;flex-direction:column;justify-content:flex-end;border-right:1px solid var(--bd);position:relative;z-index:1}
+.case-hero-left::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.01) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.01) 1px,transparent 1px);background-size:64px 64px;pointer-events:none}
+
+.breadcrumb{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--t3);margin-bottom:20px;position:relative}
+.breadcrumb a{color:var(--t3);transition:color .2s}.breadcrumb a:hover{color:var(--lime)}
+.breadcrumb span.sep{color:var(--bd2)}
+
+/* Eyebrow — same style as all other pages */
+.section-eyebrow{font-family:var(--mono);font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:var(--lime);margin-bottom:12px;display:flex;align-items:center;gap:14px}
+.section-eyebrow::after{content:'';flex:1;max-width:48px;height:1px;background:var(--bd2)}
+
+.case-title{font-family:var(--disp);font-size:clamp(28px,3.8vw,50px);font-weight:800;letter-spacing:-0.035em;line-height:.95;margin-bottom:18px;position:relative}
+.case-lead{font-size:14px;color:var(--t2);line-height:1.75;max-width:480px;position:relative;margin-bottom:28px}
+.case-meta{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--bd);position:relative}
+.meta-box{background:var(--bg);padding:14px 18px}
+.meta-key{font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--t3);margin-bottom:3px}
+.meta-val{font-family:var(--sans);font-size:13px;color:var(--t2)}
+
+.case-hero-right{position:relative;background:var(--bg2);overflow:hidden}
+.case-cover{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:repeating-linear-gradient(45deg,transparent,transparent 18px,rgba(212,245,60,0.01) 18px,rgba(212,245,60,0.01) 19px)}
+.case-cover img{width:100%;height:100%;object-fit:cover;opacity:.65}
+.cover-ph{font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(226,224,219,0.15)}
+
+/* BODY LAYOUT */
+.case-body{display:grid;grid-template-columns:210px 1fr;min-height:100vh}
+
+/* SIDENAV */
+.sidenav{position:sticky;top:var(--nav-h);height:calc(100vh - var(--nav-h));overflow-y:auto;padding:36px 22px 36px 32px;border-right:1px solid var(--bd);display:flex;flex-direction:column;background:var(--bg2)}
+.sn-label{font-family:var(--mono);font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:var(--t3);margin-bottom:18px}
+.sn-links{display:flex;flex-direction:column;gap:1px}
+.sn-link{display:flex;align-items:center;gap:10px;padding:9px 10px;font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--t3);transition:all .2s;border-left:2px solid transparent}
+.sn-link:hover{color:var(--t2);background:rgba(255,255,255,0.018)}
+.sn-link.active{color:var(--lime);border-left-color:var(--lime);background:var(--lime-d)}
+.sn-num{font-size:9px;color:var(--lime);opacity:.5;min-width:16px}
+.sn-link.active .sn-num{opacity:1}
+.sn-back{margin-top:auto;padding-top:18px;border-top:1px solid var(--bd)}
+.back-link{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--t3);display:flex;align-items:center;gap:8px;transition:color .2s}
+.back-link:hover{color:var(--lime)}
+
+/* CONTENT */
+.cs-content{padding:52px 52px 88px}
+.cs-sec{margin-bottom:68px;scroll-margin-top:88px}
+
+/* Section heading in content — same style */
+.cs-h{
+  font-family:var(--disp);font-size:22px;font-weight:800;
+  letter-spacing:-0.02em;margin-bottom:20px;
+  display:flex;align-items:center;gap:12px;line-height:1;
+}
+.cs-num{
+  font-family:var(--mono);font-size:9px;color:var(--lime);
+  letter-spacing:0.12em;padding:3px 7px;
+  border:1px solid rgba(212,245,60,0.2);flex-shrink:0;
+}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;margin-bottom:20px}
+.two-col-wide{display:grid;grid-template-columns:3fr 2fr;gap:32px;align-items:start;margin-bottom:20px}
+.prose p,.cs-sec>p{font-size:14px;line-height:1.8;color:var(--t2);margin-bottom:12px}
+.prose p:last-child,.cs-sec>p:last-child{margin-bottom:0}
+
+/* Callout box — consistent lime border, no purple */
+.callout{
+  background:var(--bg2);border:1px solid var(--bd);
+  border-left:2px solid var(--lime);
+  padding:18px 20px;margin:18px 0;
+}
+.callout-label{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.16em;
+  text-transform:uppercase;color:var(--lime);margin-bottom:7px;
+}
+.callout-text{font-size:13px;color:var(--t2);line-height:1.7}
+
+/* Pull quote — large, dark container */
+.pull-quote{background:var(--bg3);padding:28px 32px;margin:24px 0}
+.pull-quote p{font-family:var(--disp);font-size:clamp(18px,2.2vw,26px);font-weight:700;color:var(--t1);line-height:1.3;letter-spacing:-0.01em;margin:0}
+
+/* Image slots */
+.img-slot{width:100%;background:var(--bg3);border:1px solid var(--bd);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;position:relative;overflow:hidden;margin-bottom:12px}
+.img-slot::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 18px,rgba(255,255,255,0.006) 18px,rgba(255,255,255,0.006) 19px)}
+.img-slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.7}
+.img-slot-label{font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(226,224,219,.18);z-index:1;text-align:center;padding:0 16px}
+.img-slot-sub{font-family:var(--mono);font-size:9px;color:rgba(226,224,219,.1);z-index:1}
+.is-landscape{aspect-ratio:16/9;padding:60px 0}
+.is-portrait{aspect-ratio:4/3;padding:60px 0}
+.is-wide{aspect-ratio:21/9;padding:60px 0}
+
+/* Research grid */
+.research-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:16px 0}
+.r-item{padding:16px 18px;background:var(--bg2);border:1px solid var(--bd);display:flex;gap:12px;align-items:flex-start}
+.r-icon{font-family:var(--mono);font-size:10px;color:var(--lime);min-width:12px;margin-top:1px;flex-shrink:0}
+.r-title{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--t1);margin-bottom:3px}
+.r-desc{font-size:12px;color:var(--t2);line-height:1.65}
+
+/* Process steps */
+.p-steps{display:flex;flex-direction:column}
+.p-step{display:grid;grid-template-columns:32px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--bd);align-items:start}
+.p-step:first-child{border-top:1px solid var(--bd)}
+.p-n{font-family:var(--mono);font-size:10px;color:var(--lime);letter-spacing:.08em;padding-top:2px}
+.p-title{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--t1);margin-bottom:3px}
+.p-desc{font-size:12px;color:var(--t2);line-height:1.7}
+
+/* Outcomes — zero noise */
+.outcomes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin:24px 0;background:var(--bd)}
+.o-box{background:var(--bg);padding:36px 28px}
+.o-val{font-family:var(--disp);font-size:clamp(44px,5vw,68px);font-weight:800;letter-spacing:-0.04em;color:var(--lime);line-height:1;margin-bottom:12px}
+.o-label{font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--t3);line-height:1.6}
+
+/* Tags */
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px}
+.tag{font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--t2);border:1px solid var(--bd2);background:rgba(255,255,255,0.04);padding:4px 9px}
+
+/* BACK TO TOP */
+#back-to-top{
+  position:fixed;bottom:28px;right:28px;z-index:400;
+  width:36px;height:36px;background:var(--bg2);
+  border:1px solid var(--bd);
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;color:var(--t3);
+  opacity:0;pointer-events:none;
+  transition:opacity .3s ease,border-color .2s,color .2s;
+  cursor:none;
+}
+#back-to-top.visible{opacity:1;pointer-events:auto}
+#back-to-top:hover{border-color:var(--lime);color:var(--lime)}
+
+/* PREV / NEXT NAV */
+.case-nav{
+  display:grid;gap:1px;background:var(--bd);
+  margin-top:52px;
+}
+.case-nav.has-both{grid-template-columns:1fr 1fr}
+.case-nav.has-next{grid-template-columns:1fr}
+.case-nav.has-prev{grid-template-columns:1fr}
+
+.case-nav-link{
+  background:var(--bg2);padding:28px 32px;
+  display:flex;flex-direction:column;justify-content:center;
+  transition:background .25s,border-color .25s;
+}
+.case-nav-link:hover{background:var(--bg3)}
+.case-nav-link.prev-link{align-items:flex-start}
+.case-nav-link.next-link{align-items:flex-end;text-align:right}
+.cnav-dir{font-family:var(--mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--t3);margin-bottom:6px}
+.cnav-title{font-family:var(--disp);font-size:18px;font-weight:800;letter-spacing:-0.02em;color:var(--t1);transition:color .2s}
+.case-nav-link:hover .cnav-title{color:var(--lime)}
+
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+::-webkit-scrollbar{width:2px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--bd)}
+</style>
+</head>
+<body>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<div id="scroll-bar"><div id="scroll-fill"></div></div>
+<div class="xp-wrap" id="xpWrap" aria-hidden="true"></div>
+<div id="lv-toast" role="status" aria-live="polite">Case study complete</div>
+<div id="back-to-top" aria-label="Back to top" role="button" tabindex="0">↑</div>
+
+<header class="nav" id="mainNav">
+  <a href="./index.html" class="nav-logo">Darshan Munkur</a>
+  <nav aria-label="Main navigation">
+    <ul class="nav-links">
+      <li><a href="./index.html#work">Work</a></li>
+      <li><a href="./about.html">About</a></li>
+      <li><a href="mailto:darshan.munkur@gmail.com">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="nav-right"><div class="nav-led" aria-hidden="true"></div>Open to work</div>
+</header>
+
+<div class="page">
+
+  <!-- CASE HERO -->
+  <section class="case-hero" aria-label="Project overview">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="case-hero-left">
+      <div class="breadcrumb">
+        <a href="./index.html">Home</a><span class="sep">/</span>
+        <a href="./index.html#work">Work</a><span class="sep">/</span>
+        <span>US Bank</span>
+      </div>
+      <div class="section-eyebrow">Banking &amp; Fintech</div>
+      <h1 class="case-title">Platform Modernization &amp; Client Acquisition</h1>
+      <p class="case-lead">Led end-to-end redesign of the banker-facing digital platform — eliminating printed assets and enabling seamless digital sharing across the client acquisition funnel. Fortune 500 engagement at Incedo Inc.</p>
+      <div class="case-meta">
+        <div class="meta-box"><div class="meta-key">Role</div><div class="meta-val">Lead UX Designer</div></div>
+        <div class="meta-box"><div class="meta-key">Timeline</div><div class="meta-val">2021 – 2023</div></div>
+        <div class="meta-box"><div class="meta-key">Domain</div><div class="meta-val">Banking / Fintech</div></div>
+        <div class="meta-box"><div class="meta-key">Deliverables</div><div class="meta-val">Platform + Design System</div></div>
+      </div>
+    </div>
+    <div class="case-hero-right">
+      <div class="case-cover">
+        <!-- <img src="./images/usbank-hero.jpg" alt="US Bank Platform"> -->
+        <div class="cover-ph">[ Drop hero image — usbank-hero.jpg ]</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BODY -->
+  <div class="case-body">
+    <aside class="sidenav" aria-label="Case study navigation">
+      <div class="sn-label">Case Study</div>
+      <nav class="sn-links">
+        <a href="#context"  class="sn-link active"><span class="sn-num">01</span>Context</a>
+        <a href="#problem"  class="sn-link"><span class="sn-num">02</span>The Problem</a>
+        <a href="#research" class="sn-link"><span class="sn-num">03</span>Research</a>
+        <a href="#process"  class="sn-link"><span class="sn-num">04</span>Design Process</a>
+        <a href="#solution" class="sn-link"><span class="sn-num">05</span>Solution</a>
+        <a href="#outcomes" class="sn-link"><span class="sn-num">06</span>Outcomes</a>
+      </nav>
+      <div class="sn-back">
+        <a href="./index.html#work" class="back-link">← All Work</a>
+      </div>
+    </aside>
+
+    <main class="cs-content" id="csContent">
+
+      <!-- 01 CONTEXT -->
+      <section class="cs-sec" id="context">
+        <h2 class="cs-h"><span class="cs-num">01</span>Context &amp; My Role</h2>
+        <div class="two-col-wide">
+          <div class="prose">
+            <p>This engagement was delivered through <strong style="color:var(--t1)">Incedo Inc.</strong>, where I was embedded directly inside the US Bank product team as Lead UX Designer. I owned the end-to-end design process — from initial discovery through engineering handoff and QA.</p>
+            <p>The project spanned two years across multiple business units, requiring complex stakeholder navigation while maintaining design velocity alongside agile engineering sprints.</p>
+            <div class="callout">
+              <div class="callout-label">My Contributions</div>
+              <div class="callout-text">Led research synthesis, IA restructuring, wireframe iteration cycles, and final high-fidelity Figma deliverables. Architected the multi-BU design system. Presented design rationale to C-suite. Mentored a junior designer on the engagement.</div>
+            </div>
+          </div>
+          <div>
+            <div class="img-slot is-portrait reveal">
+              <!-- <img src="./images/usbank-context.jpg" alt="Working session"> -->
+              <div class="img-slot-label">Project context</div>
+              <div class="img-slot-sub">[ Insert team or working session photo ]</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 PROBLEM -->
+      <section class="cs-sec" id="problem">
+        <h2 class="cs-h"><span class="cs-num">02</span>The Problem</h2>
+        <div class="two-col">
+          <div class="prose">
+            <p>Bankers at US Bank were running a client acquisition workflow built almost entirely on printed flyers and physical materials. Digital tools existed but were siloed, slow to update, and couldn't be shared dynamically with clients.</p>
+            <p>Personalization at scale was impossible — every client received the same generic materials. The funnel had measurable friction from initial contact through application completion.</p>
+          </div>
+          <div>
+            <div class="img-slot is-portrait reveal">
+              <div class="img-slot-label">As-is Workflow Map</div>
+              <div class="img-slot-sub">[ Insert journey map ]</div>
+            </div>
+          </div>
+        </div>
+        <div class="pull-quote">
+          <p>"Bankers couldn't store anything digitally — every client touchpoint started with a printer."</p>
+        </div>
+        <div class="img-slot is-wide reveal">
+          <div class="img-slot-label">Current State — Channel Dependency Analysis</div>
+          <div class="img-slot-sub">[ Insert current state audit ]</div>
+        </div>
+      </section>
+
+      <!-- 03 RESEARCH -->
+      <section class="cs-sec" id="research">
+        <h2 class="cs-h"><span class="cs-num">03</span>Research</h2>
+        <p>Research focused on understanding friction across the banker–client acquisition journey. Methods were chosen to surface behavioral patterns and systemic causes.</p>
+        <div class="research-grid reveal">
+          <div class="r-item"><div class="r-icon">→</div><div><div class="r-title">Stakeholder Interviews</div><div class="r-desc">In-depth sessions with bankers, branch managers, and product owners to map the current workflow and identify organizational constraints.</div></div></div>
+          <div class="r-item"><div class="r-icon">→</div><div><div class="r-title">Contextual Inquiry</div><div class="r-desc">Observed bankers during real client interactions to see where printed materials created friction and which digital tools were avoided.</div></div></div>
+          <div class="r-item"><div class="r-icon">→</div><div><div class="r-title">Competitive Analysis</div><div class="r-desc">Identified 3-step redundancy in legacy entry flows by benchmarking against peer financial institutions' acquisition patterns.</div></div></div>
+          <div class="r-item"><div class="r-icon">→</div><div><div class="r-title">Affinity Mapping</div><div class="r-desc">Synthesized findings across all research streams into clustered insights driving feature prioritization and IA decisions.</div></div></div>
+        </div>
+        <div class="callout">
+          <div class="callout-label">Key Insight</div>
+          <div class="callout-text">Bankers weren't avoiding digital tools because they preferred print — they avoided them because the tools required more steps than just printing a flyer. Speed of use was the real barrier, not digital literacy.</div>
+        </div>
+        <div class="img-slot is-landscape reveal">
+          <div class="img-slot-label">Research Synthesis — Affinity Map</div>
+          <div class="img-slot-sub">[ Insert Miro board screenshot ]</div>
+        </div>
+      </section>
+
+      <!-- 04 DESIGN PROCESS -->
+      <section class="cs-sec" id="process">
+        <h2 class="cs-h"><span class="cs-num">04</span>Design Process</h2>
+        <div class="two-col">
+          <div>
+            <p style="font-size:14px;line-height:1.8;color:var(--t2);margin-bottom:16px">Four iterative phases — from structural exploration to a fully componentized system ready for engineering handoff.</p>
+            <div class="p-steps">
+              <div class="p-step"><div class="p-n">01</div><div><div class="p-title">Information Architecture</div><div class="p-desc">Restructured platform IA to support banker-facing and customer-facing views with role-based access logic built in from the start.</div></div></div>
+              <div class="p-step"><div class="p-n">02</div><div><div class="p-title">Wireframing &amp; Concept Testing</div><div class="p-desc">Rapid wireframe iterations tested with 6 bankers across two rounds. Validated navigation and personalization flow before visual design.</div></div></div>
+              <div class="p-step"><div class="p-n">03</div><div><div class="p-title">Multi-BU Design System</div><div class="p-desc">White-labeled Figma design system enabling consistent brand delivery across business units — without rework per deployment.</div></div></div>
+              <div class="p-step"><div class="p-n">04</div><div><div class="p-title">High-Fidelity &amp; Handoff</div><div class="p-desc">Interactive prototypes with annotated specs. Worked with dev leads to QA component behavior and edge states pre-release.</div></div></div>
+            </div>
+          </div>
+          <div>
+            <div class="img-slot is-portrait reveal" style="margin-bottom:10px">
+              <div class="img-slot-label">Wireframe Iterations</div>
+              <div class="img-slot-sub">[ Insert wireframe screens ]</div>
+            </div>
+            <div class="img-slot is-portrait reveal">
+              <div class="img-slot-label">Design System — Component Library</div>
+              <div class="img-slot-sub">[ Insert Figma component screenshot ]</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 SOLUTION -->
+      <section class="cs-sec" id="solution">
+        <h2 class="cs-h"><span class="cs-num">05</span>Solution</h2>
+        <div class="two-col-wide">
+          <div class="prose">
+            <p>The redesigned platform gave bankers a fully digital acquisition toolkit. Core shift: from static printed materials to a dynamic, personalized content engine that met clients where they were.</p>
+            <p>Key features included a <strong style="color:var(--t1)">personalized recommendation engine</strong> surfacing relevant products based on client profile, <strong style="color:var(--t1)">multi-channel delivery</strong> in 2 clicks, and a <strong style="color:var(--t1)">shared design system</strong> that made each new BU deployment a configuration — not a rebuild.</p>
+            <div class="tags">
+              <span class="tag">Digital Channel Expansion</span>
+              <span class="tag">Personalization Engine</span>
+              <span class="tag">White-label Design System</span>
+              <span class="tag">QR / SMS / Email</span>
+              <span class="tag">Multi-BU Scalability</span>
+            </div>
+          </div>
+          <div>
+            <div class="img-slot is-portrait reveal">
+              <div class="img-slot-label">Banker Dashboard — Final UI</div>
+              <div class="img-slot-sub">[ Insert hi-fidelity screen ]</div>
+            </div>
+          </div>
+        </div>
+        <div class="img-slot is-wide reveal">
+          <div class="img-slot-label">End-to-End Acquisition Flow</div>
+          <div class="img-slot-sub">[ Insert flow or prototype screenshot ]</div>
+        </div>
+      </section>
+
+      <!-- 06 OUTCOMES -->
+      <section class="cs-sec" id="outcomes">
+        <h2 class="cs-h"><span class="cs-num">06</span>Outcomes</h2>
+        <p>Platform shipped alongside agile engineering teams. Outcomes measured against pre-launch baselines — validated with the client's analytics team.</p>
+        <div class="outcomes-grid reveal">
+          <div class="o-box">
+            <div class="o-val">+20%</div>
+            <div class="o-label">Application rate uplift via simplified banker &amp; customer workflows</div>
+          </div>
+          <div class="o-box">
+            <div class="o-val">−30%</div>
+            <div class="o-label">Drop-off reduction through personalized recommendation tools</div>
+          </div>
+          <div class="o-box">
+            <div class="o-val">3×</div>
+            <div class="o-label">Channel expansion from print-only to Email, QR &amp; SMS</div>
+          </div>
+        </div>
+        <div class="pull-quote">
+          <p>"The design system alone eliminated weeks of rework across every new business unit deployment."</p>
+        </div>
+        <div class="callout">
+          <div class="callout-label">What I'd Do Differently</div>
+          <div class="callout-text">I'd push for longitudinal measurement beyond the initial launch window. We measured 30-day post-launch metrics, but how patterns held over 6–12 months as bankers fully adopted the new workflow would have been compelling data for continued investment.</div>
+        </div>
+      </section>
+
+      <!-- PREV / NEXT — US Bank is first, so Next only -->
+      <nav class="case-nav has-next" aria-label="Navigate between case studies">
+        <a href="./verizon.html" class="case-nav-link next-link">
+          <div class="cnav-dir">Next Project →</div>
+          <div class="cnav-title">Verizon — Unified Change Management</div>
+        </a>
+      </nav>
+
+    </main>
+  </div>
+</div><!-- /page -->
+
+<script>
+(function(){
+  var cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring'),mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+  (function loop(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop)})();
+  document.querySelectorAll('a,button,[role="button"]').forEach(function(el){
+    el.addEventListener('mouseenter',function(){ring.style.width='42px';ring.style.height='42px';ring.style.borderColor='rgba(212,245,60,0.6)'});
+    el.addEventListener('mouseleave',function(){ring.style.width='28px';ring.style.height='28px';ring.style.borderColor='rgba(212,245,60,0.35)'});
+  });
+
+  /* scroll progress + XP bar */
+  var sfill=document.getElementById('scroll-fill');
+  var xpWrap=document.getElementById('xpWrap'),segs=[];
+  for(var i=0;i<20;i++){var s=document.createElement('div');s.className='xp-seg';xpWrap.appendChild(s);segs.push(s)}
+  var toast=document.getElementById('lv-toast'),leveled=false;
+  function updateScroll(){
+    var pct=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight);
+    sfill.style.height=Math.min(pct*100,100)+'%';
+    var f=Math.round(Math.min(pct,1)*20);
+    segs.forEach(function(s,i){s.classList.toggle('filled',i<f)});
+    if(pct>=0.97&&!leveled){leveled=true;toast.classList.add('show');setTimeout(function(){toast.classList.remove('show')},2000)}
+    btt.classList.toggle('visible',window.scrollY>400);
+  }
+  window.addEventListener('scroll',updateScroll,{passive:true});
+
+  /* back to top */
+  var btt=document.getElementById('back-to-top');
+  btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+  btt.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')window.scrollTo({top:0,behavior:'smooth'})});
+
+  /* reveal */
+  var ro=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target)}})},{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el)});
+
+  /* active sidenav */
+  var secIds=['context','problem','research','process','solution','outcomes'];
+  var snLinks=document.querySelectorAll('.sn-link');
+  var secObs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){snLinks.forEach(function(l){l.classList.toggle('active',l.getAttribute('href')==='#'+e.target.id)})}});
+  },{rootMargin:'-15% 0px -70% 0px'});
+  secIds.forEach(function(id){var el=document.getElementById(id);if(el)secObs.observe(el)});
+})();
+</script>
+</body>
+</html>
