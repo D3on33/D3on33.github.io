@@ -78,14 +78,24 @@
   <!-- BODY -->
   <!-- SECTION DOTS NAV -->
 <nav class="section-dots" aria-label="Jump to section">
-  <a href="#context"  class="section-dot" data-section="context" ><span class="dot-pip"></span><span class="dot-label">Context</span></a>
-  <a href="#problem"  class="section-dot" data-section="problem" ><span class="dot-pip"></span><span class="dot-label">Problem</span></a>
-  <a href="#research" class="section-dot" data-section="research"><span class="dot-pip"></span><span class="dot-label">Research</span></a>
-  <a href="#process"  class="section-dot" data-section="process" ><span class="dot-pip"></span><span class="dot-label">Process</span></a>
-  <a href="#solution" class="section-dot" data-section="solution"><span class="dot-pip"></span><span class="dot-label">Solution</span></a>
-  <a href="#outcomes" class="section-dot" data-section="outcomes"><span class="dot-pip"></span><span class="dot-label">Outcomes</span></a>
+  <a href="#context"  class="section-dot" data-section="context" ><span class="dot-label">01. Context</span></a>
+  <a href="#problem"  class="section-dot" data-section="problem" ><span class="dot-label">02. Problem</span></a>
+  <a href="#research" class="section-dot" data-section="research"><span class="dot-label">03. Research</span></a>
+  <a href="#process"  class="section-dot" data-section="process" ><span class="dot-label">04. Process</span></a>
+  <a href="#solution" class="section-dot" data-section="solution"><span class="dot-label">05. Solution</span></a>
+  <a href="#outcomes" class="section-dot" data-section="outcomes"><span class="dot-label">06. Outcomes</span></a>
 </nav>
-<div class="case-body">
+
+<aside class="case-sidebar" aria-label="Case study sections">
+  <ul class="sidebar-nav">
+    <li><a href="#context" class="sidebar-link active">01. The Problem</a></li>
+    <li><a href="#research" class="sidebar-link">02. The Research</a></li>
+    <li><a href="#process" class="sidebar-link">03. The Solution</a></li>
+    <li><a href="#outcomes" class="sidebar-link">04. The Impact</a></li>
+  </ul>
+</aside>
+
+<div class="case-body has-sidebar">
 
     <!-- 01 CONTEXT -->
     <section class="cs-sec" id="context">
@@ -413,6 +423,25 @@
       if(tBtn)tBtn.textContent=t==='dark'?'☾':'☀';
     }
   });
+
+  /* ── SIDEBAR NAV — active state on scroll ── */
+  (function(){
+    var links = document.querySelectorAll('.sidebar-link');
+    if(links.length === 0) return;
+    window.addEventListener('scroll', function(){
+      var scrollY = window.scrollY;
+      var found = null;
+      links.forEach(function(link){
+        link.classList.remove('active');
+        var target = document.querySelector(link.getAttribute('href'));
+        if(target){
+          var rect = target.getBoundingClientRect();
+          if(rect.top <= 150){found = link;}
+        }
+      });
+      if(found){found.classList.add('active');}
+    }, {passive: true});
+  })();
 
   /* ── MOUSE-TRACKING CSS VAR for section spotlights ── */
   (function(){

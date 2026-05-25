@@ -75,16 +75,17 @@
     </div>
   </section>
 
-  <!-- BODY -->
-  <!-- SECTION DOTS NAV -->
-<nav class="section-dots" aria-label="Jump to section">
-  <a href="#context"  class="section-dot" data-section="context" ><span class="dot-pip"></span><span class="dot-label">Context</span></a>
-  <a href="#problem"  class="section-dot" data-section="problem" ><span class="dot-pip"></span><span class="dot-label">Problem</span></a>
-  <a href="#research" class="section-dot" data-section="research"><span class="dot-pip"></span><span class="dot-label">Research</span></a>
-  <a href="#process"  class="section-dot" data-section="process" ><span class="dot-pip"></span><span class="dot-label">Process</span></a>
-  <a href="#solution" class="section-dot" data-section="solution"><span class="dot-pip"></span><span class="dot-label">Solution</span></a>
-  <a href="#outcomes" class="section-dot" data-section="outcomes"><span class="dot-pip"></span><span class="dot-label">Outcomes</span></a>
-</nav>
+  <!-- BODY — sidebar + content grid -->
+<div class="case-layout">
+<aside class="case-sidebar" aria-label="Case study sections">
+  <ul class="sidebar-nav">
+    <li><a href="#context" class="sidebar-link active">01. The Problem</a></li>
+    <li><a href="#research" class="sidebar-link">02. The Research</a></li>
+    <li><a href="#process" class="sidebar-link">03. The Solution</a></li>
+    <li><a href="#outcomes" class="sidebar-link">04. The Impact</a></li>
+  </ul>
+</aside>
+
 <div class="case-body">
 
     <!-- 01 CONTEXT -->
@@ -295,6 +296,9 @@
       <p>"The design system alone eliminated weeks of rework across every new business unit deployment."</p>
     </div>
 
+  </div><!-- /.case-body -->
+  </div><!-- /.case-layout -->
+
     <!-- NEXT -->
     <nav class="case-nav" aria-label="Navigate case studies">
       <a href="./password.html?next=verizon.html" class="cnav-link next">
@@ -322,8 +326,7 @@
         </ul>
       </div>
     </footer>
-  </div>
-</div>
+</div><!-- /.page -->
 </main>
 
 <script>
@@ -413,6 +416,29 @@
       if(tBtn)tBtn.textContent=t==='dark'?'☾':'☀';
     }
   });
+
+  /* ── SIDEBAR NAV — active state on scroll (cached targets, rAF-throttled) ── */
+  (function(){
+    var links = Array.prototype.slice.call(document.querySelectorAll('.sidebar-link'));
+    if(links.length === 0) return;
+    var pairs = links.map(function(link){
+      return { link: link, target: document.querySelector(link.getAttribute('href')) };
+    }).filter(function(p){ return p.target; });
+    var ticking = false;
+    function update(){
+      ticking = false;
+      var found = null;
+      for(var i = 0; i < pairs.length; i++){
+        if(pairs[i].target.getBoundingClientRect().top <= 150) found = pairs[i].link;
+      }
+      links.forEach(function(l){ l.classList.remove('active'); });
+      if(found) found.classList.add('active');
+    }
+    window.addEventListener('scroll', function(){
+      if(!ticking){ requestAnimationFrame(update); ticking = true; }
+    }, {passive: true});
+    update();
+  })();
 
   /* ── MOUSE-TRACKING CSS VAR for section spotlights ── */
   (function(){

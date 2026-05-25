@@ -5,14 +5,17 @@
 
 /* ── TOKENS ── */
 :root {
+  /* Color — surface */
   --bg:        #F7F5F1;
   --bg2:       #EEECE7;
   --bg3:       #E5E3DD;
   --bd:        rgba(0,0,0,0.07);
   --bd2:       rgba(0,0,0,0.13);
+  /* Color — text (3-step ladder: primary / secondary / tertiary) */
   --t1:        #18181B;
   --t2:        #6B6965;
   --t3:        #888682;
+  /* Color — accent (cobalt-violet stamp; use sparingly) */
   --accent:    #5B3FBE;
   --accent-d:  rgba(91,63,190,0.09);
   --accent-r:  91,63,190;
@@ -20,14 +23,56 @@
   --nav-bg:    rgba(247,245,241,0.94);
   --hero-fade: rgba(247,245,241,0.90);
   --panel-bg:  #2a2535;
+
+  /* Type families */
   --serif:     'Instrument Serif', Georgia, serif;
   --sans:      'DM Sans', sans-serif;
   --mono:      'DM Mono', monospace;
+
+  /* Type scale — editorial display ladder + UI body ladder
+     Use these tokens directly; reach for ad-hoc clamp only for one-offs. */
+  --type-display-xl:  clamp(44px, 6.5vw, 88px);   /* hero name (one per page) */
+  --type-display-lg:  clamp(36px, 5.5vw, 80px);   /* case-study h1 */
+  --type-display-md:  clamp(32px, 4.5vw, 60px);   /* footer-cta, section opener */
+  --type-heading-lg:  clamp(26px, 3.5vw, 44px);   /* cs section heading */
+  --type-heading-md:  clamp(20px, 2.5vw, 28px);   /* history-company */
+  --type-heading-sm:  clamp(19px, 2vw,   24px);   /* skill-cat */
+  --type-body-lg:     15px;                       /* lead prose */
+  --type-body-md:     14px;                       /* default body */
+  --type-body-sm:     13px;                       /* meta-val, secondary copy */
+  --type-mono-lbl:    10px;                       /* button/nav labels */
+  --type-mono-xs:     9px;                        /* eyebrow, caption */
+
+  /* Spacing scale — 4/8/16/24/32/48 micro + responsive macro bands */
+  --sp-xxs:    4px;
+  --sp-xs:     8px;
+  --sp-sm:     12px;
+  --sp-md:     16px;
+  --sp-lg:     24px;
+  --sp-xl:     32px;
+  --sp-2xl:    48px;
+  --sp-3xl:    64px;
+  --sp-block:   clamp(56px,  8vh,  96px);   /* between content blocks */
+  --sp-section: clamp(64px,  9vh, 112px);   /* between major sections */
+  --sp-band:    clamp(80px, 12vh, 140px);   /* full-bleed hero/metric bands */
+
+  /* Border radius — editorial-restrained; cards get warmth without softness */
+  --r-none:    0;
+  --r-xs:      2px;
+  --r-sm:      4px;
+  --r-md:      8px;
+  --r-lg:      16px;
+  --r-pill:    9999px;
+
+  /* Layout */
   --pad:       clamp(24px, 5vw, 80px);
   --nav-h:     64px;
   --max:       1440px;
-  --space-sm:  clamp(56px, 8vh, 96px);
-  --space-lg:  clamp(64px, 9vh, 112px);
+  --tap-min:   48px;                          /* minimum interactive target */
+
+  /* Legacy aliases (kept for backwards compat — prefer --sp-block / --sp-section) */
+  --space-sm:  var(--sp-block);
+  --space-lg:  var(--sp-section);
 }
 
 [data-theme="dark"] {
@@ -98,9 +143,14 @@ a { color: inherit; text-decoration: none; }
 .footer-cta h2 { font-family: var(--serif); font-size: clamp(32px,4.5vw,60px); font-weight: 400; letter-spacing: -.025em; line-height: 1.05; margin-bottom: 20px; }
 .footer-cta h2 em { font-style: italic; color: var(--accent); }
 .footer-cta p { font-size: 14px; color: var(--t2); line-height: 1.75; max-width: 400px; margin-bottom: 32px; }
-.footer-btns { display: flex; gap: 12px; flex-wrap: wrap; }
-.footer-btn { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--t2); border: 1px solid var(--bd2); padding: 12px 22px; display: inline-flex; align-items: center; gap: 8px; transition: all .22s; }
-.footer-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-d); }
+.footer-btns { display: flex; gap: var(--sp-sm); flex-wrap: wrap; }
+/* Canonical outline button — used by .footer-btn / .err-btn / any outline CTA */
+.btn-outline, .footer-btn, .err-btn { font-family: var(--mono); font-size: var(--type-mono-lbl); letter-spacing: .12em; text-transform: uppercase; color: var(--t2); border: 1px solid var(--bd2); padding: 14px 24px; min-height: var(--tap-min); display: inline-flex; align-items: center; gap: var(--sp-xs); transition: border-color .2s, color .2s, background .2s; background: transparent; cursor: pointer; }
+.btn-outline:hover, .footer-btn:hover, .err-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-d); }
+/* Filled accent button — used by .gate-btn / any primary CTA */
+.btn-filled, .gate-btn { font-family: var(--mono); font-size: var(--type-mono-lbl); letter-spacing: .14em; text-transform: uppercase; color: var(--bg); background: var(--accent); border: 1px solid var(--accent); padding: 14px 28px; min-height: var(--tap-min); display: inline-flex; align-items: center; justify-content: center; gap: var(--sp-xs); transition: opacity .2s, transform .15s; cursor: pointer; }
+.btn-filled:hover, .gate-btn:hover { opacity: .88; }
+.btn-filled:active, .gate-btn:active { transform: scale(.98); }
 .footer-bottom { padding: clamp(18px,2.5vh,24px) var(--pad); display: flex; align-items: center; justify-content: space-between; }
 .footer-copy { font-family: var(--mono); font-size: 10px; color: var(--t3); letter-spacing: .06em; }
 .footer-copy strong { color: var(--t2); font-weight: 400; }
@@ -161,9 +211,8 @@ body::before {
   mix-blend-mode: screen;
   opacity: 0.10;
 }
-/* All page content stays above texture */
-.nav, .page, main, section, footer,
-#loader, #cur, #cur-ring, #scroll-bar, #btt {
+/* All page content stays above texture — .nav and fixed elements omitted to preserve their own positioning */
+.page, main, section, footer, #loader {
   position: relative;
   z-index: 1;
 }

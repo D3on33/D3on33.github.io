@@ -19,23 +19,12 @@
 <style>
 .about-hero { position: relative; max-width: var(--max); margin: 0 auto; }
 
-/* Full-bleed portrait */
-.about-hero-img {
-  width: 100%; aspect-ratio: 16/8; overflow: hidden;
-  background: var(--bg2); position: relative;
-}
-@media (max-width: 700px) { .about-hero-img { aspect-ratio: 3/4; } }
-.about-hero-img img { width: 100%; height: 100%; object-fit: cover; object-position: 45% 35%; }
-.about-hero-img::after {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(to bottom, transparent 30%, var(--hero-fade) 100%);
-}
 
-/* Headline overlaps bottom edge of photo */
+/* Headline — sits below fixed nav, image moved to bio-section */
 .about-hero-text {
-  position: relative; margin-top: -80px; z-index: 2;
-  padding: 0 var(--pad) clamp(48px,7vh,80px);
-  max-width: var(--max); margin-left: auto; margin-right: auto;
+  position: relative; z-index: 2;
+  padding: clamp(48px,7vh,80px) var(--pad);
+  max-width: var(--max); margin: 0 auto;
 }
 .about-eyebrow {
   font-family: var(--mono); font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
@@ -64,22 +53,24 @@
 .s-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--dot); box-shadow: 0 0 4px rgba(var(--accent-r),.4); animation: pulse 2s infinite; flex-shrink: 0; }
 .status-right { font-family: var(--mono); font-size: 10px; color: var(--t3); }
 
-/* ── BIO ── */
+/* ── BIO — 2-column on desktop, stacks on mobile ── */
 .bio-section {
   max-width: var(--max); margin: 0 auto;
-  padding: clamp(64px,9vh,112px) var(--pad);
+  padding: 0;
   border-bottom: 1px solid var(--bd);
-  display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px,6vw,96px);
-  align-items: start;
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  align-items: stretch;
 }
-@media (max-width: 720px) { .bio-section { grid-template-columns: 1fr; } }
-.bio-label { font-family: var(--mono); font-size: 9px; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 28px; display: flex; align-items: center; gap: 10px; }
+@media (max-width: 880px) { .bio-section { grid-template-columns: 1fr; } }
+.bio-label { font-family: var(--mono); font-size: 9px; letter-spacing: .22em; text-transform: uppercase; color: var(--t3); margin-bottom: 28px; display: flex; align-items: center; gap: 10px; }
 .bio-label::after { content: ''; flex: 1; max-width: 36px; height: 1px; background: var(--bd2); }
 .bio-text { font-size: 15px; color: var(--t2); line-height: 1.85; max-width: 55ch; }
 .bio-text p + p { margin-top: 18px; }
 .bio-text strong { color: var(--t1); font-weight: 500; }
-.bio-image { width: 100%; aspect-ratio: 3/4; overflow: hidden; background: var(--bg2); position: relative; }
+.bio-image { width: 100%; height: 100%; min-height: 100%; overflow: hidden; background: var(--bg2); position: relative; }
 .bio-image img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.bio-content { padding: clamp(48px,7vh,96px) var(--pad); display: flex; flex-direction: column; justify-content: center; }
+@media (max-width: 880px) { .bio-image { aspect-ratio: 3/4; } }
 .bio-aside { display: flex; flex-direction: column; justify-content: flex-end; gap: 24px; }
 .bio-stat-row { display: flex; flex-direction: column; gap: 4px; padding-bottom: 20px; border-bottom: 1px solid var(--bd); }
 .bio-stat-row:last-child { border-bottom: none; padding-bottom: 0; }
@@ -110,7 +101,7 @@
 .history-company-link { transition: color .2s; }
 .history-company-link:hover .history-company { color: var(--accent); }
 .history-period { font-family: var(--mono); font-size: 9px; letter-spacing: .12em; color: var(--t3); white-space: nowrap; padding-top: 5px; }
-.history-role { font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+.history-role { font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--t3); margin-bottom: 12px; }
 .history-desc { font-size: 14px; color: var(--t2); line-height: 1.78; max-width: 65ch; }
 .history-desc strong { color: var(--t1); font-weight: 500; }
 
@@ -136,7 +127,7 @@
   padding-bottom: 10px; border-bottom: 1px solid var(--bd);
 }
 .skill-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
-.skill-list li { font-size: 13px; color: var(--t2); line-height: 1.8; }
+.skill-list li { font-size: 14px; color: var(--t2); line-height: 1.8; }
 
 /* ── CREDENTIALS ── */
 .cred-section {
@@ -147,7 +138,7 @@
 @media (max-width: 640px) { .cred-section { grid-template-columns: 1fr; } }
 .cred-block { padding: clamp(32px,5vh,52px) var(--pad); border-right: 1px solid var(--bd); }
 .cred-block:last-child { border-right: none; }
-.cred-label { font-family: var(--mono); font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+.cred-label { font-family: var(--mono); font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--t3); margin-bottom: 16px; }
 .cred-item { display: flex; flex-direction: column; gap: 3px; padding: 12px 0; border-bottom: 1px solid var(--bd); }
 .cred-item:last-child { border-bottom: none; }
 .cred-name { font-size: 14px; color: var(--t1); font-weight: 400; }
@@ -180,7 +171,7 @@
   border-bottom: 1px solid var(--bd);
 }
 .rec-inner { display: flex; align-items: flex-start; gap: 20px; }
-.rec-mark { font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); white-space: nowrap; padding-top: 2px; }
+.rec-mark { font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; color: var(--t3); white-space: nowrap; padding-top: 2px; }
 .rec-text { font-size: 14px; color: var(--t2); line-height: 1.75; }
 .rec-text em { color: var(--t1); font-style: normal; font-weight: 500; }
 
@@ -266,12 +257,8 @@
 <main id="main-content">
 <div class="page">
 
-  <!-- HERO — full-bleed portrait, headline overlaps bottom -->
+  <!-- HERO — text only, portrait image moved to bio-section -->
   <section class="about-hero" aria-label="About Darshan Munkur">
-    <div class="about-hero-img">
-      <!-- Replace with your actual photo — ideally landscape crop showing environment -->
-      <img src="./photo-about.jpg" alt="Darshan Munkur — Senior UX Designer" loading="eager" fetchpriority="high" width="2400" height="1200">
-    </div>
     <div class="about-hero-text">
       <div class="about-eyebrow">Senior UX Designer · Harrison, NJ</div>
       <h1 class="about-name">Darshan<br>Munkur</h1>
@@ -287,7 +274,10 @@
 
   <!-- BIO -->
   <section class="bio-section">
-    <div>
+    <div class="bio-image">
+      <img src="./photo-about-bio.jpg" alt="Darshan Munkur" loading="lazy" width="600" height="800">
+    </div>
+    <div class="bio-content">
       <div class="bio-label">About</div>
       <div class="bio-text">
         <p>I began my career not as a designer, but as a <strong>content programmer</strong> — building algorithmic eLearning experiences to WCAG standards using HTML, CSS, and Python. That engineering foundation taught me to think in systems before I ever opened Figma.</p>
@@ -295,9 +285,6 @@
         <p>That pivot led me to <strong>Incedo Inc.</strong>, where I've spent the last four years embedded inside Fortune 500 product teams across Banking, Wealth Management, and Telecom. I've designed platforms used by thousands of bankers, advisors, and treasury teams globally — and learned that the best UX decisions happen at the intersection of user evidence and business constraint.</p>
         <p>My background in engineering means I think in systems — how components connect, where edge cases live, and how design survives handoff. I don't just ship screens; I ship the rationale behind them.</p>
       </div>
-    </div>
-    <div class="bio-image">
-      <img src="./photo-about-bio.jpg" alt="Darshan Munkur" loading="lazy" width="600" height="800">
     </div>
   </section>
 
@@ -519,7 +506,7 @@
   <footer class="site-footer">
     <div class="footer-cta">
       <h2>Let's build something<br><em>worth using.</em></h2>
-      <p>Open to Senior UX Designer roles — complex enterprise products, fintech, and design systems work.</p>
+      <p>Open to roles leading end-to-end product redesigns and design systems at scale — especially fintech, banking, and enterprise platforms.</p>
       <div class="footer-btns">
         <a href="mailto:darshan.munkur@gmail.com" class="footer-btn mag">Email Me →</a>
         <a href="https://linkedin.com/in/darshan-munkur" target="_blank" rel="noopener" class="footer-btn mag">LinkedIn ↗</a>

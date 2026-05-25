@@ -19,17 +19,6 @@
 <style>
 .about-hero { position: relative; max-width: var(--max); margin: 0 auto; }
 
-/* Full-bleed portrait */
-.about-hero-img {
-  width: 100%; aspect-ratio: 16/8; overflow: hidden;
-  background: var(--bg2); position: relative;
-}
-@media (max-width: 700px) { .about-hero-img { aspect-ratio: 3/4; } }
-.about-hero-img img { width: 100%; height: 100%; object-fit: cover; object-position: 45% 35%; }
-.about-hero-img::after {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(to bottom, transparent 30%, var(--hero-fade) 100%);
-}
 
 /* Headline overlaps bottom edge of photo */
 .about-hero-text {
@@ -67,12 +56,11 @@
 /* ── BIO ── */
 .bio-section {
   max-width: var(--max); margin: 0 auto;
-  padding: clamp(64px,9vh,112px) var(--pad);
+  padding: 0;
   border-bottom: 1px solid var(--bd);
-  display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px,6vw,96px);
+  display: grid; grid-template-columns: 1fr;
   align-items: start;
 }
-@media (max-width: 720px) { .bio-section { grid-template-columns: 1fr; } }
 .bio-label { font-family: var(--mono); font-size: 9px; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 28px; display: flex; align-items: center; gap: 10px; }
 .bio-label::after { content: ''; flex: 1; max-width: 36px; height: 1px; background: var(--bd2); }
 .bio-text { font-size: 15px; color: var(--t2); line-height: 1.85; max-width: 55ch; }
@@ -136,7 +124,7 @@
   padding-bottom: 10px; border-bottom: 1px solid var(--bd);
 }
 .skill-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
-.skill-list li { font-size: 13px; color: var(--t2); line-height: 1.8; }
+.skill-list li { font-size: 14px; color: var(--t2); line-height: 1.8; }
 
 /* ── CREDENTIALS ── */
 .cred-section {
@@ -266,12 +254,8 @@
 <main id="main-content">
 <div class="page">
 
-  <!-- HERO — full-bleed portrait, headline overlaps bottom -->
+  <!-- HERO — text only, portrait image moved to bio-section -->
   <section class="about-hero" aria-label="About Darshan Munkur">
-    <div class="about-hero-img">
-      <!-- Replace with your actual photo — ideally landscape crop showing environment -->
-      <img src="./photo-about.jpg" alt="Darshan Munkur — Senior UX Designer" loading="eager" fetchpriority="high" width="2400" height="1200">
-    </div>
     <div class="about-hero-text">
       <div class="about-eyebrow">Senior UX Designer · Harrison, NJ</div>
       <h1 class="about-name">Darshan<br>Munkur</h1>
@@ -287,7 +271,10 @@
 
   <!-- BIO -->
   <section class="bio-section">
-    <div>
+    <div class="bio-image">
+      <img src="./photo-about-bio.jpg" alt="Darshan Munkur" loading="lazy" width="600" height="800">
+    </div>
+    <div style="padding: clamp(48px,7vh,96px) var(--pad);">
       <div class="bio-label">About</div>
       <div class="bio-text">
         <p>I began my career not as a designer, but as a <strong>content programmer</strong> — building algorithmic eLearning experiences to WCAG standards using HTML, CSS, and Python. That engineering foundation taught me to think in systems before I ever opened Figma.</p>
@@ -295,9 +282,6 @@
         <p>That pivot led me to <strong>Incedo Inc.</strong>, where I've spent the last four years embedded inside Fortune 500 product teams across Banking, Wealth Management, and Telecom. I've designed platforms used by thousands of bankers, advisors, and treasury teams globally — and learned that the best UX decisions happen at the intersection of user evidence and business constraint.</p>
         <p>My background in engineering means I think in systems — how components connect, where edge cases live, and how design survives handoff. I don't just ship screens; I ship the rationale behind them.</p>
       </div>
-    </div>
-    <div class="bio-image">
-      <img src="./photo-about-bio.jpg" alt="Darshan Munkur" loading="lazy" width="600" height="800">
     </div>
   </section>
 
@@ -519,7 +503,7 @@
   <footer class="site-footer">
     <div class="footer-cta">
       <h2>Let's build something<br><em>worth using.</em></h2>
-      <p>Open to Senior UX Designer roles — complex enterprise products, fintech, and design systems work.</p>
+      <p>Open to roles leading end-to-end product redesigns and design systems at scale — especially fintech, banking, and enterprise platforms.</p>
       <div class="footer-btns">
         <a href="mailto:darshan.munkur@gmail.com" class="footer-btn mag">Email Me →</a>
         <a href="https://linkedin.com/in/darshan-munkur" target="_blank" rel="noopener" class="footer-btn mag">LinkedIn ↗</a>

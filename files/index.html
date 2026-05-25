@@ -22,16 +22,15 @@
 /* LOADER */
 #loader { position: fixed; inset: 0; z-index: 9998; background: var(--bg); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 28px; transition: opacity .6s ease; }
 #ldrSwap { width: 36px; height: 36px; position: relative; }
-.ldr-slot { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 1; transform: scale(1); transition: opacity .3s, transform .3s; }
+.ldr-slot { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; transform: scale(.85); transition: opacity .3s, transform .3s; }
+.ldr-slot.is-active { opacity: 1; transform: scale(1); }
 #ldrLabel { font-family: var(--mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--t3); }
 #ldrProgress { width: 160px; }
 #ldrBar { height: 1px; background: var(--bd2); position: relative; }
 #ldrFill { position: absolute; left: 0; top: 0; height: 100%; background: var(--accent); width: 0%; transition: width .06s linear; }
 #ldrPct { font-family: var(--mono); font-size: 10px; color: var(--t3); margin-top: 8px; text-align: right; letter-spacing: .1em; }
 
-/* NAV — transparent on load, blurred on scroll */
-.nav { background: transparent; border-color: transparent; transition: background .3s, border-color .3s, backdrop-filter .3s; }
-.nav.scrolled { background: var(--nav-bg); backdrop-filter: blur(16px); border-color: var(--bd); }
+/* NAV — opaque on all pages (consistent treatment) */
 
 /* HERO */
 .hero { padding-top: var(--nav-h); display: grid; grid-template-columns: 1fr; max-width: var(--max); margin: 0 auto; }
@@ -97,14 +96,14 @@
 
 .card-metric { position: absolute; top: 14px; right: 16px; z-index: 2; text-align: right; }
 .card-metric-num { font-family: var(--serif); font-size: clamp(26px,3vw,40px); font-weight: 400; font-style: italic; color: var(--accent); line-height: 1; letter-spacing: -.02em; }
-.card-metric-label { font-family: var(--mono); font-size: 8px; letter-spacing: .12em; text-transform: uppercase; color: var(--t2); margin-top: 3px; display: block; }
+.card-metric-label { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--t2); margin-top: 3px; display: block; }
 
 .card-content { padding: clamp(18px,2.5vh,26px) clamp(18px,2.5vw,26px); display: flex; flex-direction: column; flex: 1; }
 .card-domain { font-family: var(--mono); font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: 9px; display: flex; align-items: center; gap: 8px; }
 .card-domain::before { content: ''; width: 12px; height: 1px; background: var(--accent); }
 .card-title { font-family: var(--serif); font-size: clamp(16px,1.7vw,21px); font-weight: 400; letter-spacing: -.01em; line-height: 1.2; color: var(--t1); margin-bottom: 9px; transition: color .2s; }
 .proj-card:hover .card-title { color: var(--accent); }
-.card-desc { font-size: 13px; color: var(--t2); line-height: 1.68; margin-bottom: 12px; max-width: 52ch; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.card-desc { font-size: 14px; color: var(--t2); line-height: 1.68; margin-bottom: 12px; max-width: 52ch; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .card-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 16px; }
 .card-tag { font-family: var(--mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: var(--t2); border: 1px solid var(--bd2); padding: 3px 8px; }
 .card-action { margin-top: auto; font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 8px; transition: gap .2s; }
@@ -143,13 +142,14 @@
     <div class="ldr-slot" data-label="Gaming"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="12" rx="4"/><line x1="7" y1="11" x2="7" y2="15"/><line x1="5" y1="13" x2="9" y2="13"/><circle cx="15" cy="11" r="1.2" fill="var(--accent)" stroke="none"/><circle cx="17" cy="13" r="1.2" fill="var(--accent)" stroke="none"/></svg></div>
     <div class="ldr-slot" data-label="Photography"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
     <div class="ldr-slot" data-label="Movies"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="16" rx="1"/><polyline points="2 10 22 10"/><line x1="7" y1="2" x2="5" y2="6"/><line x1="12" y1="2" x2="10" y2="6"/><line x1="17" y1="2" x2="15" y2="6"/></svg></div>
-    <div class="ldr-slot" data-label="Soccer"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 7l2.5 2.5-1 3.5h-3l-1-3.5L12 7z"/><path d="M9.5 13l-3 1.5M14.5 13l3 1.5M12 17v3M7 8.5l1.5 2M17 8.5l-1.5 2"/></svg></div>
+    <div class="ldr-slot" data-label="Creative"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/><path d="M6 7.5c1-1.5 2.5-2.5 3-2"/><path d="M18 7.5c-1-1.5-2.5-2.5-3-2"/><circle cx="12" cy="11" r="1.5" fill="var(--accent)"/></svg></div>
+    <div class="ldr-slot" data-label="Soccer"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 5l2.2 2l0.8 2.5l-1.5 2l-2.5 0.5l-2.5-0.5l-1.5-2l0.8-2.5z"/><path d="M7 10l1.5 1.2l1 2.3l-0.5 2l-1.8 0.5"/><path d="M17 10l-1.5 1.2l-1 2.3l0.5 2l1.8 0.5"/><path d="M12 17l2.2-2l0.8-2.5l-1.5-2l-2.5-0.5l-2.5 0.5l-1.5 2l0.8 2.5z"/></svg></div>
   </div>
   <div id="ldrLabel">Gaming</div>
   <div id="ldrProgress"><div id="ldrBar"><div id="ldrFill"></div></div><div id="ldrPct">0%</div></div>
 </div>
 
-<header class="nav" id="mainNav">
+<header class="nav">
   <a href="./index.html" class="nav-logo">Darshan Munkur</a>
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
@@ -178,7 +178,7 @@
       </h1>
     </div>
     <div class="hero-foot">
-      <p class="hero-desc">5+ years designing enterprise B2B platforms for Fortune 500 clients across Banking, Wealth Management, and Telecom.</p>
+      <p class="hero-desc">I design enterprise systems that simplify complexity. 5+ years across Banking, Fintech & Telecom — helping Fortune 500 teams ship faster.</p>
       <a href="#work" class="hero-cta mag" aria-label="Scroll to view selected work">View Work <div class="cta-circle">↓</div></a>
     </div>
   </div>
@@ -307,22 +307,23 @@
       setTimeout(function(){loader.style.display='none';},650);
     }
   }
-  setTimeout(function(){loaderMin=true;tryDismissLoader();},1200);
+  setTimeout(function(){loaderMin=true;tryDismissLoader();},2000);
   window.addEventListener('load',function(){pageLoaded=true;tryDismissLoader();});
 
-  /* Loader icon rotation (still runs for minimum duration) */
+  /* Loader icon rotation — toggle .is-active so only one is visible at a time */
   var slots=document.querySelectorAll('.ldr-slot'),lbl=document.getElementById('ldrLabel');
   var fill=document.getElementById('ldrFill'),pct=document.getElementById('ldrPct');
   var ci=0,n=slots.length,start=Date.now();
+  if(n){slots[0].classList.add('is-active');lbl.textContent=slots[0].getAttribute('data-label');}
   var iT=setInterval(function(){
-    slots[ci].style.opacity='0';slots[ci].style.transform='scale(.85)';
+    slots[ci].classList.remove('is-active');
     ci=(ci+1)%n;
-    slots[ci].style.opacity='1';slots[ci].style.transform='scale(1)';
+    slots[ci].classList.add('is-active');
     lbl.textContent=slots[ci].getAttribute('data-label');
-  },1200/n);
+  },700);
   var pT=setInterval(function(){
     var elapsed=Date.now()-start;
-    var p=Math.min(elapsed/1200*100,100);
+    var p=Math.min(elapsed/2000*100,100);
     fill.style.width=p+'%';pct.textContent=Math.round(p)+'%';
     if(p>=100){clearInterval(pT);clearInterval(iT);}
   },30);
@@ -378,12 +379,11 @@
     });
   },{passive:true});
 
-  /* SCROLL + NAV */
-  var sf=document.getElementById('scroll-fill'),nav=document.getElementById('mainNav');
+  /* SCROLL */
+  var sf=document.getElementById('scroll-fill');
   window.addEventListener('scroll',function(){
     var p=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight);
     sf.style.width=Math.min(p*100,100)+'%';
-    nav.classList.toggle('scrolled',window.scrollY>40);
   },{passive:true});
 
   /* REVEAL */
