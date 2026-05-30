@@ -19,7 +19,7 @@
 <style>
 /* INDEX PAGE SPECIFIC */
 
-/* LOADER */
+/* ── LOADER ── */
 #loader { position: fixed; inset: 0; z-index: 9998; background: var(--bg); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 28px; transition: opacity .6s ease; }
 #ldrSwap { width: 36px; height: 36px; position: relative; }
 .ldr-slot { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; transform: scale(.85); transition: opacity .3s, transform .3s; }
@@ -30,14 +30,27 @@
 #ldrFill { position: absolute; left: 0; top: 0; height: 100%; background: var(--accent); width: 0%; transition: width .06s linear; }
 #ldrPct { font-family: var(--mono); font-size: 10px; color: var(--t3); margin-top: 8px; text-align: right; letter-spacing: .1em; }
 
-/* NAV — opaque on all pages (consistent treatment) */
+/* ── HERO — 7fr/5fr proportional split on desktop ── */
+.hero {
+  padding-top: var(--nav-h);
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: var(--max);
+  margin: 0 auto;
+  min-height: clamp(440px, 78vh, 740px);
+}
+@media (min-width: 900px) {
+  .hero { grid-template-columns: 7fr 5fr; }
+  .hero-disciplines { display: flex !important; }
+}
+.hero-left {
+  padding: clamp(48px,7vh,96px) var(--pad) clamp(40px,6vh,72px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
-/* HERO */
-.hero { padding-top: var(--nav-h); display: grid; grid-template-columns: 1fr; max-width: var(--max); margin: 0 auto; }
-.hero-left { padding: clamp(48px,7vh,96px) var(--pad) clamp(40px,6vh,72px); display: flex; flex-direction: column; justify-content: space-between; }
-.hero-panel { display: none; }
-
-/* Name above headline */
+/* Hero typography */
 .hero-name { font-family: var(--serif); font-size: clamp(20px,2.4vw,32px); font-weight: 400; letter-spacing: -.015em; color: var(--t1); line-height: 1; margin-bottom: clamp(10px,1.5vh,16px); opacity: 0; animation: fadeUp .6s ease .06s forwards; }
 .hero-eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--t3); display: flex; align-items: center; gap: 12px; opacity: 0; animation: fadeUp .6s ease .14s forwards; }
 .hero-eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--t3); }
@@ -49,7 +62,7 @@
 .h1-line:nth-child(2) span { animation-delay: .34s; }
 .h1-line:nth-child(3) span { animation-delay: .46s; }
 .hero-foot { padding-top: clamp(20px,3vh,32px); border-top: 1px solid var(--bd); margin-top: clamp(20px,3vh,32px); display: flex; flex-direction: column; gap: clamp(14px,2vh,22px); opacity: 0; animation: fadeUp .7s ease .62s forwards; }
-.hero-desc { font-size: 14px; color: var(--t2); line-height: 1.75; max-width: 42ch; }
+.hero-desc { font-size: var(--fs-body-md); color: var(--t2); line-height: var(--lh-body); max-width: 42ch; }
 .hero-cta { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 10px; align-self: flex-start; text-decoration: none; transition: opacity .2s; }
 .hero-cta:hover { opacity: .75; }
 .cta-circle { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--accent); display: flex; align-items: center; justify-content: center; font-size: 13px; transition: background .2s, transform .2s; position: relative; }
@@ -57,30 +70,97 @@
 .cta-circle::after { content:""; position:absolute; inset:-4px; border-radius:50%; border:1px solid rgba(var(--accent-r),.2); animation:ctaPulse 2s ease infinite; }
 @keyframes ctaPulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0;transform:scale(1.4)} }
 
-/* Hero panel */
-/* HERO AVATAR PANEL */
-.hero-panel {
-  position: relative; overflow: hidden;
-  background: var(--panel-bg);
+/* ── DISCIPLINES PANEL — right column, desktop only ── */
+/* Note: to restore a portrait photo here, replace <aside class="hero-disciplines"> with
+   <div class="hero-panel"> and re-add the .hero-panel / .hero-panel-photo CSS. */
+.hero-disciplines {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(48px,7vh,96px) var(--pad) clamp(40px,6vh,72px) clamp(32px,4vw,56px);
+  border-left: 1px solid var(--bd);
 }
-.hero-panel-photo {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  object-position: center 8%;
+.hero-disc-eyebrow {
+  font-family: var(--mono);
+  font-size: var(--fs-utility);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-utility);
+  text-transform: uppercase;
+  color: var(--t3);
+  margin-bottom: clamp(20px,3vh,32px);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  animation: fadeUp .6s ease .42s forwards;
 }
-/* Subtle bottom fade to blend into page */
-.hero-panel::after {
-  content: '';
-  position: absolute; bottom: 0; left: 0; right: 0;
-  height: 120px; z-index: 1; pointer-events: none;
-  background: linear-gradient(to bottom, transparent, var(--panel-bg));
-  opacity: 0.35;
+.hero-disc-eyebrow::before { content: ''; width: 16px; height: 1px; background: var(--t3); }
+.disciplines-list { list-style: none; flex: 1; }
+.discipline-item {
+  padding: clamp(14px,2vh,20px) 0;
+  border-bottom: 1px solid var(--bd);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  opacity: 0;
+  animation: fadeUp .5s ease both;
+}
+.discipline-item:first-child { border-top: 1px solid var(--bd); }
+.discipline-item:nth-child(1) { animation-delay: .56s; }
+.discipline-item:nth-child(2) { animation-delay: .70s; }
+.discipline-item:nth-child(3) { animation-delay: .84s; }
+.discipline-item:nth-child(4) { animation-delay: .98s; }
+.discipline-name {
+  font-size: var(--fs-body-md);
+  font-weight: var(--fw-body);
+  color: var(--t1);
+  letter-spacing: -.01em;
+  line-height: 1.3;
+}
+.discipline-industry {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--t3);
+}
+.hero-disc-foot {
+  display: flex;
+  gap: clamp(20px,3vw,32px);
+  padding-top: clamp(18px,2.5vh,26px);
+  border-top: 1px solid var(--bd);
+  margin-top: clamp(16px,2.5vh,24px);
+  opacity: 0;
+  animation: fadeUp .5s ease 1.08s forwards;
+}
+.hero-disc-stat-n {
+  font-family: var(--sans);
+  font-size: clamp(20px,2.2vw,28px);
+  font-weight: 400;
+  color: var(--accent);
+  line-height: 1;
+  letter-spacing: -.02em;
+  display: block;
+}
+.hero-disc-stat-d {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--t3);
+  display: block;
+  margin-top: 5px;
 }
 
-/* WORK — 2x2 GRID */
+/* ── WORK — 2×2 GRID ── */
 .work { max-width: var(--max); margin: 0 auto; padding: clamp(64px,9vh,104px) var(--pad) clamp(48px,7vh,80px); }
-.work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--bd); }
+.work-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--bd);
+  border: 1px solid var(--bd);
+}
 @media (max-width: 720px) { .work-grid { grid-template-columns: 1fr; } }
 
 .proj-card { background: var(--bg); display: flex; flex-direction: column; text-decoration: none; color: var(--t1); position: relative; overflow: hidden; transition: background .22s; }
@@ -88,44 +168,87 @@
 .proj-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .3s ease; z-index: 2; }
 .proj-card:hover::before { transform: scaleX(1); }
 
+/* Image slot — clean asset frame, no floating metric overlay */
 .card-img { width: 100%; aspect-ratio: 16/9; background: var(--bg2); position: relative; overflow: hidden; flex-shrink: 0; }
 .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
 .proj-card:hover .card-img img { transform: scale(1.03); }
 .card-img-ph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
 .card-img-ph span { font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--t3); opacity: .45; }
 
-.card-metric { position: absolute; top: 14px; right: 16px; z-index: 2; text-align: right; }
-.card-metric-num { font-family: var(--serif); font-size: clamp(26px,3vw,40px); font-weight: 400; font-style: italic; color: var(--accent); line-height: 1; letter-spacing: -.02em; }
-.card-metric-label { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--t2); margin-top: 3px; display: block; }
-
-.card-content { padding: clamp(18px,2.5vh,26px) clamp(18px,2.5vw,26px); display: flex; flex-direction: column; flex: 1; }
+/* Card content — uniform 24px padding */
+.card-content { padding: var(--sp-lg); display: flex; flex-direction: column; flex: 1; }
 .card-domain { font-family: var(--mono); font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: 9px; display: flex; align-items: center; gap: 8px; }
 .card-domain::before { content: ''; width: 12px; height: 1px; background: var(--accent); }
-.card-title { font-family: var(--serif); font-size: clamp(16px,1.7vw,21px); font-weight: 400; letter-spacing: -.01em; line-height: 1.2; color: var(--t1); margin-bottom: 9px; transition: color .2s; }
+.card-title { font-family: var(--serif); font-size: clamp(16px,1.7vw,21px); font-weight: 400; letter-spacing: -.01em; line-height: 1.2; color: var(--t1); margin-bottom: 12px; transition: color .2s; }
 .proj-card:hover .card-title { color: var(--accent); }
-.card-desc { font-size: 14px; color: var(--t2); line-height: 1.68; margin-bottom: 12px; max-width: 52ch; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* Outcome metric — grounded in text container, never floating over image */
+.card-outcome {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-top: var(--bd-low);
+  border-bottom: var(--bd-low);
+  margin-bottom: 14px;
+}
+.card-outcome-num {
+  font-family: var(--sans);
+  font-size: clamp(20px,2vw,26px);
+  font-weight: var(--fw-semibold);
+  font-style: normal;
+  color: var(--accent);
+  line-height: 1;
+  letter-spacing: -.02em;
+}
+.card-outcome-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--t3);
+  line-height: 1.4;
+}
+
+.card-desc { font-size: var(--fs-body-md); color: var(--t2); line-height: var(--lh-body); margin-bottom: 12px; max-width: 52ch; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .card-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 16px; }
 .card-tag { font-family: var(--mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: var(--t2); border: 1px solid var(--bd2); padding: 3px 8px; }
 .card-action { margin-top: auto; font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 8px; transition: gap .2s; }
 .proj-card:hover .card-action { gap: 14px; }
 
 /* Coming soon */
-.coming-soon-card { background: var(--bg); grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; padding: clamp(18px,2.5vh,26px) clamp(18px,2.5vw,26px); border: 1px dashed var(--bd2); position: relative; overflow: hidden; }
+.coming-soon-card { background: var(--bg); grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; padding: var(--sp-lg); border-top: 1px dashed var(--bd2); position: relative; overflow: hidden; }
 .cs-badge { font-family: var(--mono); font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); opacity: .6; margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
 .cs-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
 .cs-title { font-family: var(--serif); font-size: clamp(15px,1.6vw,19px); color: var(--t3); letter-spacing: -.01em; }
 .cs-sub { font-family: var(--mono); font-size: 9px; letter-spacing: .1em; color: var(--t3); margin-top: 3px; opacity: .6; }
 
-/* STATS */
+/* ── STATS BANNER — upright sans-serif, utility-label scale ── */
 .stats { max-width: var(--max); margin: 0 auto; border-top: 1px solid var(--bd); }
 .stats-inner { display: grid; grid-template-columns: repeat(4,1fr); }
 @media (max-width: 640px) { .stats-inner { grid-template-columns: repeat(2,1fr); } }
 .stat-item { padding: clamp(32px,5vh,52px) var(--pad); border-right: 1px solid var(--bd); }
 .stat-item:last-child { border-right: none; }
 @media (max-width: 640px) { .stat-item:nth-child(2n) { border-right: none; } }
-.stat-val { font-family: var(--serif); font-size: clamp(32px,4vw,52px); font-weight: 400; font-style: italic; color: var(--t1); line-height: 1; letter-spacing: -.02em; margin-bottom: 8px; }
+.stat-val {
+  font-family: var(--sans);       /* architectural upright — not serif italic */
+  font-size: clamp(32px,4vw,52px);
+  font-weight: 400;
+  font-style: normal;
+  color: var(--t1);
+  line-height: 1;
+  letter-spacing: -.03em;
+  margin-bottom: 10px;
+}
 .stat-val em { color: var(--accent); font-style: normal; }
-.stat-label { font-family: var(--mono); font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: var(--t3); }
+.stat-label {
+  font-family: var(--mono);
+  font-size: var(--fs-utility);   /* 13px — up from 9px */
+  font-weight: var(--fw-medium);  /* 500 */
+  letter-spacing: var(--ls-utility);
+  text-transform: uppercase;
+  color: var(--t3);
+}
 
 @keyframes slideUp { from { transform: translateY(105%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 @keyframes fadeUp  { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -178,21 +301,42 @@
       </h1>
     </div>
     <div class="hero-foot">
-      <p class="hero-desc">I design enterprise systems that simplify complexity. 5+ years across Banking, Fintech & Telecom — helping Fortune 500 teams ship faster.</p>
-      <a href="#work" class="hero-cta mag" aria-label="Scroll to view selected work">View Work <div class="cta-circle">↓</div></a>
+      <p class="hero-desc">I design enterprise systems that simplify complexity. 5+ years across Banking, Fintech &amp; Telecom — helping Fortune 500 teams ship faster.</p>
+      <a href="#work" class="hero-cta" aria-label="Scroll to view selected work">View Work <div class="cta-circle">↓</div></a>
     </div>
   </div>
-    <div class="hero-panel">
-    <img
-      src="./photo-hero.jpg"
-      alt="Darshan Munkur — Illustrated avatar"
-      class="hero-panel-photo"
-      loading="eager"
-      fetchpriority="high"
-      width="688"
-      height="1316"
-    >
-  </div>
+
+  <aside class="hero-disciplines" aria-label="Design disciplines">
+    <div class="hero-disc-eyebrow">Design Practice</div>
+    <ul class="disciplines-list">
+      <li class="discipline-item">
+        <span class="discipline-name">B2B Systems Design</span>
+        <span class="discipline-industry">Banking · Fintech · Telecom</span>
+      </li>
+      <li class="discipline-item">
+        <span class="discipline-name">Financial Information Architecture</span>
+        <span class="discipline-industry">Wealth Management · Banking</span>
+      </li>
+      <li class="discipline-item">
+        <span class="discipline-name">Telecommunications Network Tooling</span>
+        <span class="discipline-industry">Enterprise · Change Management</span>
+      </li>
+      <li class="discipline-item">
+        <span class="discipline-name">White-Label Component Systems</span>
+        <span class="discipline-industry">Multi-BU · Design Tokens · Figma</span>
+      </li>
+    </ul>
+    <div class="hero-disc-foot">
+      <div>
+        <span class="hero-disc-stat-n">5+</span>
+        <span class="hero-disc-stat-d">Years Enterprise UX</span>
+      </div>
+      <div>
+        <span class="hero-disc-stat-n">F500</span>
+        <span class="hero-disc-stat-d">Client Scale</span>
+      </div>
+    </div>
+  </aside>
 </section>
 
 <section class="work" id="work" aria-labelledby="work-heading">
@@ -203,11 +347,14 @@
     <a href="./password.html?next=usbank.html" class="proj-card reveal" aria-label="US Bank case study">
       <div class="card-img">
         <div class="card-img-ph"><span>Add project image</span></div>
-        <div class="card-metric"><div class="card-metric-num">+20%</div><div class="card-metric-label">Application uplift</div></div>
       </div>
       <div class="card-content">
         <div class="card-domain">Banking &amp; Fintech</div>
         <h3 class="card-title">US Bank — Platform Modernization &amp; Client Acquisition</h3>
+        <div class="card-outcome">
+          <span class="card-outcome-num">+20%</span>
+          <span class="card-outcome-label">Application uplift</span>
+        </div>
         <p class="card-desc">Bankers couldn't share anything digitally. Redesigned the acquisition platform end-to-end — eliminating printed assets, building a multi-BU design system.</p>
         <div class="card-tags"><span class="card-tag">Platform Design</span><span class="card-tag">Design System</span><span class="card-tag">End-to-End UX</span></div>
         <div class="card-action">View Case Study →</div>
@@ -217,11 +364,14 @@
     <a href="./password.html?next=verizon.html" class="proj-card reveal" aria-label="Verizon case study">
       <div class="card-img">
         <div class="card-img-ph"><span>Add project image</span></div>
-        <div class="card-metric"><div class="card-metric-num">+40%</div><div class="card-metric-label">CSAT increase</div></div>
       </div>
       <div class="card-content">
         <div class="card-domain">Telecom</div>
         <h3 class="card-title">Verizon — Unified Change Management Platform</h3>
+        <div class="card-outcome">
+          <span class="card-outcome-num">+40%</span>
+          <span class="card-outcome-label">CSAT increase</span>
+        </div>
         <p class="card-desc">A platform that worked but nobody wanted to use. Led discovery across 19 interviews, then rearchitected wireless, wireline, and fiber management.</p>
         <div class="card-tags"><span class="card-tag">Enterprise Platform</span><span class="card-tag">Research-Led</span><span class="card-tag">Agile UX</span></div>
         <div class="card-action">View Case Study →</div>
@@ -231,11 +381,14 @@
     <a href="./password.html?next=lpl.html" class="proj-card reveal" aria-label="LPL Financial case study">
       <div class="card-img">
         <div class="card-img-ph"><span>Add project image</span></div>
-        <div class="card-metric"><div class="card-metric-num">−50%</div><div class="card-metric-label">Onboarding time</div></div>
       </div>
       <div class="card-content">
         <div class="card-domain">Wealth Management</div>
         <h3 class="card-title">LPL Financial — Advisor Onboarding Portal</h3>
+        <div class="card-outcome">
+          <span class="card-outcome-num">−50%</span>
+          <span class="card-outcome-label">Onboarding time</span>
+        </div>
         <p class="card-desc">1,000+ hours to onboard a single advisor. Redesigned the experience for the largest independent broker-dealer in the US.</p>
         <div class="card-tags"><span class="card-tag">Onboarding UX</span><span class="card-tag">NPS Strategy</span><span class="card-tag">0→1 Design</span></div>
         <div class="card-action">View Case Study →</div>
@@ -245,11 +398,14 @@
     <a href="./password.html?next=citi.html" class="proj-card reveal" aria-label="Citi case study">
       <div class="card-img">
         <div class="card-img-ph"><span>Add project image</span></div>
-        <div class="card-metric"><div class="card-metric-num" style="font-size:clamp(18px,2.2vw,30px);font-style:normal;line-height:1.15;">44+<br>Global</div><div class="card-metric-label">Markets · GTB Award 2025</div></div>
       </div>
       <div class="card-content">
         <div class="card-domain">Global Banking</div>
         <h3 class="card-title">Citi — Digital Signer Management</h3>
+        <div class="card-outcome">
+          <span class="card-outcome-num">44+</span>
+          <span class="card-outcome-label">Global Markets · GTB Award 2025</span>
+        </div>
         <p class="card-desc">Paper-heavy signer workflows across 44 markets. Centralized digital platform handling 80% of global transaction volume.</p>
         <div class="card-tags"><span class="card-tag">Global Scale</span><span class="card-tag">Design System</span><span class="card-tag">Journey Mapping</span></div>
         <div class="card-action">View Case Study →</div>
@@ -282,9 +438,9 @@
     <h2>Let's build something<br><em>worth using.</em></h2>
     <p>Open to Senior UX Designer roles — complex enterprise products, fintech, and design systems work.</p>
     <div class="footer-btns">
-      <a href="mailto:darshan.munkur@gmail.com" class="footer-btn mag">Email Me →</a>
-      <a href="https://linkedin.com/in/darshan-munkur" target="_blank" rel="noopener" class="footer-btn mag">LinkedIn ↗</a>
-      <a href="./about.html" class="footer-btn mag">About Me →</a>
+      <a href="mailto:darshan.munkur@gmail.com" class="btn-primary">Email Me</a>
+      <a href="https://linkedin.com/in/darshan-munkur" target="_blank" rel="noopener" class="btn-secondary">LinkedIn ↗</a>
+      <a href="./about.html" class="btn-tertiary">About Me</a>
     </div>
   </div>
   <div class="footer-bottom">
