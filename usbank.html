@@ -75,17 +75,8 @@
     </div>
   </section>
 
-  <!-- BODY -->
-  <!-- SECTION DOTS NAV -->
-<nav class="section-dots" aria-label="Jump to section">
-  <a href="#context"  class="section-dot" data-section="context" ><span class="dot-label">01. Context</span></a>
-  <a href="#problem"  class="section-dot" data-section="problem" ><span class="dot-label">02. Problem</span></a>
-  <a href="#research" class="section-dot" data-section="research"><span class="dot-label">03. Research</span></a>
-  <a href="#process"  class="section-dot" data-section="process" ><span class="dot-label">04. Process</span></a>
-  <a href="#solution" class="section-dot" data-section="solution"><span class="dot-label">05. Solution</span></a>
-  <a href="#outcomes" class="section-dot" data-section="outcomes"><span class="dot-label">06. Outcomes</span></a>
-</nav>
-
+  <!-- BODY — sidebar + content grid -->
+<div class="case-layout">
 <aside class="case-sidebar" aria-label="Case study sections">
   <ul class="sidebar-nav">
     <li><a href="#context" class="sidebar-link active">01. The Problem</a></li>
@@ -95,7 +86,7 @@
   </ul>
 </aside>
 
-<div class="case-body has-sidebar">
+<div class="case-body">
 
     <!-- 01 CONTEXT -->
     <section class="cs-sec" id="context">
@@ -305,6 +296,9 @@
       <p>"The design system alone eliminated weeks of rework across every new business unit deployment."</p>
     </div>
 
+  </div><!-- /.case-body -->
+  </div><!-- /.case-layout -->
+
     <!-- NEXT -->
     <nav class="case-nav" aria-label="Navigate case studies">
       <a href="./password.html?next=verizon.html" class="cnav-link next">
@@ -332,8 +326,7 @@
         </ul>
       </div>
     </footer>
-  </div>
-</div>
+</div><!-- /.page -->
 </main>
 
 <script>
@@ -424,23 +417,27 @@
     }
   });
 
-  /* ── SIDEBAR NAV — active state on scroll ── */
+  /* ── SIDEBAR NAV — active state on scroll (cached targets, rAF-throttled) ── */
   (function(){
-    var links = document.querySelectorAll('.sidebar-link');
+    var links = Array.prototype.slice.call(document.querySelectorAll('.sidebar-link'));
     if(links.length === 0) return;
-    window.addEventListener('scroll', function(){
-      var scrollY = window.scrollY;
+    var pairs = links.map(function(link){
+      return { link: link, target: document.querySelector(link.getAttribute('href')) };
+    }).filter(function(p){ return p.target; });
+    var ticking = false;
+    function update(){
+      ticking = false;
       var found = null;
-      links.forEach(function(link){
-        link.classList.remove('active');
-        var target = document.querySelector(link.getAttribute('href'));
-        if(target){
-          var rect = target.getBoundingClientRect();
-          if(rect.top <= 150){found = link;}
-        }
-      });
-      if(found){found.classList.add('active');}
+      for(var i = 0; i < pairs.length; i++){
+        if(pairs[i].target.getBoundingClientRect().top <= 150) found = pairs[i].link;
+      }
+      links.forEach(function(l){ l.classList.remove('active'); });
+      if(found) found.classList.add('active');
+    }
+    window.addEventListener('scroll', function(){
+      if(!ticking){ requestAnimationFrame(update); ticking = true; }
     }, {passive: true});
+    update();
   })();
 
   /* ── MOUSE-TRACKING CSS VAR for section spotlights ── */

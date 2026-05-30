@@ -9,7 +9,13 @@
       "Bash(git commit -m ' *)",
       "Bash(git config *)",
       "Bash(git push *)",
-      "Bash(git pull *)"
+      "Bash(git pull *)",
+      "mcp__Claude_Preview__preview_start",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "Bash(npx http-server *)",
+      "Read(//mnt/c/Users/Darshan/Downloads/Portfolio/**)",
+      "Bash(python3 -m http.server 8000)",
+      "Bash(curl -s http://localhost:8000/index.html)"
     ]
   }
 }

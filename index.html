@@ -22,16 +22,15 @@
 /* LOADER */
 #loader { position: fixed; inset: 0; z-index: 9998; background: var(--bg); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 28px; transition: opacity .6s ease; }
 #ldrSwap { width: 36px; height: 36px; position: relative; }
-.ldr-slot { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 1; transform: scale(1); transition: opacity .3s, transform .3s; }
+.ldr-slot { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; transform: scale(.85); transition: opacity .3s, transform .3s; }
+.ldr-slot.is-active { opacity: 1; transform: scale(1); }
 #ldrLabel { font-family: var(--mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--t3); }
 #ldrProgress { width: 160px; }
 #ldrBar { height: 1px; background: var(--bd2); position: relative; }
 #ldrFill { position: absolute; left: 0; top: 0; height: 100%; background: var(--accent); width: 0%; transition: width .06s linear; }
 #ldrPct { font-family: var(--mono); font-size: 10px; color: var(--t3); margin-top: 8px; text-align: right; letter-spacing: .1em; }
 
-/* NAV — transparent on load, blurred on scroll */
-.nav { background: transparent; border-color: transparent; transition: background .3s, border-color .3s, backdrop-filter .3s; }
-.nav.scrolled { background: var(--nav-bg); backdrop-filter: blur(16px); border-color: var(--bd); }
+/* NAV — opaque on all pages (consistent treatment) */
 
 /* HERO */
 .hero { padding-top: var(--nav-h); display: grid; grid-template-columns: 1fr; max-width: var(--max); margin: 0 auto; }
@@ -150,7 +149,7 @@
   <div id="ldrProgress"><div id="ldrBar"><div id="ldrFill"></div></div><div id="ldrPct">0%</div></div>
 </div>
 
-<header class="nav" id="mainNav">
+<header class="nav">
   <a href="./index.html" class="nav-logo">Darshan Munkur</a>
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
@@ -311,14 +310,15 @@
   setTimeout(function(){loaderMin=true;tryDismissLoader();},2000);
   window.addEventListener('load',function(){pageLoaded=true;tryDismissLoader();});
 
-  /* Loader icon rotation (still runs for minimum duration) */
+  /* Loader icon rotation — toggle .is-active so only one is visible at a time */
   var slots=document.querySelectorAll('.ldr-slot'),lbl=document.getElementById('ldrLabel');
   var fill=document.getElementById('ldrFill'),pct=document.getElementById('ldrPct');
   var ci=0,n=slots.length,start=Date.now();
+  if(n){slots[0].classList.add('is-active');lbl.textContent=slots[0].getAttribute('data-label');}
   var iT=setInterval(function(){
-    slots[ci].style.opacity='0';slots[ci].style.transform='scale(.85)';
+    slots[ci].classList.remove('is-active');
     ci=(ci+1)%n;
-    slots[ci].style.opacity='1';slots[ci].style.transform='scale(1)';
+    slots[ci].classList.add('is-active');
     lbl.textContent=slots[ci].getAttribute('data-label');
   },700);
   var pT=setInterval(function(){
@@ -357,34 +357,11 @@
     }
   });
 
-  /* MAGNETIC + SPOTLIGHT — mousemove listener */
-  var mx=0,my=0;
-  var magEls=document.querySelectorAll('.mag');
-  var trackedEls=document.querySelectorAll('.proj-card, .footer-cta');
-
-  document.addEventListener('mousemove',function(e){
-    mx=e.clientX;
-    my=e.clientY;
-
-    /* Magnetic effect */
-    magEls.forEach(function(el){
-      var r=el.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;
-      var dx=e.clientX-cx,dy=e.clientY-cy,dist=Math.sqrt(dx*dx+dy*dy);
-      if(dist<60){
-        var s=(1-dist/60)*8;
-        el.style.transform='translate('+(dx/dist*s)+'px,'+(dy/dist*s)+'px)';
-      }else{
-        el.style.transform='';
-      }
-    });
-  },{passive:true});
-
-  /* SCROLL + NAV */
-  var sf=document.getElementById('scroll-fill'),nav=document.getElementById('mainNav');
+  /* SCROLL */
+  var sf=document.getElementById('scroll-fill');
   window.addEventListener('scroll',function(){
     var p=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight);
     sf.style.width=Math.min(p*100,100)+'%';
-    nav.classList.toggle('scrolled',window.scrollY>40);
   },{passive:true});
 
   /* REVEAL */
@@ -400,22 +377,6 @@
   },{threshold:.06});
   revEls.forEach(function(el){ro.observe(el);});
 
-  /* Global mouse-tracking for page-wide spotlight effects */
-  document.addEventListener('mousemove',function(e){
-    document.documentElement.style.setProperty('--mouse-x',((e.clientX/window.innerWidth)*100).toFixed(1)+'%');
-    document.documentElement.style.setProperty('--mouse-y',((e.clientY/window.innerHeight)*100).toFixed(1)+'%');
-  },{passive:true});
-
-  /* Mouse-tracking spotlights for cards */
-  trackedEls.forEach(function(el){
-    el.addEventListener('mousemove',function(e){
-      var r=el.getBoundingClientRect();
-      var x=((e.clientX-r.left)/r.width*100).toFixed(1)+'%';
-      var y=((e.clientY-r.top)/r.height*100).toFixed(1)+'%';
-      el.style.setProperty('--mouse-x',x);
-      el.style.setProperty('--mouse-y',y);
-    },{passive:true});
-  });
 })();
 </script>
 </body>

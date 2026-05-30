@@ -108,7 +108,7 @@
 .history-company-link { transition: color .2s; }
 .history-company-link:hover .history-company { color: var(--accent); }
 .history-period { font-family: var(--mono); font-size: 9px; letter-spacing: .12em; color: var(--t3); white-space: nowrap; padding-top: 5px; }
-.history-role { font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+.history-role { font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--t3); margin-bottom: 12px; }
 .history-desc { font-size: 14px; color: var(--t2); line-height: 1.78; max-width: 65ch; }
 .history-desc strong { color: var(--t1); font-weight: 500; }
 
@@ -145,7 +145,7 @@
 @media (max-width: 640px) { .cred-section { grid-template-columns: 1fr; } }
 .cred-block { padding: clamp(32px,5vh,52px) var(--pad); border-right: 1px solid var(--bd); }
 .cred-block:last-child { border-right: none; }
-.cred-label { font-family: var(--mono); font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+.cred-label { font-family: var(--mono); font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--t3); margin-bottom: 16px; }
 .cred-item { display: flex; flex-direction: column; gap: 3px; padding: 12px 0; border-bottom: 1px solid var(--bd); }
 .cred-item:last-child { border-bottom: none; }
 .cred-name { font-size: 14px; color: var(--t1); font-weight: 400; }
@@ -178,7 +178,7 @@
   border-bottom: 1px solid var(--bd);
 }
 .rec-inner { display: flex; align-items: flex-start; gap: 20px; }
-.rec-mark { font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); white-space: nowrap; padding-top: 2px; }
+.rec-mark { font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; color: var(--t3); white-space: nowrap; padding-top: 2px; }
 .rec-text { font-size: 14px; color: var(--t2); line-height: 1.75; }
 .rec-text em { color: var(--t1); font-style: normal; font-weight: 500; }
 
@@ -188,23 +188,12 @@
 
 /* ── THEME TOGGLE ── */
 
-/* ABOUT — hover distortions (Option A subtle) */
+/* ABOUT — clean hover without glow */
 .history-node {
   transition: padding-left .3s cubic-bezier(.23,1,.32,1);
   position: relative;
 }
-.history-node::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(
-    ellipse 80% 60% at var(--mouse-x,50%) var(--mouse-y,50%),
-    rgba(var(--accent-r),0.05) 0%, transparent 70%
-  );
-  opacity: 0; transition: opacity .35s; pointer-events: none;
-}
 .history-node:hover { padding-left: 6px; }
-.history-node:hover::before { opacity: 1; }
-.history-node > * { position: relative; z-index: 1; }
 
 .skill-group {
   transition: transform .3s cubic-bezier(.23,1,.32,1);
@@ -284,7 +273,7 @@
     <div class="bio-image">
       <img src="./photo-about-bio.jpg" alt="Darshan Munkur" loading="lazy" width="600" height="800">
     </div>
-    <div style="padding: clamp(48px,7vh,96px) var(--pad);">
+    <div class="bio-content">
       <div class="bio-label">About</div>
       <div class="bio-text">
         <p>I began my career not as a designer, but as a <strong>content programmer</strong> — building algorithmic eLearning experiences to WCAG standards using HTML, CSS, and Python. That engineering foundation taught me to think in systems before I ever opened Figma.</p>
@@ -570,21 +559,6 @@
   },{threshold:.1});
   document.querySelectorAll('.history-node').forEach(function(el){no.observe(el);});
 
-  /* MAGNETIC effect */
-  var magEls=document.querySelectorAll('.mag');
-  document.addEventListener('mousemove',function(e){
-    magEls.forEach(function(el){
-      var r=el.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;
-      var dx=e.clientX-cx,dy=e.clientY-cy,dist=Math.sqrt(dx*dx+dy*dy);
-      if(dist<60){
-        var s=(1-dist/60)*8;
-        el.style.transform='translate('+(dx/dist*s)+'px,'+(dy/dist*s)+'px)';
-      }else{
-        el.style.transform='';
-      }
-    });
-  },{passive:true});
-
   /* THEME */
   var tBtn=document.getElementById('themeToggle');
   var stored=localStorage.getItem('dm-theme');
@@ -616,23 +590,6 @@
     }
   });
 
-  /* MOUSE-TRACKING CSS VAR */
-  (function(){
-    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    /* Global page-wide tracking */
-    document.addEventListener('mousemove', function(e){
-      html.style.setProperty('--mouse-x', ((e.clientX/window.innerWidth)*100).toFixed(1)+'%');
-      html.style.setProperty('--mouse-y', ((e.clientY/window.innerHeight)*100).toFixed(1)+'%');
-    },{passive:true});
-    /* Element-specific tracking */
-    document.querySelectorAll('.footer-cta, .bio-section, .history-section, .skills-section').forEach(function(el){
-      el.addEventListener('mousemove', function(e){
-        var r = el.getBoundingClientRect();
-        el.style.setProperty('--mouse-x', ((e.clientX-r.left)/r.width*100).toFixed(1)+'%');
-        el.style.setProperty('--mouse-y', ((e.clientY-r.top)/r.height*100).toFixed(1)+'%');
-      },{passive:true});
-    });
-  })();
 })();
 </script>
 </body>

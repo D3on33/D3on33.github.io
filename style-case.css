@@ -3,9 +3,6 @@
    Darshan Munkur Portfolio
 ═══════════════════════════════════════════════ */
 
-/* ── PAGE — remove nav padding on case studies ── */
-.page { padding-top: 0; }
-
 /* ── CASE HERO — full bleed ── */
 .case-hero{position:relative;max-width:var(--max);margin:0 auto}
 
@@ -30,7 +27,7 @@
 .case-eyebrow{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;display:flex;align-items:center;gap:10px}
 .case-eyebrow::before{content:'';width:16px;height:1px;background:var(--accent)}
 .case-h1{font-family:var(--serif);font-size:clamp(36px,5.5vw,80px);font-weight:400;letter-spacing:-.03em;line-height:1.12;color:var(--t1);margin-bottom:20px}
-.case-role-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(var(--accent-r),.25);padding:5px 14px;margin-bottom:24px}
+.case-role-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--t2);border:1px solid var(--bd2);padding:5px 14px;margin-bottom:24px}
 .case-lead{font-size:15px;color:var(--t2);line-height:1.8;max-width:58ch;margin-bottom:40px}
 
 /* Meta — glassmorphism card */
@@ -75,14 +72,14 @@
 
 /* Callout — no box, just left border + serif text */
 .cs-callout{border-left:2px solid var(--accent);padding:0 0 0 24px;margin:32px 0}
-.cs-callout-label{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.cs-callout-label{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--t3);margin-bottom:8px}
 .cs-callout-text{font-size:14px;color:var(--t2);line-height:1.78}
 .cs-callout-text strong{color:var(--t1);font-weight:500}
 
 /* Why callout — serif italic */
 .cs-why{margin:36px 0;padding-left:24px;border-left:2px solid var(--accent)}
 .cs-why p{font-family:var(--serif);font-size:clamp(16px,2vw,21px);font-style:italic;color:var(--t1);line-height:1.45;margin:0}
-.cs-why cite{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-top:10px;font-style:normal}
+.cs-why cite{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);margin-top:10px;font-style:normal}
 
 /* Center pull quote — massive, grid-breaking */
 .cs-pullquote{
@@ -116,7 +113,7 @@
 .research-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3vw,40px) clamp(32px,4vw,56px);margin-top:32px}
 @media(max-width:580px){.research-grid{grid-template-columns:1fr}}
 .r-item{padding-top:16px;border-top:1px solid var(--bd)}
-.r-num{font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--accent);margin-bottom:8px}
+.r-num{font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--t3);margin-bottom:8px}
 .r-title{font-size:14px;font-weight:400;color:var(--t1);margin-bottom:6px}
 .r-desc{font-size:14px;color:var(--t2);line-height:1.7}
 
@@ -124,7 +121,7 @@
 .p-steps{display:flex;flex-direction:column;margin-top:32px}
 .p-step{display:grid;grid-template-columns:36px 1fr;gap:16px;padding:20px 0;border-top:1px solid var(--bd);align-items:start}
 .p-step:last-child{border-bottom:1px solid var(--bd)}
-.p-n{font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:.08em;padding-top:2px}
+.p-n{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:.08em;padding-top:2px}
 .p-title{font-size:14px;font-weight:400;color:var(--t1);margin-bottom:4px}
 .p-desc{font-size:14px;color:var(--t2);line-height:1.72}
 
@@ -159,42 +156,32 @@
 .cnav-link.next{align-items:flex-end;text-align:right}
 
 
-/* ── SECTION NAV — numbered text on left side ── */
-.section-dots{position:fixed;left:clamp(20px,3vw,44px);top:clamp(120px,15vh,180px);z-index:300;display:none;flex-direction:column;gap:28px;pointer-events:none}
-@media(max-width:1200px){.section-dots{display:none}}
-.section-dot{display:flex;flex-direction:column;align-items:flex-start;gap:4px;pointer-events:auto;cursor:pointer;background:none;border:none;padding:0;text-decoration:none;transition:all .25s}
-.dot-pip{display:none}
-.dot-label{font-family:var(--mono);font-size:clamp(11px,1.2vw,13px);letter-spacing:.12em;text-transform:uppercase;color:var(--t3);transition:color .25s;white-space:nowrap;pointer-events:auto;line-height:1.4}
-.section-dot:hover .dot-label,.section-dot.active .dot-label{color:var(--accent)}
-.section-dot.active .dot-label{font-weight:500}
-.section-dot::before{content:'';position:absolute;left:-12px;top:0;width:3px;height:100%;background:var(--accent);opacity:0;transition:opacity .25s;pointer-events:none}
-.section-dot.active::before{opacity:1}
-/* ── INLINE SECTION STRIP — removed, using only left-side dots ── */
+/* ── LEGACY SECTION-DOTS — hidden, kept for backward HTML compat ── */
+.section-dots{display:none}
 
-/* ── STICKY SIDE NAV — desktop only ── */
+/* ── INLINE SIDEBAR — grid column inside .case-layout ── */
+.case-layout{max-width:var(--max);margin:0 auto;display:block}
 .case-sidebar{display:none}
-@media(min-width:1200px){
-  .case-sidebar{display:flex;position:fixed;left:0;top:var(--nav-h);width:200px;height:calc(100vh - var(--nav-h));flex-direction:column;padding:40px 24px;background:var(--bg);border-right:1px solid var(--bd);z-index:200;overflow-y:auto}
+@media(min-width:1100px){
+  .case-layout{display:grid;grid-template-columns:260px minmax(0,1fr);align-items:start;gap:clamp(24px,3vw,48px)}
+  .case-sidebar{display:block;position:sticky;top:calc(var(--nav-h) + 40px);padding:8px 0 8px var(--pad);align-self:start}
+  .case-layout > .case-body{max-width:760px;margin:0}
+  .case-layout > .case-body .cs-sec{padding-left:0;padding-right:clamp(24px,3vw,48px)}
   .sidebar-nav{display:flex;flex-direction:column;gap:20px;list-style:none}
-  .sidebar-nav a{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);transition:color .2s;position:relative;display:block;padding-left:12px}
-  .sidebar-nav a::before{content:'';position:absolute;left:0;top:0;width:2px;height:100%;background:var(--accent);opacity:0;transition:opacity .2s}
+  .sidebar-nav a{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);transition:color .2s;position:relative;display:block;padding-left:14px;line-height:1.4;white-space:nowrap}
+  .sidebar-nav a::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:2px;height:0;background:var(--accent);transition:height .2s}
   .sidebar-nav a:hover{color:var(--accent)}
   .sidebar-nav a.active{color:var(--accent);font-weight:500}
-  .sidebar-nav a.active::before{opacity:1}
-  /* Adjust case body when sidebar is present */
-  .case-body.has-sidebar{margin-left:200px}
+  .sidebar-nav a.active::before{height:100%}
 }
 
 
 
 /* ══════════════════════════════════════════════
-   CASE STUDY — subtle hover distortion (Option A)
-   Spotlight follows cursor via --mouse-x/y CSS var
-   set by JS. backdrop-filter creates grid smear.
-   No text opacity change = no contrast impact.
+   CASE STUDY — Clean hover states without glow
 ══════════════════════════════════════════════ */
 
-/* Image slots — grid shimmer on hover */
+/* Image slots — subtle scale only */
 .img-slot, .zz-img, .ba-wrap {
   position: relative;
   transition: transform .4s cubic-bezier(.23,1,.32,1);
@@ -202,20 +189,6 @@
 .img-slot:hover, .zz-img:hover {
   transform: scale(1.008);
 }
-.img-slot::after, .zz-img::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(
-    ellipse 70% 50% at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(var(--accent-r), 0.07) 0%,
-    transparent 65%
-  );
-  opacity: 0;
-  transition: opacity .35s ease;
-  pointer-events: none;
-  z-index: 3;
-}
-.img-slot:hover::after, .zz-img:hover::after { opacity: 1; }
 
 /* Callout blocks — edge glow on hover */
 .cs-callout {

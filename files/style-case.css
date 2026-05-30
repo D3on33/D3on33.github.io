@@ -178,13 +178,10 @@
 
 
 /* ══════════════════════════════════════════════
-   CASE STUDY — subtle hover distortion (Option A)
-   Spotlight follows cursor via --mouse-x/y CSS var
-   set by JS. backdrop-filter creates grid smear.
-   No text opacity change = no contrast impact.
+   CASE STUDY — Clean hover states without glow
 ══════════════════════════════════════════════ */
 
-/* Image slots — grid shimmer on hover */
+/* Image slots — subtle scale only */
 .img-slot, .zz-img, .ba-wrap {
   position: relative;
   transition: transform .4s cubic-bezier(.23,1,.32,1);
@@ -192,20 +189,6 @@
 .img-slot:hover, .zz-img:hover {
   transform: scale(1.008);
 }
-.img-slot::after, .zz-img::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(
-    ellipse 70% 50% at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(var(--accent-r), 0.07) 0%,
-    transparent 65%
-  );
-  opacity: 0;
-  transition: opacity .35s ease;
-  pointer-events: none;
-  z-index: 3;
-}
-.img-slot:hover::after, .zz-img:hover::after { opacity: 1; }
 
 /* Callout blocks — edge glow on hover */
 .cs-callout {
