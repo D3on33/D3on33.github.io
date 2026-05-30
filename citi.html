@@ -75,15 +75,16 @@
     </div>
   </section>
 
-  <!-- BODY -->
-  <nav class="section-dots" aria-label="Jump to section">
-  <a href="#context"  class="section-dot" data-section="context" ><span class="dot-label">01. Context</span></a>
-  <a href="#problem"  class="section-dot" data-section="problem" ><span class="dot-label">02. Problem</span></a>
-  <a href="#research" class="section-dot" data-section="research"><span class="dot-label">03. Research</span></a>
-  <a href="#process"  class="section-dot" data-section="process" ><span class="dot-label">04. Process</span></a>
-  <a href="#solution" class="section-dot" data-section="solution"><span class="dot-label">05. Solution</span></a>
-  <a href="#outcomes" class="section-dot" data-section="outcomes"><span class="dot-label">06. Outcomes</span></a>
-</nav>
+  <!-- BODY — sidebar + content grid -->
+<div class="case-layout">
+<aside class="case-sidebar" aria-label="Case study sections">
+  <ul class="sidebar-nav">
+    <li><a href="#context" class="sidebar-link active">01. The Problem</a></li>
+    <li><a href="#research" class="sidebar-link">02. The Research</a></li>
+    <li><a href="#process" class="sidebar-link">03. The Solution</a></li>
+    <li><a href="#outcomes" class="sidebar-link">04. The Impact</a></li>
+  </ul>
+</aside>
 <div class="case-body">
 
     <!-- 01 CONTEXT -->
@@ -94,26 +95,45 @@
         <p>This engagement was delivered through <strong>Incedo Inc.</strong>, where I was embedded directly inside the US Bank product team as <strong>Lead UX Designer</strong>. I owned the end-to-end design process — from initial discovery through engineering handoff and QA.</p>
         <p>The project spanned multiple business units, requiring complex stakeholder navigation with Product Managers, Engineering leads, and C-suite executives while maintaining design velocity alongside agile sprints.</p>
       </div>
-      <div class="cs-callout" style="margin-top:32px">
-        <div class="cs-callout-label">My Contributions</div>
-        <div class="cs-callout-text">Led research synthesis, IA restructuring, wireframe iteration cycles, and high-fidelity Figma deliverables. Architected the multi-BU white-labeled design system. Presented design rationale to C-suite stakeholders across 6 business units. Collaborated daily with engineers to QA component behavior and edge states.</div>
+      <div class="contributions-block">
+        <div class="contributions-header">Contributions &amp; Ownership</div>
+        <div class="contributions-split">
+          <div class="contrib-domains">
+            <div class="contrib-domain-item">Information Architecture</div>
+            <div class="contrib-domain-item">Persona &amp; Journey Mapping</div>
+            <div class="contrib-domain-item">Stakeholder Alignment</div>
+            <div class="contrib-domain-item">Global Design Collaboration</div>
+          </div>
+          <ul class="contrib-tasks">
+            <li>Co-led persona creation and journey mapping across 20 enterprise clients</li>
+            <li>Collaborated with senior researchers and executive stakeholders on the DSM platform</li>
+            <li>Contributed to IA and UX for a platform spanning 44 markets and 80% of transaction volume</li>
+            <li>Partnered with engineering to ensure design intent held through QA across global deployments</li>
+          </ul>
+        </div>
       </div>
     </section>
 
-    <!-- 02 PROBLEM — centered, wide, acts as tether -->
+    <!-- 02 PROBLEM — 4/8 text + asset split -->
     <section class="cs-sec" id="problem">
       <div class="cs-label">02 — The Problem</div>
       <h2 class="cs-h">A digital acquisition workflow<br>built on <em>printed flyers.</em></h2>
-      <div class="cs-prose">
-        <p>Bankers at US Bank were running client acquisition almost entirely on printed materials. Digital tools existed but were siloed, slow to update, and couldn't be shared dynamically. Personalization at scale was impossible — every client received the same generic content regardless of product fit.</p>
-        <p>Measurable friction existed at multiple funnel stages: from initial banker-client contact through application completion. Drop-off was highest at the handoff between physical and digital touchpoints.</p>
-      </div>
-      <div class="cs-why">
-        <p>I reframed the problem from "how do we digitize print" to "how do we make digital faster than print." Speed of use — not digital literacy — was the real barrier.</p>
-        <cite>Strategic Pivot</cite>
-      </div>
-      <div class="img-full is-wide reveal" style="margin-top:32px">
-        <div class="img-full-ph"><div class="img-ph-label">[ Current State — Channel Dependency Analysis ]</div></div>
+      <div class="cs-row-split">
+        <div class="cs-row-text">
+          <div class="cs-prose">
+            <p><strong class="lead-in">Paper-heavy signer workflows</strong> across 44 markets created massive operational drag for global treasury teams. Each market operated independently — manual processes, fragmented tooling, no single source of truth for signer authorisation.</p>
+            <p><strong class="lead-in">The platform needed to</strong> centralise digital signer management at scale while accommodating compliance requirements that differed market by market.</p>
+          </div>
+          <div class="cs-why">
+            <p>I reframed the problem from "how do we digitize print" to "how do we make digital faster than print." Speed of use — not digital literacy — was the real barrier.</p>
+            <cite>Strategic Pivot</cite>
+          </div>
+        </div>
+        <div class="cs-row-asset">
+          <div class="img-full is-wide reveal">
+            <div class="img-full-ph"><div class="img-ph-label">[ Current State — Global Signer Workflow Analysis ]</div></div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -126,37 +146,43 @@
     <section class="cs-sec" id="research">
       <div class="cs-label">03 — Research</div>
       <h2 class="cs-h">Surfacing the <em>real barrier</em></h2>
-      <div class="cs-prose">
-        <p>Research focused on understanding friction across the banker–client acquisition journey. Methods were chosen to surface behavioral patterns, not surface preferences.</p>
-      </div>
-      <div class="research-grid">
-        <div class="r-item reveal">
-          <div class="r-num">01</div>
-          <div class="r-title">Stakeholder Interviews</div>
-          <div class="r-desc">In-depth sessions with bankers, branch managers, and product owners to map current workflow and identify organizational constraints.</div>
+      <div class="cs-row-split">
+        <div class="cs-row-text">
+          <div class="cs-prose">
+            <p><strong class="lead-in">Research focused on</strong> understanding friction across treasury signer management workflows globally. Methods were chosen to surface process breakdowns across 20 enterprise clients.</p>
+          </div>
+          <div class="cs-callout">
+            <div class="cs-callout-label">Key Insight</div>
+            <div class="cs-callout-text"><strong>The complexity wasn't in the signer task itself</strong> — it was in the fragmentation. Each market had a different process, no shared visibility, and no self-service capability. Centralisation was the single highest-leverage design decision.</div>
+          </div>
         </div>
-        <div class="r-item reveal">
-          <div class="r-num">02</div>
-          <div class="r-title">Contextual Inquiry</div>
-          <div class="r-desc">Observed bankers during real client interactions to see where printed materials created friction and which digital tools were avoided in practice.</div>
+        <div class="cs-row-asset">
+          <div class="research-grid">
+            <div class="r-item reveal">
+              <div class="r-num">01</div>
+              <div class="r-title">Stakeholder Interviews</div>
+              <div class="r-desc">Sessions across 20 enterprise clients to map signer management workflows and identify inconsistencies across market operations.</div>
+            </div>
+            <div class="r-item reveal">
+              <div class="r-num">02</div>
+              <div class="r-title">Persona Development</div>
+              <div class="r-desc">Co-led creation of treasury team personas — treasury managers, relationship managers, and compliance officers — alongside senior researchers.</div>
+            </div>
+            <div class="r-item reveal">
+              <div class="r-num">03</div>
+              <div class="r-title">Journey Mapping</div>
+              <div class="r-desc">Mapped the end-to-end signer lifecycle across markets, identifying where manual handoffs created delays and compliance risk.</div>
+            </div>
+            <div class="r-item reveal">
+              <div class="r-num">04</div>
+              <div class="r-title">Affinity Synthesis</div>
+              <div class="r-desc">Synthesized insights from all client sessions to drive prioritization of the DSM platform's core feature set with executive stakeholders.</div>
+            </div>
+          </div>
+          <div class="img-full is-landscape reveal">
+            <div class="img-full-ph"><div class="img-ph-label">[ Research Synthesis — Global Market Journey Map ]</div></div>
+          </div>
         </div>
-        <div class="r-item reveal">
-          <div class="r-num">03</div>
-          <div class="r-title">Competitive Analysis</div>
-          <div class="r-desc">Benchmarked peer financial institutions' acquisition patterns, identifying a 3-step redundancy in the legacy entry flow.</div>
-        </div>
-        <div class="r-item reveal">
-          <div class="r-num">04</div>
-          <div class="r-title">Affinity Mapping</div>
-          <div class="r-desc">Synthesized findings across all streams into clustered insights in Miro — driving feature prioritization and IA decisions with the full product team.</div>
-        </div>
-      </div>
-      <div class="cs-callout" style="margin-top:40px">
-        <div class="cs-callout-label">Key Insight</div>
-        <div class="cs-callout-text"><strong>Bankers weren't avoiding digital tools because they preferred print.</strong> They avoided them because the tools required more steps than just printing a flyer. Speed of use was the real barrier, not digital literacy.</div>
-      </div>
-      <div class="img-full is-landscape reveal" style="margin-top:40px">
-        <div class="img-full-ph"><div class="img-ph-label">[ Research Synthesis — Affinity Map, Miro ]</div></div>
       </div>
     </section>
 
@@ -294,10 +320,12 @@
       <p>"The design system alone eliminated weeks of rework across every new business unit deployment."</p>
     </div>
 
+  </div><!-- /.case-body -->
+  </div><!-- /.case-layout -->
+
     <!-- NEXT -->
     <nav class="case-nav" aria-label="Navigate case studies">
       <a href="./password.html?next=lpl.html" class="cnav-link prev"><div class="cnav-dir">← Previous Project</div><div class="cnav-title">LPL Financial — Advisor Onboarding</div></a>
-        
     </nav>
 
     <!-- FOOTER -->
@@ -306,9 +334,9 @@
         <h2>Let's build something<br><em>worth using.</em></h2>
         <p>Open to Senior UX Designer roles — complex enterprise products, fintech, and design systems work.</p>
         <div class="footer-btns">
-          <a href="mailto:darshan.munkur@gmail.com" class="footer-btn mag">Email Me →</a>
-          <a href="https://linkedin.com/in/darshan-munkur" target="_blank" rel="noopener" class="footer-btn mag">LinkedIn ↗</a>
-          <a href="./about.html" class="footer-btn mag">About Me →</a>
+          <a href="mailto:darshan.munkur@gmail.com" class="btn-primary">Email Me</a>
+          <a href="https://linkedin.com/in/darshan-munkur" target="_blank" rel="noopener" class="btn-secondary">LinkedIn ↗</a>
+          <a href="./about.html" class="btn-tertiary">About Me</a>
         </div>
       </div>
       <div class="footer-bottom">
@@ -319,8 +347,7 @@
         </ul>
       </div>
     </footer>
-  </div>
-</div>
+</div><!-- /.page -->
 </main>
 
 <script>
@@ -346,21 +373,6 @@
     es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);if(--revCount<=0)ro.disconnect();}});
   },{threshold:.07});
   revEls.forEach(function(el){ro.observe(el);});
-  /* SECTION NAV — dots + strip, unified observer */
-  var dotLinks=document.querySelectorAll('.section-dot');
-  var stripLinks=document.querySelectorAll('.cs-strip-item');
-  var sectIds=['context','problem','research','process','solution','outcomes'];
-  var sectEls=sectIds.map(function(id){return document.getElementById(id);}).filter(Boolean);
-  var navObs=new IntersectionObserver(function(es){
-    es.forEach(function(e){
-      var id=e.target.id;
-      var active=e.isIntersecting;
-      dotLinks.forEach(function(d){if(d.getAttribute('data-section')===id)d.classList.toggle('active',active);});
-      stripLinks.forEach(function(s){if(s.getAttribute('data-strip')===id)s.classList.toggle('active',active);});
-    });
-  },{rootMargin:'-10% 0px -55% 0px'});
-  sectEls.forEach(function(el){navObs.observe(el);});
-
   /* BEFORE/AFTER SLIDER */
   var wrap=document.getElementById('baWrap'),clip=document.getElementById('baClip'),div=document.getElementById('baDivider'),drag=false;
   function setPos(cx){var r=wrap.getBoundingClientRect();var p=Math.max(5,Math.min(95,(cx-r.left)/r.width*100));clip.style.width=p+'%';div.style.left=p+'%';}
@@ -371,8 +383,29 @@
   document.addEventListener('touchmove',function(e){if(drag&&e.touches[0])setPos(e.touches[0].clientX);},{passive:true});
   document.addEventListener('touchend',function(){drag=false;});
 
-
-  });
+  /* ── SIDEBAR NAV — rAF-throttled, viewport-aware active lock ── */
+  (function(){
+    var links = Array.prototype.slice.call(document.querySelectorAll('.sidebar-link'));
+    if(links.length === 0) return;
+    var pairs = links.map(function(link){
+      return { link: link, target: document.querySelector(link.getAttribute('href')) };
+    }).filter(function(p){ return p.target; });
+    var ticking = false;
+    function update(){
+      ticking = false;
+      var threshold = Math.max(100, window.innerHeight * 0.25);
+      var found = null;
+      for(var i = 0; i < pairs.length; i++){
+        if(pairs[i].target.getBoundingClientRect().top <= threshold) found = pairs[i].link;
+      }
+      links.forEach(function(l){ l.classList.remove('active'); });
+      (found || links[0]).classList.add('active');
+    }
+    window.addEventListener('scroll', function(){
+      if(!ticking){ requestAnimationFrame(update); ticking = true; }
+    }, {passive: true});
+    update();
+  })();
 
   /* THEME — OS preference → localStorage override */
   var html=document.documentElement,tBtn=document.getElementById('themeToggle');

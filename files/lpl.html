@@ -75,15 +75,16 @@
     </div>
   </section>
 
-  <!-- BODY -->
-  <nav class="section-dots" aria-label="Jump to section">
-  <a href="#context"  class="section-dot" data-section="context" ><span class="dot-label">01. Context</span></a>
-  <a href="#problem"  class="section-dot" data-section="problem" ><span class="dot-label">02. Problem</span></a>
-  <a href="#research" class="section-dot" data-section="research"><span class="dot-label">03. Research</span></a>
-  <a href="#process"  class="section-dot" data-section="process" ><span class="dot-label">04. Process</span></a>
-  <a href="#solution" class="section-dot" data-section="solution"><span class="dot-label">05. Solution</span></a>
-  <a href="#outcomes" class="section-dot" data-section="outcomes"><span class="dot-label">06. Outcomes</span></a>
-</nav>
+  <!-- BODY — sidebar + content grid -->
+<div class="case-layout">
+<aside class="case-sidebar" aria-label="Case study sections">
+  <ul class="sidebar-nav">
+    <li><a href="#context" class="sidebar-link active">01. The Problem</a></li>
+    <li><a href="#research" class="sidebar-link">02. The Research</a></li>
+    <li><a href="#process" class="sidebar-link">03. The Solution</a></li>
+    <li><a href="#outcomes" class="sidebar-link">04. The Impact</a></li>
+  </ul>
+</aside>
 <div class="case-body">
 
     <section class="cs-sec" id="context">
@@ -93,25 +94,44 @@
         <p>This engagement was delivered through <strong>Incedo Inc.</strong>, where I served as UX Designer on LPL Financial's Project Unite — a 0→1 redesign of the advisor onboarding experience. I owned end-to-end UX from research through engineering handoff.</p>
         <p>LPL Financial manages over $1 trillion in brokerage and advisory assets. Onboarding a new advisor meant navigating phone calls, fragmented portals, and manual email chains — creating thousands of hours of operational drag annually and a measurable NPS deficit against competitors.</p>
       </div>
-      <div class="cs-callout" style="margin-top:32px">
-        <div class="cs-callout-label">My Contributions</div>
-        <div class="cs-callout-text">Led UX research, journey mapping, and end-to-end design for digital forms, document repository, scheduling, and real-time workflow tracking. Collaborated with Product Managers and engineers to prioritize features against the NPS gap. Presented design rationale directly to LPL Financial product leadership.</div>
+      <div class="contributions-block">
+        <div class="contributions-header">Contributions &amp; Ownership</div>
+        <div class="contributions-split">
+          <div class="contrib-domains">
+            <div class="contrib-domain-item">UX Research</div>
+            <div class="contrib-domain-item">Journey Mapping</div>
+            <div class="contrib-domain-item">Platform Design</div>
+            <div class="contrib-domain-item">Product Strategy</div>
+          </div>
+          <ul class="contrib-tasks">
+            <li>Led UX research and journey mapping end-to-end across the advisor onboarding lifecycle</li>
+            <li>Designed digital forms, document repository, scheduling, and real-time workflow tracking</li>
+            <li>Collaborated with PMs and engineers to prioritize features against the NPS gap</li>
+            <li>Presented design rationale directly to LPL Financial product leadership</li>
+          </ul>
+        </div>
       </div>
     </section>
 
     <section class="cs-sec" id="problem">
       <div class="cs-label">02 — The Problem</div>
       <h2 class="cs-h">1,000+ hours to onboard<br>a single <em>advisor.</em></h2>
-      <div class="cs-prose">
-        <p>Onboarding at LPL Financial required <strong>2,478 manual actions</strong> across phone, email, and a fragmented portal. There was no single source of truth — advisors couldn't see where they were in the process, and LPL staff spent hours on manual coordination that should have been automated.</p>
-        <p>A <strong>48% advisor dissatisfaction rate</strong> and an <strong>8–24pt NPS gap</strong> against top competitors made the business cost visible. But the root cause was structural: the process had been patched over time, never designed end-to-end.</p>
-      </div>
-      <div class="cs-why">
-        <p>The instinct was to digitize the existing process. I pushed to redesign it. Digitizing a broken workflow just makes broken faster.</p>
-        <cite>Redesign over Digitization</cite>
-      </div>
-      <div class="img-full is-wide reveal" style="margin-top:32px">
-        <div class="img-full-ph"><div class="img-ph-label">[ As-Is Journey Map — Onboarding Process Audit ]</div></div>
+      <div class="cs-row-split">
+        <div class="cs-row-text">
+          <div class="cs-prose">
+            <p><strong class="lead-in">Onboarding at LPL</strong> required <strong>2,478 manual actions</strong> across phone, email, and a fragmented portal. There was no single source of truth — advisors couldn't see where they were in the process, and LPL staff spent hours on manual coordination that should have been automated.</p>
+            <p><strong class="lead-in">A 48% advisor dissatisfaction</strong> rate and an <strong>8–24pt NPS gap</strong> against top competitors made the business cost visible. But the root cause was structural: the process had been patched over time, never designed end-to-end.</p>
+          </div>
+          <div class="cs-why">
+            <p>The instinct was to digitize the existing process. I pushed to redesign it. Digitizing a broken workflow just makes broken faster.</p>
+            <cite>Redesign over Digitization</cite>
+          </div>
+        </div>
+        <div class="cs-row-asset">
+          <div class="img-full is-wide reveal">
+            <div class="img-full-ph"><div class="img-ph-label">[ As-Is Journey Map — Onboarding Process Audit ]</div></div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -122,37 +142,43 @@
     <section class="cs-sec" id="research">
       <div class="cs-label">03 — Research</div>
       <h2 class="cs-h">Finding the <em>highest-value</em> unlock</h2>
-      <div class="cs-prose">
-        <p>Research focused on the full onboarding journey — from initial contact through first productive day — identifying where manual effort could be eliminated without compromising compliance requirements.</p>
-      </div>
-      <div class="research-grid">
-        <div class="r-item reveal">
-          <div class="r-num">01</div>
-          <div class="r-title">Advisor Interviews</div>
-          <div class="r-desc">Moderated sessions with recently onboarded advisors to map the actual journey vs. intended process — surfacing where steps were missed, duplicated, or unclear.</div>
+      <div class="cs-row-split">
+        <div class="cs-row-text">
+          <div class="cs-prose">
+            <p><strong class="lead-in">Research focused on</strong> the full onboarding journey — from initial contact through first productive day — identifying where manual effort could be eliminated without compromising compliance requirements.</p>
+          </div>
+          <div class="cs-callout">
+            <div class="cs-callout-label">Key Insight</div>
+            <div class="cs-callout-text"><strong>Advisors weren't frustrated by the volume of steps</strong> — they were frustrated by opacity. They never knew where they were in the process or what was blocking their progress. Visibility was the highest-value unlock, not feature reduction.</div>
+          </div>
         </div>
-        <div class="r-item reveal">
-          <div class="r-num">02</div>
-          <div class="r-title">Staff Shadowing</div>
-          <div class="r-desc">Observed LPL onboarding staff to understand the manual coordination burden and identify which steps required human intervention vs. automation.</div>
+        <div class="cs-row-asset">
+          <div class="research-grid">
+            <div class="r-item reveal">
+              <div class="r-num">01</div>
+              <div class="r-title">Advisor Interviews</div>
+              <div class="r-desc">Moderated sessions with recently onboarded advisors to map the actual journey vs. intended process — surfacing where steps were missed, duplicated, or unclear.</div>
+            </div>
+            <div class="r-item reveal">
+              <div class="r-num">02</div>
+              <div class="r-title">Staff Shadowing</div>
+              <div class="r-desc">Observed LPL onboarding staff to understand the manual coordination burden and identify which steps required human intervention vs. automation.</div>
+            </div>
+            <div class="r-item reveal">
+              <div class="r-num">03</div>
+              <div class="r-title">Competitive Benchmarking</div>
+              <div class="r-desc">Analyzed onboarding flows at competing broker-dealers to understand the NPS gap and identify table-stakes features missing from LPL's current experience.</div>
+            </div>
+            <div class="r-item reveal">
+              <div class="r-num">04</div>
+              <div class="r-title">Process Mapping</div>
+              <div class="r-desc">Mapped all 2,478 manual actions to identify consolidation opportunities — the output became the feature prioritization framework for the entire portal.</div>
+            </div>
+          </div>
+          <div class="img-full is-landscape reveal">
+            <div class="img-full-ph"><div class="img-ph-label">[ Research Synthesis — Journey Map &amp; Affinity Clusters ]</div></div>
+          </div>
         </div>
-        <div class="r-item reveal">
-          <div class="r-num">03</div>
-          <div class="r-title">Competitive Benchmarking</div>
-          <div class="r-desc">Analyzed onboarding flows at competing broker-dealers to understand the NPS gap and identify table-stakes features missing from LPL's current experience.</div>
-        </div>
-        <div class="r-item reveal">
-          <div class="r-num">04</div>
-          <div class="r-title">Process Mapping</div>
-          <div class="r-desc">Mapped all 2,478 manual actions to identify consolidation opportunities — the output became the feature prioritization framework for the entire portal.</div>
-        </div>
-      </div>
-      <div class="cs-callout" style="margin-top:40px">
-        <div class="cs-callout-label">Key Insight</div>
-        <div class="cs-callout-text"><strong>Advisors weren't frustrated by the volume of steps</strong> — they were frustrated by opacity. They never knew where they were in the process or what was blocking their progress. Visibility was the highest-value unlock, not feature reduction.</div>
-      </div>
-      <div class="img-full is-landscape reveal" style="margin-top:40px">
-        <div class="img-full-ph"><div class="img-ph-label">[ Research Synthesis — Journey Map &amp; Affinity Clusters ]</div></div>
       </div>
     </section>
 
@@ -232,6 +258,9 @@
       <p>"Digitizing a broken process just makes broken faster. We redesigned it from the ground up."</p>
     </div>
 
+  </div><!-- /.case-body -->
+  </div><!-- /.case-layout -->
+
     <nav class="case-nav has-both" aria-label="Navigate case studies">
       <a href="./password.html?next=verizon.html" class="cnav-link prev"><div class="cnav-dir">← Previous Project</div><div class="cnav-title">Verizon — Unified Change Management</div></a>
       <a href="./password.html?next=citi.html" class="cnav-link next"><div class="cnav-dir">Next Project →</div><div class="cnav-title">Citi — Digital Signer Management</div></a>
@@ -243,9 +272,9 @@
         <h2>Let's build something<br><em>worth using.</em></h2>
         <p>Open to Senior UX Designer roles — complex enterprise products, fintech, and design systems work.</p>
         <div class="footer-btns">
-          <a href="mailto:darshan.munkur@gmail.com" class="footer-btn mag">Email Me →</a>
-          <a href="https://linkedin.com/in/darshan-munkur" target="_blank" rel="noopener" class="footer-btn mag">LinkedIn ↗</a>
-          <a href="./about.html" class="footer-btn mag">About Me →</a>
+          <a href="mailto:darshan.munkur@gmail.com" class="btn-primary">Email Me</a>
+          <a href="https://linkedin.com/in/darshan-munkur" target="_blank" rel="noopener" class="btn-secondary">LinkedIn ↗</a>
+          <a href="./about.html" class="btn-tertiary">About Me</a>
         </div>
       </div>
       <div class="footer-bottom">
@@ -256,8 +285,7 @@
         </ul>
       </div>
     </footer>
-  </div>
-</div>
+</div><!-- /.page -->
 </main>
 
 <script>
@@ -283,21 +311,6 @@
     es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);if(--revCount<=0)ro.disconnect();}});
   },{threshold:.07});
   revEls.forEach(function(el){ro.observe(el);});
-  /* SECTION NAV — dots + strip, unified observer */
-  var dotLinks=document.querySelectorAll('.section-dot');
-  var stripLinks=document.querySelectorAll('.cs-strip-item');
-  var sectIds=['context','problem','research','process','solution','outcomes'];
-  var sectEls=sectIds.map(function(id){return document.getElementById(id);}).filter(Boolean);
-  var navObs=new IntersectionObserver(function(es){
-    es.forEach(function(e){
-      var id=e.target.id;
-      var active=e.isIntersecting;
-      dotLinks.forEach(function(d){if(d.getAttribute('data-section')===id)d.classList.toggle('active',active);});
-      stripLinks.forEach(function(s){if(s.getAttribute('data-strip')===id)s.classList.toggle('active',active);});
-    });
-  },{rootMargin:'-10% 0px -55% 0px'});
-  sectEls.forEach(function(el){navObs.observe(el);});
-
   /* BEFORE/AFTER SLIDER */
   var wrap=document.getElementById('baWrap'),clip=document.getElementById('baClip'),div=document.getElementById('baDivider'),drag=false;
   function setPos(cx){var r=wrap.getBoundingClientRect();var p=Math.max(5,Math.min(95,(cx-r.left)/r.width*100));clip.style.width=p+'%';div.style.left=p+'%';}
@@ -308,8 +321,29 @@
   document.addEventListener('touchmove',function(e){if(drag&&e.touches[0])setPos(e.touches[0].clientX);},{passive:true});
   document.addEventListener('touchend',function(){drag=false;});
 
-
-  });
+  /* ── SIDEBAR NAV — rAF-throttled, viewport-aware active lock ── */
+  (function(){
+    var links = Array.prototype.slice.call(document.querySelectorAll('.sidebar-link'));
+    if(links.length === 0) return;
+    var pairs = links.map(function(link){
+      return { link: link, target: document.querySelector(link.getAttribute('href')) };
+    }).filter(function(p){ return p.target; });
+    var ticking = false;
+    function update(){
+      ticking = false;
+      var threshold = Math.max(100, window.innerHeight * 0.25);
+      var found = null;
+      for(var i = 0; i < pairs.length; i++){
+        if(pairs[i].target.getBoundingClientRect().top <= threshold) found = pairs[i].link;
+      }
+      links.forEach(function(l){ l.classList.remove('active'); });
+      (found || links[0]).classList.add('active');
+    }
+    window.addEventListener('scroll', function(){
+      if(!ticking){ requestAnimationFrame(update); ticking = true; }
+    }, {passive: true});
+    update();
+  })();
 
   /* THEME — OS preference → localStorage override */
   var html=document.documentElement,tBtn=document.getElementById('themeToggle');
