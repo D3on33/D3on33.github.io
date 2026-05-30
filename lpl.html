@@ -308,22 +308,7 @@
   document.addEventListener('touchmove',function(e){if(drag&&e.touches[0])setPos(e.touches[0].clientX);},{passive:true});
   document.addEventListener('touchend',function(){drag=false;});
 
-  /* GLOBAL MOUSE TRACKING */
-  var html=document.documentElement;
-  document.addEventListener('mousemove',function(e){
-    html.style.setProperty('--mouse-x',((e.clientX/window.innerWidth)*100).toFixed(1)+'%');
-    html.style.setProperty('--mouse-y',((e.clientY/window.innerHeight)*100).toFixed(1)+'%');
-  },{passive:true});
 
-  /* MAGNETIC */
-  var magEls=document.querySelectorAll('.mag');
-  document.addEventListener('mousemove',function(e){
-    magEls.forEach(function(el){
-      var r=el.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;
-      var dx=e.clientX-cx,dy=e.clientY-cy,dist=Math.sqrt(dx*dx+dy*dy);
-      if(dist<60){var s=(1-dist/60)*8;el.style.transform='translate('+(dx/dist*s)+'px,'+(dy/dist*s)+'px)';}
-      else{el.style.transform='';}
-    });
   });
 
   /* THEME — OS preference → localStorage override */
@@ -347,20 +332,6 @@
     }
   });
 
-  /* ── MOUSE-TRACKING CSS VAR for section spotlights ── */
-  (function(){
-    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var tracked = document.querySelectorAll('.cs-sec, .footer-cta');
-    tracked.forEach(function(el){
-      el.addEventListener('mousemove', function(e){
-        var r = el.getBoundingClientRect();
-        var x = ((e.clientX - r.left) / r.width  * 100).toFixed(1) + '%';
-        var y = ((e.clientY - r.top)  / r.height * 100).toFixed(1) + '%';
-        el.style.setProperty('--mouse-x', x);
-        el.style.setProperty('--mouse-y', y);
-      }, {passive: true});
-    });
-  })();
 })();
 </script>
 </body>
