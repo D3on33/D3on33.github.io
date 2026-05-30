@@ -28,7 +28,7 @@
 .case-eyebrow::before{content:'';width:16px;height:1px;background:var(--accent)}
 .case-h1{font-family:var(--serif);font-size:clamp(36px,5.5vw,80px);font-weight:400;letter-spacing:-.03em;line-height:1.12;color:var(--t1);margin-bottom:20px}
 .case-role-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:var(--fs-utility);font-weight:var(--fw-medium);letter-spacing:var(--ls-utility);text-transform:uppercase;color:var(--t2);border:1px solid var(--bd2);padding:5px 14px;margin-bottom:24px}
-.case-lead{font-size:var(--fs-body-md);color:var(--t2);line-height:var(--lh-body);max-width:58ch;margin-bottom:40px}
+.case-lead{font-size:var(--fs-body-md);color:var(--t2);line-height:var(--lh-body);max-width:58ch;margin-bottom:40px;padding-top:24px;border-top:1px solid var(--bd)}
 
 /* Meta — glassmorphism card */
 .case-meta{
@@ -336,7 +336,7 @@
     display: grid;
     grid-template-columns: 35% 65%;
     gap: 0;
-    align-items: stretch;
+    align-items: flex-start;
   }
   .cs-row-text {
     padding: clamp(28px,4vh,48px) clamp(20px,2.5vw,36px) clamp(28px,4vh,48px) 0;

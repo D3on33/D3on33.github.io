@@ -15,7 +15,11 @@
       "Bash(npx http-server *)",
       "Read(//mnt/c/Users/Darshan/Downloads/Portfolio/**)",
       "Bash(python3 -m http.server 8000)",
-      "Bash(curl -s http://localhost:8000/index.html)"
+      "Bash(curl -s http://localhost:8000/index.html)",
+      "Bash(cp files/style.css style.css)",
+      "Bash(cp files/index.html index.html)",
+      "Bash(cp files/404.html 404.html)",
+      "Bash(cp files/password.html password.html)"
     ]
   }
 }
