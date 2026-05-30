@@ -20,11 +20,11 @@
 .about-hero { position: relative; max-width: var(--max); margin: 0 auto; }
 
 
-/* Headline overlaps bottom edge of photo */
+/* Headline — sits below fixed nav, image moved to bio-section */
 .about-hero-text {
-  position: relative; margin-top: -80px; z-index: 2;
-  padding: 0 var(--pad) clamp(48px,7vh,80px);
-  max-width: var(--max); margin-left: auto; margin-right: auto;
+  position: relative; z-index: 2;
+  padding: clamp(48px,7vh,80px) var(--pad);
+  max-width: var(--max); margin: 0 auto;
 }
 .about-eyebrow {
   font-family: var(--mono); font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
@@ -53,21 +53,31 @@
 .s-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--dot); box-shadow: 0 0 4px rgba(var(--accent-r),.4); animation: pulse 2s infinite; flex-shrink: 0; }
 .status-right { font-family: var(--mono); font-size: 10px; color: var(--t3); }
 
-/* ── BIO ── */
+/* ── BIO — 2-column on desktop, stacks on mobile ── */
 .bio-section {
   max-width: var(--max); margin: 0 auto;
   padding: 0;
   border-bottom: 1px solid var(--bd);
-  display: grid; grid-template-columns: 1fr;
-  align-items: start;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: clamp(24px, 3vw, 48px);
+  align-items: stretch;
 }
-.bio-label { font-family: var(--mono); font-size: 9px; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 28px; display: flex; align-items: center; gap: 10px; }
+@media (max-width: 880px) {
+  .bio-section { grid-template-columns: 1fr; gap: 0; }
+}
+.bio-label { font-family: var(--mono); font-size: 9px; letter-spacing: .22em; text-transform: uppercase; color: var(--t3); margin-bottom: 28px; display: flex; align-items: center; gap: 10px; }
 .bio-label::after { content: ''; flex: 1; max-width: 36px; height: 1px; background: var(--bd2); }
 .bio-text { font-size: 15px; color: var(--t2); line-height: 1.85; max-width: 55ch; }
 .bio-text p + p { margin-top: 18px; }
 .bio-text strong { color: var(--t1); font-weight: 500; }
-.bio-image { width: 100%; aspect-ratio: 3/4; overflow: hidden; background: var(--bg2); position: relative; }
+.bio-image { width: 100%; aspect-ratio: 5/7; overflow: hidden; background: var(--bg2); position: relative; }
 .bio-image img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.bio-content { padding: clamp(48px,7vh,96px) var(--pad); display: flex; flex-direction: column; justify-content: center; }
+@media (max-width: 880px) {
+  .bio-image { aspect-ratio: 3/4; width: 100%; }
+  .bio-content { padding: clamp(24px, 4vh, 40px) var(--pad); }
+}
 .bio-aside { display: flex; flex-direction: column; justify-content: flex-end; gap: 24px; }
 .bio-stat-row { display: flex; flex-direction: column; gap: 4px; padding-bottom: 20px; border-bottom: 1px solid var(--bd); }
 .bio-stat-row:last-child { border-bottom: none; padding-bottom: 0; }
