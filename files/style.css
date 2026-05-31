@@ -14,12 +14,12 @@
   /* Color — text (3-step ladder: primary / secondary / tertiary, warm tones) */
   --t1:        #1F1A17;
   --t2:        #7A6F67;
-  --t3:        #827A6E;
-  /* Color — accent (warm terracotta; craft-forward aesthetic) */
-  --accent:    #C85A3A;
-  --accent-d:  rgba(200,90,58,0.09);
-  --accent-r:  200,90,58;
-  --dot:       #5B3FBE;
+  --t3:        #6D6358;  /* darkened from #827A6E: 4.03→5.6:1 on light bg */
+  /* Color — accent (warm rust-terracotta; calibrated to pass AA on light bg) */
+  --accent:    #A84630;
+  --accent-d:  rgba(168,70,48,0.09);
+  --accent-r:  168,70,48;
+  --dot:       #A84630;
   --nav-bg:    rgba(247,245,241,0.94);
   --hero-fade: rgba(247,245,241,0.90);
   --panel-bg:  #2a2535;
@@ -92,7 +92,7 @@
   /* ── Dark mode contrast tokens (light mode overrides below) ── */
   --text-primary:    #1F1A17;    /* Headlines, body copy, main intro */
   --text-secondary:  #7A6F67;    /* Nav links, global header tracks */
-  --text-muted:      #827A6E;    /* Utility tags, stat sub-labels */
+  --text-muted:      #6D6358;    /* Utility tags, stat sub-labels — darkened for AA */
 
   /* Legacy aliases (kept for backwards compat — prefer --sp-block / --sp-section) */
   --space-sm:  var(--sp-block);
@@ -108,10 +108,10 @@
   --t1:        #F0EDE7;
   --t2:        #B9ADA3;
   --t3:        #9D9289;
-  --accent:    #C85A3A;
-  --accent-d:  rgba(200,90,58,0.12);
-  --accent-r:  200,90,58;
-  --dot:       #4C8B5F;
+  --accent:    #D4775A;
+  --accent-d:  rgba(212,119,90,0.12);
+  --accent-r:  212,119,90;
+  --dot:       #D4775A;
   --nav-bg:    rgba(13,13,14,0.96);
   --hero-fade: rgba(13,13,14,0.90);
   --panel-bg:  #1a1520;
