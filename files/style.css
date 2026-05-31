@@ -5,20 +5,20 @@
 
 /* ── TOKENS ── */
 :root {
-  /* Color — surface */
-  --bg:        #F7F5F1;
-  --bg2:       #EEECE7;
-  --bg3:       #E5E3DD;
+  /* Color — surface (warm palette) */
+  --bg:        #FBF9F4;
+  --bg2:       #F3EFE8;
+  --bg3:       #EBE6DD;
   --bd:        rgba(0,0,0,0.07);
   --bd2:       rgba(0,0,0,0.13);
-  /* Color — text (3-step ladder: primary / secondary / tertiary) */
-  --t1:        #18181B;
-  --t2:        #6B6965;
-  --t3:        #888682;
-  /* Color — accent (cobalt-violet stamp; use sparingly) */
-  --accent:    #5B3FBE;
-  --accent-d:  rgba(91,63,190,0.09);
-  --accent-r:  91,63,190;
+  /* Color — text (3-step ladder: primary / secondary / tertiary, warm tones) */
+  --t1:        #1F1A17;
+  --t2:        #7A6F67;
+  --t3:        #827A6E;
+  /* Color — accent (warm terracotta; craft-forward aesthetic) */
+  --accent:    #C85A3A;
+  --accent-d:  rgba(200,90,58,0.09);
+  --accent-r:  200,90,58;
   --dot:       #5B3FBE;
   --nav-bg:    rgba(247,245,241,0.94);
   --hero-fade: rgba(247,245,241,0.90);
@@ -95,17 +95,17 @@
 }
 
 [data-theme="dark"] {
-  --bg:        #0D0D0E;
-  --bg2:       #1A1A1B;
-  --bg3:       #242425;
+  --bg:        #15131B;
+  --bg2:       #201E23;
+  --bg3:       #2A272D;
   --bd:        rgba(255,255,255,0.08);
   --bd2:       rgba(255,255,255,0.14);
-  --t1:        #EDEBE6;
-  --t2:        #8A8884;
-  --t3:        #676563;
-  --accent:    #4C8B5F;
-  --accent-d:  rgba(76,139,95,0.12);
-  --accent-r:  76,139,95;
+  --t1:        #F0EDE7;
+  --t2:        #A9A199;
+  --t3:        #8B8178;
+  --accent:    #C85A3A;
+  --accent-d:  rgba(200,90,58,0.12);
+  --accent-r:  200,90,58;
   --dot:       #4C8B5F;
   --nav-bg:    rgba(13,13,14,0.96);
   --hero-fade: rgba(13,13,14,0.90);
