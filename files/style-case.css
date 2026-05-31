@@ -164,7 +164,7 @@
 .case-sidebar{display:none}
 @media(min-width:1100px){
   .case-layout{display:grid;grid-template-columns:200px minmax(0,1fr);align-items:start;gap:clamp(24px,3vw,48px)}
-  .case-sidebar{display:block;position:sticky;top:calc(var(--nav-h) + 80px);padding:8px 0 8px var(--pad);align-self:start}
+  .case-sidebar{display:block;position:sticky;top:calc(var(--nav-h) + 80px);padding:32px 0 8px var(--pad);align-self:start}
   .case-layout > .case-body{width:100%;margin:0}
   .case-layout > .case-body .cs-sec{padding-left:0;padding-right:clamp(24px,3vw,48px)}
   .sidebar-nav{display:flex;flex-direction:column;gap:20px;list-style:none}
