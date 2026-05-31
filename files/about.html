@@ -144,8 +144,8 @@
 .history-node.in { opacity: 1; transform: translateX(0); }
 .history-node:last-child { padding-bottom: 0; }
 
-/* Spine dot */
-.history-node::before { content: ''; position: absolute; left: -28px; top: 8px; width: 9px; height: 9px; border-radius: 50%; background: var(--bg); border: 1.5px solid var(--bd2); transition: border-color .2s, background .2s; }
+/* Spine dot — transform centers the 9px circle on the 1px line */
+.history-node::before { content: ''; position: absolute; left: -28px; top: 8px; width: 9px; height: 9px; border-radius: 50%; background: var(--bg); border: 1.5px solid var(--bd2); transform: translateX(-50%); transition: border-color .2s, background .2s; }
 .history-node:first-child::before { background: var(--accent); border-color: var(--accent); }
 .history-node:hover::before { border-color: var(--accent); }
 
