@@ -19,7 +19,8 @@
       "Bash(cp files/style.css style.css)",
       "Bash(cp files/index.html index.html)",
       "Bash(cp files/404.html 404.html)",
-      "Bash(cp files/password.html password.html)"
+      "Bash(cp files/password.html password.html)",
+      "Bash(echo \"Server started on PID $!\")"
     ]
   }
 }
