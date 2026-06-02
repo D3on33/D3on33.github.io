@@ -5,24 +5,24 @@
 
 /* ── TOKENS ── */
 :root {
-  /* Color — surface (warm palette) */
-  --bg:        #FBF9F4;
-  --bg2:       #F3EFE8;
-  --bg3:       #EBE6DD;
+  /* Color — surface (warm canvas, purple identity) */
+  --bg:        #FBF9F4;   /* Warm cream base — preserved for editorial warmth */
+  --bg2:       #F1F0F4;   /* Purple-tinted surface lift         Δ0.090 */
+  --bg3:       #E6E4EA;   /* Active / hover elevated state      Δ0.093 */
   --bd:        rgba(0,0,0,0.07);
   --bd2:       rgba(0,0,0,0.13);
-  /* Color — text (3-step ladder: primary / secondary / tertiary, warm tones) */
-  --t1:        #1F1A17;
-  --t2:        #7A6F67;
-  --t3:        #6D6358;  /* darkened from #827A6E: 4.03→5.6:1 on light bg */
-  /* Color — accent (warm rust-terracotta; calibrated to pass AA on light bg) */
-  --accent:    #A84630;
-  --accent-d:  rgba(168,70,48,0.09);
-  --accent-r:  168,70,48;
-  --dot:       #A84630;
+  /* Color — text (3-step, purple-charcoal ladder) */
+  --t1:        #1C1A22;   /* Deep charcoal-plum               16.6:1 on canvas */
+  --t2:        #3A3644;   /* Secondary purple-gray            11.3:1 on canvas */
+  --t3:        #6E6A78;   /* Muted slate utility              5.08:1 on canvas */
+  /* Color — accent (Royal Amethyst; AA on canvas, AA on card surface) */
+  --accent:    #5D3FD3;   /* 6.40:1 on canvas · 5.94:1 on card */
+  --accent-d:  rgba(93,63,211,0.09);
+  --accent-r:  93,63,211;
+  --dot:       #5D3FD3;
   --nav-bg:    rgba(247,245,241,0.94);
   --hero-fade: rgba(247,245,241,0.90);
-  --panel-bg:  #2a2535;
+  --panel-bg:  #1e1a2e;
 
   /* Type families */
   --serif:     'Instrument Serif', Georgia, serif;
@@ -87,12 +87,12 @@
   --col-8:           span 8;
 
   /* ── Structural border — low-contrast cell dividers / card bounds ── */
-  --bd-low:          1px solid rgba(0,0,0,0.08);
+  --bd-low:          1px solid rgba(28,26,34,0.06);
 
-  /* ── Dark mode contrast tokens (light mode overrides below) ── */
-  --text-primary:    #1F1A17;    /* Headlines, body copy, main intro */
-  --text-secondary:  #7A6F67;    /* Nav links, global header tracks */
-  --text-muted:      #6D6358;    /* Utility tags, stat sub-labels — darkened for AA */
+  /* ── Semantic contrast tokens (light mode values) ── */
+  --text-primary:    #1C1A22;    /* Headlines, body copy */
+  --text-secondary:  #3A3644;    /* Nav links, sub-headers */
+  --text-muted:      #6E6A78;    /* Utility labels, meta */
 
   /* Legacy aliases (kept for backwards compat — prefer --sp-block / --sp-section) */
   --space-sm:  var(--sp-block);
@@ -100,38 +100,38 @@
 }
 
 [data-theme="dark"] {
-  /* ── Refined Option B: Warm Editorial / Basalt Canvas ── */
+  /* ── Purple Identity: Midnight Amethyst ── */
 
-  /* Surface layering — 3-step lift with clear mass separation */
-  --bg:        #141412;   /* Raw Basalt canvas              lum 0.007 */
-  --bg2:       #222220;   /* Raised card surface            lum 0.016 Δ+0.009 */
-  --bg3:       #2B2B28;   /* Peak interactive / hover       lum 0.024 Δ+0.008 */
+  /* Surface — 3-step lift, Δ0.009 restored by bg2 bump */
+  --bg:        #121016;   /* Midnight Amethyst canvas       lum 0.0055 */
+  --bg2:       #211E2B;   /* Raised card surface            lum 0.0142 Δ+0.0087 */
+  --bg3:       #2B273A;   /* Peak interactive / hover       lum 0.0226 Δ+0.0084 */
 
   /* Structural borders */
   --bd:        rgba(255,255,255,0.08);
   --bd2:       rgba(255,255,255,0.14);
-  --bd-low:    1px solid rgba(244,244,240,0.07);   /* warm ivory tint on rules */
+  --bd-low:    1px solid rgba(235,230,245,0.06);   /* cool lavender tint on rules */
 
-  /* Typography — 3-step warm ladder */
-  --t1:        #F4F4F0;   /* Premium ivory                  16.7:1 on canvas */
-  --t2:        #B9ADA3;   /* Warm taupe — body prose         8.5:1 on canvas */
-  --t3:        #969690;   /* Warm muted utility labels       6.2:1 on canvas */
+  /* Typography — 3-step lavender-ivory ladder */
+  --t1:        #F4F3F7;   /* Ivory white                   17.1:1 on canvas */
+  --t2:        #D1CDDA;   /* Lavender-gray secondary       12.1:1 on canvas */
+  --t3:        #9590A2;   /* Muted slate-lavender           6.1:1 on canvas */
 
-  /* Accent — desaturated champagne gold */
-  --accent:    #D4775A;   /* Warm terracotta                 5.78:1 on canvas */
-  --accent-d:  rgba(212,119,90,0.12);
-  --accent-r:  212,119,90;
-  --dot:       #D4775A;
+  /* Accent — Luminous Lavender */
+  --accent:    #A899FF;   /* 7.80:1 on canvas · 6.74:1 on card */
+  --accent-d:  rgba(168,153,255,0.12);
+  --accent-r:  168,153,255;
+  --dot:       #A899FF;
 
-  /* Nav & hero overlays keyed to new canvas */
-  --nav-bg:    rgba(20,20,18,0.96);
-  --hero-fade: rgba(20,20,18,0.90);
-  --panel-bg:  #1c1c1a;
+  /* Nav & hero overlays keyed to canvas */
+  --nav-bg:    rgba(18,16,22,0.96);
+  --hero-fade: rgba(18,16,22,0.90);
+  --panel-bg:  #1a1625;
 
   /* Semantic contrast tokens */
-  --text-primary:    #F4F4F0;   /* Headlines, body copy         16.7:1 */
-  --text-secondary:  #E2E2DC;   /* Nav rails, sub-headers       14.2:1 */
-  --text-muted:      #969690;   /* Utility labels, timestamps    6.2:1 */
+  --text-primary:    #F4F3F7;   /* Headlines, body copy         17.1:1 */
+  --text-secondary:  #D1CDDA;   /* Nav rails, sub-headers       12.1:1 */
+  --text-muted:      #9590A2;   /* Utility labels, timestamps    6.1:1 */
 }
 
 /* ── RESET ── */
