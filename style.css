@@ -118,10 +118,10 @@
   --t3:        #969690;   /* Warm muted utility labels       6.2:1 on canvas */
 
   /* Accent — desaturated champagne gold */
-  --accent:    #D4A96A;   /* Zero mustard risk               8.5:1 on canvas */
-  --accent-d:  rgba(212,169,106,0.12);
-  --accent-r:  212,169,106;
-  --dot:       #D4A96A;
+  --accent:    #D4775A;   /* Warm terracotta                 5.78:1 on canvas */
+  --accent-d:  rgba(212,119,90,0.12);
+  --accent-r:  212,119,90;
+  --dot:       #D4775A;
 
   /* Nav & hero overlays keyed to new canvas */
   --nav-bg:    rgba(20,20,18,0.96);
