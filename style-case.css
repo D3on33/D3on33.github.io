@@ -28,7 +28,7 @@
 .case-eyebrow::before{content:'';width:16px;height:1px;background:var(--accent)}
 .case-h1{font-family:var(--serif);font-size:clamp(36px,5.5vw,80px);font-weight:400;letter-spacing:-.03em;line-height:1.12;color:var(--t1);margin-bottom:20px}
 .case-role-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:var(--fs-utility);font-weight:var(--fw-medium);letter-spacing:var(--ls-utility);text-transform:uppercase;color:var(--t2);border:1px solid var(--bd2);padding:5px 14px;margin-bottom:24px}
-.case-lead{font-size:var(--fs-body-md);color:var(--t2);line-height:var(--lh-body);max-width:58ch;margin-bottom:40px}
+.case-lead{font-size:var(--fs-body-md);color:var(--t2);line-height:var(--lh-body);max-width:58ch;margin-bottom:40px;padding-top:24px;border-top:1px solid var(--bd)}
 
 /* Meta — glassmorphism card */
 .case-meta{
@@ -163,8 +163,8 @@
 .case-layout{max-width:var(--max);margin:0 auto;display:block}
 .case-sidebar{display:none}
 @media(min-width:1100px){
-  .case-layout{display:grid;grid-template-columns:200px minmax(0,1fr);align-items:start;gap:clamp(24px,3vw,48px)}
-  .case-sidebar{display:block;position:sticky;top:calc(var(--nav-h) + 80px);padding:8px 0 8px var(--pad);align-self:start}
+  .case-layout{display:grid;grid-template-columns:200px minmax(0,1fr);align-items:stretch;gap:clamp(24px,3vw,48px)}
+  .case-sidebar{display:flex;flex-direction:column;position:sticky;top:calc(var(--nav-h) + 80px);padding:20px 0 8px var(--pad);align-self:start;justify-content:flex-start}
   .case-layout > .case-body{width:100%;margin:0}
   .case-layout > .case-body .cs-sec{padding-left:0;padding-right:clamp(24px,3vw,48px)}
   .sidebar-nav{display:flex;flex-direction:column;gap:20px;list-style:none}
@@ -336,7 +336,7 @@
     display: grid;
     grid-template-columns: 35% 65%;
     gap: 0;
-    align-items: stretch;
+    align-items: flex-start;
   }
   .cs-row-text {
     padding: clamp(28px,4vh,48px) clamp(20px,2.5vw,36px) clamp(28px,4vh,48px) 0;

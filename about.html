@@ -86,7 +86,7 @@
 .bio-text strong { color: var(--t1); font-weight: 500; }
 .bio-image { width: 100%; aspect-ratio: 5/7; overflow: hidden; background: var(--bg2); position: relative; }
 .bio-image img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
-.bio-content { padding: clamp(48px,7vh,96px) var(--pad); display: flex; flex-direction: column; justify-content: center; }
+.bio-content { padding: clamp(48px,7vh,96px) var(--pad); display: flex; flex-direction: column; justify-content: flex-start; align-items: stretch; }
 @media (max-width: 880px) {
   .bio-image { aspect-ratio: 3/4; width: 100%; }
   .bio-content { padding: clamp(24px,4vh,40px) var(--pad); }
@@ -144,8 +144,8 @@
 .history-node.in { opacity: 1; transform: translateX(0); }
 .history-node:last-child { padding-bottom: 0; }
 
-/* Spine dot */
-.history-node::before { content: ''; position: absolute; left: -28px; top: 8px; width: 9px; height: 9px; border-radius: 50%; background: var(--bg); border: 1.5px solid var(--bd2); transition: border-color .2s, background .2s; }
+/* Spine dot — transform centers the 9px circle on the 1px line */
+.history-node::before { content: ''; position: absolute; left: -28px; top: 8px; width: 9px; height: 9px; border-radius: 50%; background: var(--bg); border: 1.5px solid var(--bd2); transform: translateX(-50%); transition: border-color .2s, background .2s; }
 .history-node:first-child::before { background: var(--accent); border-color: var(--accent); }
 .history-node:hover::before { border-color: var(--accent); }
 
