@@ -8,44 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg:        #FBF9F4;
-  --bg2:       #F1F0F4;
-  --bg3:       #E6E4EA;
-  --bd:        rgba(0,0,0,0.08);
-  --bd2:       rgba(0,0,0,0.14);
-  --t1:        #1C1A22;
-  --t2:        #3A3644;
-  --t3:        #6E6A78;
-  --accent:    var(--accent);
-  --accent-d:  var(--accent-d);
-  --accent-r:  93,63,211;
-  --dot:       var(--dot);
-  --nav-bg:    var(--nav-bg);
-  --hero-fade: var(--hero-fade);
-  --serif:     'Instrument Serif', Georgia, serif;
-  --sans:      'DM Sans', sans-serif;
-  --mono:      'DM Mono', monospace;
-  --pad:       clamp(24px, 5vw, 80px);
-  --nav-h:     64px;
-  --max:       1440px;
-}
-[data-theme="dark"] {
-  --bg:        #121016;
-  --bg2:       #211E2B;
-  --bg3:       #2B273A;
-  --bd:        rgba(255,255,255,0.08);
-  --bd2:       rgba(255,255,255,0.14);
-  --t1:        #F4F3F7;
-  --t2:        #D1CDDA;
-  --t3:        #9590A2;
-  --accent:    var(--accent);
-  --accent-d:  var(--accent-d);
-  --accent-r:  168,153,255;
-  --dot:       var(--accent);
-  --nav-bg:    var(--nav-bg);
-  --hero-fade: var(--hero-fade);
-}
+/* Tokens fully provided by the linked style.css — no overrides needed here.
+   Removed inline :root block that contained circular var() self-references
+   which caused CSS to treat accent, dot, nav-bg as invalid-at-computed-value. */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px}
 body{background:var(--bg);color:var(--t1);font-family:var(--sans);font-weight:400;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;animation:fade .4s ease both}

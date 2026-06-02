@@ -219,8 +219,7 @@ a { color: inherit; text-decoration: none; }
 .btn-tertiary {
   font-family: var(--mono); font-size: var(--type-mono-lbl);
   font-weight: var(--fw-medium); letter-spacing: .12em; text-transform: uppercase;
-  color: var(--t2); background: none; border: none; padding: 8px 0;
-  min-height: var(--tap-min);
+  color: var(--t2); background: none; border: none; padding: 14px 0;
   display: inline-flex; align-items: center; gap: var(--sp-xs);
   cursor: pointer; transition: color .2s, gap .2s;
 }
