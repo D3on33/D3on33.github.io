@@ -100,26 +100,38 @@
 }
 
 [data-theme="dark"] {
-  --bg:        #15131B;
-  --bg2:       #201E23;
-  --bg3:       #2A272D;
+  /* ── Refined Option B: Warm Editorial / Basalt Canvas ── */
+
+  /* Surface layering — 3-step lift with clear mass separation */
+  --bg:        #141412;   /* Raw Basalt canvas              lum 0.007 */
+  --bg2:       #222220;   /* Raised card surface            lum 0.016 Δ+0.009 */
+  --bg3:       #2B2B28;   /* Peak interactive / hover       lum 0.024 Δ+0.008 */
+
+  /* Structural borders */
   --bd:        rgba(255,255,255,0.08);
   --bd2:       rgba(255,255,255,0.14);
-  --t1:        #F0EDE7;
-  --t2:        #B9ADA3;
-  --t3:        #9D9289;
-  --accent:    #D4775A;
-  --accent-d:  rgba(212,119,90,0.12);
-  --accent-r:  212,119,90;
-  --dot:       #D4775A;
-  --nav-bg:    rgba(13,13,14,0.96);
-  --hero-fade: rgba(13,13,14,0.90);
-  --panel-bg:  #1a1520;
-  --bd-low:    1px solid rgba(255,255,255,0.05);
-  /* Dark mode contrast tokens — elevated for readability */
-  --text-primary:    #F5F5F7;    /* Bright off-white for headlines, body copy */
-  --text-secondary:  #E5E5EA;    /* High-contrast for nav links */
-  --text-muted:      #A1A1A6;    /* Mid-high gray for utility tags */
+  --bd-low:    1px solid rgba(244,244,240,0.07);   /* warm ivory tint on rules */
+
+  /* Typography — 3-step warm ladder */
+  --t1:        #F4F4F0;   /* Premium ivory                  16.7:1 on canvas */
+  --t2:        #B9ADA3;   /* Warm taupe — body prose         8.5:1 on canvas */
+  --t3:        #969690;   /* Warm muted utility labels       6.2:1 on canvas */
+
+  /* Accent — desaturated champagne gold */
+  --accent:    #D4A96A;   /* Zero mustard risk               8.5:1 on canvas */
+  --accent-d:  rgba(212,169,106,0.12);
+  --accent-r:  212,169,106;
+  --dot:       #D4A96A;
+
+  /* Nav & hero overlays keyed to new canvas */
+  --nav-bg:    rgba(20,20,18,0.96);
+  --hero-fade: rgba(20,20,18,0.90);
+  --panel-bg:  #1c1c1a;
+
+  /* Semantic contrast tokens */
+  --text-primary:    #F4F4F0;   /* Headlines, body copy         16.7:1 */
+  --text-secondary:  #E2E2DC;   /* Nav rails, sub-headers       14.2:1 */
+  --text-muted:      #969690;   /* Utility labels, timestamps    6.2:1 */
 }
 
 /* ── RESET ── */
