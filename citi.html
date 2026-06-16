@@ -31,8 +31,21 @@
   <div class="nav-right">
     <div class="nav-status"><div class="nav-dot"></div><span>Open to work</span></div>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle colour theme"><span class="theme-icon">☀</span></button>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </header>
+<div id="nav-overlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <ul class="overlay-links">
+    <li><a href="./index.html#work">Work</a></li>
+    <li><a href="./about.html">About</a></li>
+    <li><a href="mailto:darshan.munkur@gmail.com">Contact</a></li>
+  </ul>
+  <div class="overlay-divider"></div>
+  <div class="overlay-foot">
+    <a href="mailto:darshan.munkur@gmail.com" class="overlay-foot-email">darshan.munkur@gmail.com</a>
+    <div class="overlay-status"><div class="nav-dot"></div><span>Open to work</span></div>
+  </div>
+</div>
 
 <main id="main-content">
 <div class="page">
@@ -430,6 +443,18 @@
     }
   });
 
+})();
+</script>
+<script>
+/* MOBILE NAV OVERLAY */
+(function(){
+  var hmb=document.getElementById('navHamburger'),ov=document.getElementById('nav-overlay');
+  if(!hmb||!ov)return;
+  function navOpen(){ov.classList.add('is-open');hmb.classList.add('is-open');document.body.classList.add('nav-open');hmb.setAttribute('aria-expanded','true');hmb.setAttribute('aria-label','Close navigation');}
+  function navClose(){ov.classList.remove('is-open');hmb.classList.remove('is-open');document.body.classList.remove('nav-open');hmb.setAttribute('aria-expanded','false');hmb.setAttribute('aria-label','Open navigation');}
+  hmb.addEventListener('click',function(){ov.classList.contains('is-open')?navClose():navOpen();});
+  ov.querySelectorAll('a').forEach(function(a){a.addEventListener('click',navClose);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('is-open'))navClose();});
 })();
 </script>
 </body>
