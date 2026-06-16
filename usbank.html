@@ -31,8 +31,21 @@
   <div class="nav-right">
     <div class="nav-status"><div class="nav-dot"></div><span>Open to work</span></div>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle colour theme"><span class="theme-icon">☀</span></button>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </header>
+<div id="nav-overlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <ul class="overlay-links">
+    <li><a href="./index.html#work">Work</a></li>
+    <li><a href="./about.html">About</a></li>
+    <li><a href="mailto:darshan.munkur@gmail.com">Contact</a></li>
+  </ul>
+  <div class="overlay-divider"></div>
+  <div class="overlay-foot">
+    <a href="mailto:darshan.munkur@gmail.com" class="overlay-foot-email">darshan.munkur@gmail.com</a>
+    <div class="overlay-status"><div class="nav-dot"></div><span>Open to work</span></div>
+  </div>
+</div>
 
 <main id="main-content">
 <div class="page">
@@ -40,7 +53,7 @@
   <!-- HERO -->
   <section class="case-hero" aria-label="US Bank Case Study">
     <div class="case-cover">
-      <div class="cover-ph">[ Drop hero image — usbank-hero.jpg ]</div>
+      <img src="https://picsum.photos/seed/ubs_cover/1440/540" alt="US Bank platform overview" loading="lazy">
     </div>
     <div class="case-hero-text">
       <div class="case-breadcrumb"><a href="./index.html">Home</a> / <a href="./index.html#work">Work</a> / <span>US Bank</span></div>
@@ -79,10 +92,12 @@
 <div class="case-layout">
 <aside class="case-sidebar" aria-label="Case study sections">
   <ul class="sidebar-nav">
-    <li><a href="#context" class="sidebar-link active">01. The Problem</a></li>
-    <li><a href="#research" class="sidebar-link">02. The Research</a></li>
-    <li><a href="#process" class="sidebar-link">03. The Solution</a></li>
-    <li><a href="#outcomes" class="sidebar-link">04. The Impact</a></li>
+    <li><a href="#context"  class="sidebar-link active">01. Context</a></li>
+    <li><a href="#problem"  class="sidebar-link">02. The Problem</a></li>
+    <li><a href="#research" class="sidebar-link">03. Research</a></li>
+    <li><a href="#process"  class="sidebar-link">04. Process</a></li>
+    <li><a href="#solution" class="sidebar-link">05. Solution</a></li>
+    <li><a href="#outcomes" class="sidebar-link">06. Outcomes</a></li>
   </ul>
 </aside>
 
@@ -132,7 +147,7 @@
         </div>
         <div class="cs-row-asset">
           <div class="img-full is-wide reveal">
-            <div class="img-full-ph"><div class="img-ph-label">[ Current State — Channel Dependency Analysis ]</div></div>
+            <img src="https://picsum.photos/seed/ubs_channel/1260/540" alt="Channel dependency analysis" loading="lazy">
           </div>
         </div>
       </div>
@@ -181,7 +196,7 @@
             </div>
           </div>
           <div class="img-full is-landscape reveal">
-            <div class="img-full-ph"><div class="img-ph-label">[ Research Synthesis — Affinity Map, Miro ]</div></div>
+            <img src="https://picsum.photos/seed/ubs_research/1200/675" alt="Research synthesis" loading="lazy">
           </div>
         </div>
       </div>
@@ -227,14 +242,14 @@
           </div>
         </div>
         <div class="zz-img">
-          <div class="zz-img-ph"><div class="img-ph-label">[ Wireframe Iterations ]</div></div>
+          <img src="https://picsum.photos/seed/ubs_wire/800/600" alt="Wireframe iterations" loading="lazy">
         </div>
       </div>
 
       <!-- Zigzag reverse: image left, text right -->
       <div class="zigzag reverse reveal" style="margin-top:1px">
         <div class="zz-img">
-          <div class="zz-img-ph"><div class="img-ph-label">[ Design System — Figma ]</div></div>
+          <img src="https://picsum.photos/seed/ubs_system/800/600" alt="Design system" loading="lazy">
         </div>
         <div class="zz-text">
           <div class="cs-why">
@@ -259,7 +274,7 @@
           </div>
         </div>
         <div class="zz-img">
-          <div class="zz-img-ph"><div class="img-ph-label">[ Banker Dashboard — Final UI ]</div></div>
+          <img src="https://picsum.photos/seed/ubs_dash/800/600" alt="Banker dashboard" loading="lazy">
         </div>
       </div>
 
@@ -271,11 +286,11 @@
         </div>
         <div class="ba-wrap" id="baWrap">
           <div class="ba-before">
-            <div class="ba-ph">[ Before: as-is workflow — print-dependent, fragmented ]</div>
+            <img src="https://picsum.photos/seed/ubs_before/1200/675" alt="Before workflow" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
           </div>
           <div class="ba-clip" id="baClip">
             <div class="ba-after-inner">
-              <div class="ba-ph" style="color:var(--accent)">[ After: redesigned platform — unified, personalized ]</div>
+              <img src="https://picsum.photos/seed/ubs_after/1200/675" alt="After platform" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
             </div>
           </div>
           <div class="ba-divider-line" id="baDivider">
@@ -285,7 +300,7 @@
       </div>
 
       <div class="img-full is-wide reveal" style="margin-top:40px">
-        <div class="img-full-ph"><div class="img-ph-label">[ End-to-End Acquisition Flow ]</div></div>
+        <img src="https://picsum.photos/seed/ubs_flow/1260/540" alt="End-to-end acquisition flow" loading="lazy">
       </div>
     </section>
 
@@ -452,6 +467,18 @@
     update();
   })();
 
+})();
+</script>
+<script>
+/* MOBILE NAV OVERLAY */
+(function(){
+  var hmb=document.getElementById('navHamburger'),ov=document.getElementById('nav-overlay');
+  if(!hmb||!ov)return;
+  function navOpen(){ov.classList.add('is-open');hmb.classList.add('is-open');document.body.classList.add('nav-open');hmb.setAttribute('aria-expanded','true');hmb.setAttribute('aria-label','Close navigation');}
+  function navClose(){ov.classList.remove('is-open');hmb.classList.remove('is-open');document.body.classList.remove('nav-open');hmb.setAttribute('aria-expanded','false');hmb.setAttribute('aria-label','Open navigation');}
+  hmb.addEventListener('click',function(){ov.classList.contains('is-open')?navClose():navOpen();});
+  ov.querySelectorAll('a').forEach(function(a){a.addEventListener('click',navClose);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('is-open'))navClose();});
 })();
 </script>
 </body>
