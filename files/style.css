@@ -494,6 +494,17 @@ body.nav-open { overflow: hidden; }
   font-family: var(--mono); font-size: 11px; color: var(--t3);
 }
 
+/* ── NAV RESUME LINK — outlined CTA distinct from plain nav links ── */
+.nav-resume {
+  border: 1px solid var(--bd2) !important;
+  padding: 5px 14px !important;
+  color: var(--t2) !important;
+  transition: border-color .2s, color .2s, background .2s !important;
+  margin-left: 4px;
+}
+.nav-resume:hover { border-color: var(--accent) !important; color: var(--accent) !important; background: var(--accent-d) !important; }
+.nav-resume::after { display: none !important; }
+
 /* ── FOOTER BOTTOM — stack vertically on mobile ── */
 @media (max-width: 600px) {
   .footer-bottom { flex-direction: column; align-items: flex-start; gap: var(--sp-sm); }
