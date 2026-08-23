@@ -227,9 +227,9 @@
 .cred-block { padding: clamp(32px,5vh,52px) var(--pad); border-right: 1px solid var(--bd); }
 .cred-block:last-child { border-right: none; }
 .cred-label { font-family: var(--mono); font-size: var(--fs-utility); font-weight: var(--fw-medium); letter-spacing: var(--ls-utility); text-transform: uppercase; color: var(--t3); margin-bottom: 16px; }
-.cred-item { display: flex; flex-direction: column; gap: 3px; padding: 12px 0; border-bottom: 1px solid var(--bd); transition: border-color .25s, padding-left .25s; }
+.cred-item { display: flex; flex-direction: column; gap: 3px; padding: 12px 0; border-bottom: 1px solid var(--bd); transition: border-color .25s, transform .25s; }
 .cred-item:last-child { border-bottom: none; }
-.cred-item:hover { border-color: rgba(var(--accent-r),.3); padding-left: 8px; }
+.cred-item:hover { border-color: rgba(var(--accent-r),.3); transform: translateX(8px); }
 .cred-name { font-size: var(--fs-body-md); color: var(--t1); font-weight: 400; }
 .cred-sub { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--t3); }
 

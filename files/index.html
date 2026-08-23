@@ -154,8 +154,9 @@
 .card-desc { font-size: var(--fs-body-md); color: var(--t2); line-height: var(--lh-body); margin-bottom: 12px; max-width: 52ch; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .card-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 16px; }
 .card-tag { font-family: var(--mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: var(--t2); border: 1px solid var(--bd2); padding: 3px 8px; }
-.card-action { margin-top: auto; font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 8px; transition: gap .2s; }
-.proj-card:hover .card-action { gap: 14px; }
+.card-action { margin-top: auto; font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 8px; }
+.card-action-arrow { display: inline-block; transition: transform .2s; }
+.proj-card:hover .card-action-arrow { transform: translateX(5px); }
 
 /* Coming soon */
 .coming-soon-card { background: var(--bg); grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; padding: var(--sp-lg); border-top: 1px dashed var(--bd2); position: relative; overflow: hidden; }
@@ -285,7 +286,7 @@
         </div>
         <p class="card-desc">Bankers couldn't share anything digitally. Redesigned the acquisition platform end-to-end — eliminating printed assets, building a multi-BU design system.</p>
         <div class="card-tags"><span class="card-tag">Platform Design</span><span class="card-tag">Design System</span><span class="card-tag">End-to-End UX</span></div>
-        <div class="card-action">View Case Study →</div>
+        <div class="card-action">View Case Study <span class="card-action-arrow">→</span></div>
       </div>
     </a>
 
@@ -302,7 +303,7 @@
         </div>
         <p class="card-desc">A platform that worked but nobody wanted to use. Led discovery across 19 interviews, then rearchitected wireless, wireline, and fiber management.</p>
         <div class="card-tags"><span class="card-tag">Enterprise Platform</span><span class="card-tag">Research-Led</span><span class="card-tag">Agile UX</span></div>
-        <div class="card-action">View Case Study →</div>
+        <div class="card-action">View Case Study <span class="card-action-arrow">→</span></div>
       </div>
     </a>
 
@@ -319,7 +320,7 @@
         </div>
         <p class="card-desc">1,000+ hours to onboard a single advisor. Redesigned the experience for the largest independent broker-dealer in the US.</p>
         <div class="card-tags"><span class="card-tag">Onboarding UX</span><span class="card-tag">NPS Strategy</span><span class="card-tag">0→1 Design</span></div>
-        <div class="card-action">View Case Study →</div>
+        <div class="card-action">View Case Study <span class="card-action-arrow">→</span></div>
       </div>
     </a>
 
@@ -336,7 +337,7 @@
         </div>
         <p class="card-desc">Paper-heavy signer workflows across 44 markets. Centralized digital platform handling 80% of global transaction volume.</p>
         <div class="card-tags"><span class="card-tag">Global Scale</span><span class="card-tag">Design System</span><span class="card-tag">Journey Mapping</span></div>
-        <div class="card-action">View Case Study →</div>
+        <div class="card-action">View Case Study <span class="card-action-arrow">→</span></div>
       </div>
     </a>
 

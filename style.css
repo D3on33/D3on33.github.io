@@ -233,11 +233,11 @@ section[id] { scroll-margin-top: var(--nav-h); }
   font-weight: var(--fw-medium); letter-spacing: .12em; text-transform: uppercase;
   color: var(--t2); background: none; border: none; padding: 14px 0;
   display: inline-flex; align-items: center; gap: var(--sp-xs);
-  cursor: pointer; transition: color .2s, gap .2s;
+  cursor: pointer; transition: color .2s;
 }
 .btn-tertiary::after { content: '→'; font-style: normal; transition: transform .2s; }
-.btn-tertiary:hover { color: var(--accent); gap: var(--sp-sm); }
-.btn-tertiary:hover::after { transform: translateX(3px); }
+.btn-tertiary:hover { color: var(--accent); }
+.btn-tertiary:hover::after { transform: translateX(6px); }
 
 /* ── SHARED FOOTER BOTTOM BAR ── */
 .footer-bottom { padding: clamp(18px,2.5vh,24px) var(--pad); display: flex; align-items: center; justify-content: space-between; }

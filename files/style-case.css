@@ -200,9 +200,9 @@
 
 /* Why callout — lift */
 .cs-why {
-  transition: border-color .3s, padding-left .3s cubic-bezier(.23,1,.32,1);
+  transition: border-color .3s, transform .3s cubic-bezier(.23,1,.32,1);
 }
-.cs-why:hover { border-color: var(--accent); padding-left: 28px; }
+.cs-why:hover { border-color: var(--accent); transform: translateX(4px); }
 
 /* Research grid items — card pop */
 .r-item {
@@ -217,9 +217,9 @@
 
 /* Process steps — subtle indent */
 .p-step {
-  transition: padding-left .25s cubic-bezier(.23,1,.32,1), border-color .25s;
+  transition: transform .25s cubic-bezier(.23,1,.32,1), border-color .25s;
 }
-.p-step:hover { padding-left: 8px; border-color: rgba(var(--accent-r), 0.3); }
+.p-step:hover { transform: translateX(8px); border-color: rgba(var(--accent-r), 0.3); }
 
 /* Metric boxes — scale pop */
 .hero-outcome-box, .o-box {

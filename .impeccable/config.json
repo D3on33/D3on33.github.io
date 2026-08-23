@@ -93,6 +93,30 @@
         "value": "28px",
         "createdAt": "2026-08-23T04:00:07.785Z",
         "reason": "inside clamp() for history-company — ramp-consistent, predates impeccable"
+      },
+      {
+        "rule": "overused-font",
+        "value": "instrument serif",
+        "createdAt": "2026-08-23T04:03:10.959Z",
+        "reason": "confirmed brand commitment per PRODUCT.md; not on hook overused list (Inter/Roboto/Fraunces/Geist/Plus Jakarta Sans/Space Grotesk)"
+      },
+      {
+        "rule": "layout-transition",
+        "value": "width",
+        "createdAt": "2026-08-23T04:03:11.032Z",
+        "reason": "scroll-fill and ldrFill progress bars; scaleX alternative would need transform-origin rework; visual impact is a 3px bar"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "56px",
+        "createdAt": "2026-08-23T04:04:33.721Z",
+        "reason": "inside clamp() for metric-num display type — ramp-consistent, predates impeccable"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "22px",
+        "createdAt": "2026-08-23T04:04:33.799Z",
+        "reason": "inside clamp() for cs-why serif italic — ramp-consistent, predates impeccable"
       }
     ]
   }
