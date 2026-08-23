@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#FBF9F4">
+<link rel="icon" href="./favicon.svg" type="image/svg+xml">
 <meta name="description" content="Darshan Munkur — Senior UX Designer. 5+ years designing complex B2B platforms for Fortune 500 clients in Finance, Telecom, and Wealth Management.">
 <meta property="og:title" content="Darshan Munkur — Senior UX Designer">
 <meta property="og:description" content="Designing complex systems for the people inside them. 5+ years, Fortune 500.">
@@ -70,86 +72,25 @@
 .cta-circle::after { content:""; position:absolute; inset:-4px; border-radius:50%; border:1px solid rgba(var(--accent-r),.2); animation:ctaPulse 2s ease infinite; }
 @keyframes ctaPulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0;transform:scale(1.4)} }
 
-/* ── DISCIPLINES PANEL — right column, desktop only ── */
-/* Note: to restore a portrait photo here, replace <aside class="hero-disciplines"> with
-   <div class="hero-panel"> and re-add the .hero-panel / .hero-panel-photo CSS. */
+/* ── HERO ILLUSTRATION PANEL — right column, desktop only ── */
 .hero-disciplines {
   display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: clamp(48px,7vh,96px) var(--pad) clamp(40px,6vh,72px) clamp(32px,4vw,56px);
+  overflow: hidden;
   border-left: 1px solid var(--bd);
-}
-.hero-disc-eyebrow {
-  font-family: var(--mono);
-  font-size: var(--fs-utility);
-  font-weight: var(--fw-medium);
-  letter-spacing: var(--ls-utility);
-  text-transform: uppercase;
-  color: var(--t3);
-  margin-bottom: clamp(20px,3vh,32px);
-  display: flex;
+  background: transparent;
   align-items: center;
-  gap: 10px;
-  opacity: 0;
-  animation: fadeUp .6s ease .42s forwards;
+  justify-content: center;
+  padding: clamp(24px,4vw,48px);
 }
-.hero-disc-eyebrow::before { content: ''; width: 16px; height: 1px; background: var(--t3); }
-.disciplines-list { list-style: none; flex: 1; }
-.discipline-item {
-  padding: clamp(14px,2vh,20px) 0;
-  border-bottom: 1px solid var(--bd);
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  opacity: 0;
-  animation: fadeUp .5s ease both;
-}
-.discipline-item:first-child { border-top: 1px solid var(--bd); }
-.discipline-item:nth-child(1) { animation-delay: .56s; }
-.discipline-item:nth-child(2) { animation-delay: .70s; }
-.discipline-item:nth-child(3) { animation-delay: .84s; }
-.discipline-item:nth-child(4) { animation-delay: .98s; }
-.discipline-name {
-  font-size: var(--fs-body-md);
-  font-weight: var(--fw-body);
-  color: var(--t1);
-  letter-spacing: -.01em;
-  line-height: 1.3;
-}
-.discipline-industry {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--t3);
-}
-.hero-disc-foot {
-  display: flex;
-  gap: clamp(20px,3vw,32px);
-  padding-top: clamp(18px,2.5vh,26px);
-  border-top: 1px solid var(--bd);
-  margin-top: clamp(16px,2.5vh,24px);
-  opacity: 0;
-  animation: fadeUp .5s ease 1.08s forwards;
-}
-.hero-disc-stat-n {
-  font-family: var(--sans);
-  font-size: clamp(20px,2.2vw,28px);
-  font-weight: 400;
-  color: var(--accent);
-  line-height: 1;
-  letter-spacing: -.02em;
+.hero-disciplines img {
+  width: 100%;
+  height: auto;
   display: block;
+  transition: filter .3s ease;
 }
-.hero-disc-stat-d {
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--t3);
-  display: block;
-  margin-top: 5px;
+[data-theme="dark"] .hero-disciplines img { filter: invert(1); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .hero-disciplines img { filter: invert(1); }
 }
 
 /* ── WORK — 2×2 GRID ── */
@@ -213,8 +154,9 @@
 .card-desc { font-size: var(--fs-body-md); color: var(--t2); line-height: var(--lh-body); margin-bottom: 12px; max-width: 52ch; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .card-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 16px; }
 .card-tag { font-family: var(--mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: var(--t2); border: 1px solid var(--bd2); padding: 3px 8px; }
-.card-action { margin-top: auto; font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 8px; transition: gap .2s; }
-.proj-card:hover .card-action { gap: 14px; }
+.card-action { margin-top: auto; font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 8px; }
+.card-action-arrow { display: inline-block; transition: transform .2s; }
+.proj-card:hover .card-action-arrow { transform: translateX(5px); }
 
 /* Coming soon */
 .coming-soon-card { background: var(--bg); grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; padding: var(--sp-lg); border-top: 1px dashed var(--bd2); position: relative; overflow: hidden; }
@@ -278,12 +220,27 @@
     <li><a href="#work">Work</a></li>
     <li><a href="./about.html">About</a></li>
     <li><a href="mailto:darshan.munkur@gmail.com">Contact</a></li>
+    <li><a href="./resume.pdf" download class="nav-resume">Resume</a></li>
   </ul>
   <div class="nav-right">
     <div class="nav-status"><div class="nav-dot"></div><span>Open to work</span></div>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle colour theme"><span class="theme-icon">☀</span></button>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </header>
+<div id="nav-overlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <ul class="overlay-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="./about.html">About</a></li>
+    <li><a href="mailto:darshan.munkur@gmail.com">Contact</a></li>
+    <li><a href="./resume.pdf" download>Resume</a></li>
+  </ul>
+  <div class="overlay-divider"></div>
+  <div class="overlay-foot">
+    <a href="mailto:darshan.munkur@gmail.com" class="overlay-foot-email">darshan.munkur@gmail.com</a>
+    <div class="overlay-status"><div class="nav-dot"></div><span>Open to work</span></div>
+  </div>
+</div>
 
 <main id="main-content">
 
@@ -302,40 +259,12 @@
     </div>
     <div class="hero-foot">
       <p class="hero-desc">I design enterprise systems that simplify complexity. 5+ years across Banking, Fintech &amp; Telecom — helping Fortune 500 teams ship faster.</p>
-      <a href="#work" class="hero-cta" aria-label="Scroll to view selected work">View Work <div class="cta-circle">↓</div></a>
+      <a href="#work" class="hero-cta" aria-label="Scroll to view selected work">View Work <div class="cta-circle" aria-hidden="true">↓</div></a>
     </div>
   </div>
 
-  <aside class="hero-disciplines" aria-label="Design disciplines">
-    <div class="hero-disc-eyebrow">Design Practice</div>
-    <ul class="disciplines-list">
-      <li class="discipline-item">
-        <span class="discipline-name">B2B Systems Design</span>
-        <span class="discipline-industry">Banking · Fintech · Telecom</span>
-      </li>
-      <li class="discipline-item">
-        <span class="discipline-name">Financial Information Architecture</span>
-        <span class="discipline-industry">Wealth Management · Banking</span>
-      </li>
-      <li class="discipline-item">
-        <span class="discipline-name">Telecommunications Network Tooling</span>
-        <span class="discipline-industry">Enterprise · Change Management</span>
-      </li>
-      <li class="discipline-item">
-        <span class="discipline-name">White-Label Component Systems</span>
-        <span class="discipline-industry">Multi-BU · Design Tokens · Figma</span>
-      </li>
-    </ul>
-    <div class="hero-disc-foot">
-      <div>
-        <span class="hero-disc-stat-n">5+</span>
-        <span class="hero-disc-stat-d">Years Enterprise UX</span>
-      </div>
-      <div>
-        <span class="hero-disc-stat-n">F500</span>
-        <span class="hero-disc-stat-d">Client Scale</span>
-      </div>
-    </div>
+  <aside class="hero-disciplines" aria-hidden="true">
+    <img src="./photo-hero.png" alt="" fetchpriority="high">
   </aside>
 </section>
 
@@ -346,7 +275,7 @@
 
     <a href="./password.html?next=usbank.html" class="proj-card reveal" aria-label="US Bank case study">
       <div class="card-img">
-        <div class="card-img-ph"><span>Add project image</span></div>
+        <img src="https://picsum.photos/seed/usbank100/800/450" alt="US Bank project preview" width="800" height="450" loading="lazy">
       </div>
       <div class="card-content">
         <div class="card-domain">Banking &amp; Fintech</div>
@@ -357,13 +286,13 @@
         </div>
         <p class="card-desc">Bankers couldn't share anything digitally. Redesigned the acquisition platform end-to-end — eliminating printed assets, building a multi-BU design system.</p>
         <div class="card-tags"><span class="card-tag">Platform Design</span><span class="card-tag">Design System</span><span class="card-tag">End-to-End UX</span></div>
-        <div class="card-action">View Case Study →</div>
+        <div class="card-action">View Case Study <span class="card-action-arrow">→</span></div>
       </div>
     </a>
 
     <a href="./password.html?next=verizon.html" class="proj-card reveal" aria-label="Verizon case study">
       <div class="card-img">
-        <div class="card-img-ph"><span>Add project image</span></div>
+        <img src="https://picsum.photos/seed/verizon200/800/450" alt="Verizon project preview" width="800" height="450" loading="lazy">
       </div>
       <div class="card-content">
         <div class="card-domain">Telecom</div>
@@ -374,13 +303,13 @@
         </div>
         <p class="card-desc">A platform that worked but nobody wanted to use. Led discovery across 19 interviews, then rearchitected wireless, wireline, and fiber management.</p>
         <div class="card-tags"><span class="card-tag">Enterprise Platform</span><span class="card-tag">Research-Led</span><span class="card-tag">Agile UX</span></div>
-        <div class="card-action">View Case Study →</div>
+        <div class="card-action">View Case Study <span class="card-action-arrow">→</span></div>
       </div>
     </a>
 
     <a href="./password.html?next=lpl.html" class="proj-card reveal" aria-label="LPL Financial case study">
       <div class="card-img">
-        <div class="card-img-ph"><span>Add project image</span></div>
+        <img src="https://picsum.photos/seed/lplfinance300/800/450" alt="LPL Financial preview" width="800" height="450" loading="lazy">
       </div>
       <div class="card-content">
         <div class="card-domain">Wealth Management</div>
@@ -391,13 +320,13 @@
         </div>
         <p class="card-desc">1,000+ hours to onboard a single advisor. Redesigned the experience for the largest independent broker-dealer in the US.</p>
         <div class="card-tags"><span class="card-tag">Onboarding UX</span><span class="card-tag">NPS Strategy</span><span class="card-tag">0→1 Design</span></div>
-        <div class="card-action">View Case Study →</div>
+        <div class="card-action">View Case Study <span class="card-action-arrow">→</span></div>
       </div>
     </a>
 
     <a href="./password.html?next=citi.html" class="proj-card reveal" aria-label="Citi case study">
       <div class="card-img">
-        <div class="card-img-ph"><span>Add project image</span></div>
+        <img src="https://picsum.photos/seed/citibank400/800/450" alt="Citi project preview" width="800" height="450" loading="lazy">
       </div>
       <div class="card-content">
         <div class="card-domain">Global Banking</div>
@@ -408,12 +337,12 @@
         </div>
         <p class="card-desc">Paper-heavy signer workflows across 44 markets. Centralized digital platform handling 80% of global transaction volume.</p>
         <div class="card-tags"><span class="card-tag">Global Scale</span><span class="card-tag">Design System</span><span class="card-tag">Journey Mapping</span></div>
-        <div class="card-action">View Case Study →</div>
+        <div class="card-action">View Case Study <span class="card-action-arrow">→</span></div>
       </div>
     </a>
 
     <!-- Coming soon — Option A: full-width slim row -->
-    <div class="coming-soon-card" aria-label="Project in progress">
+    <div class="coming-soon-card" role="region" aria-label="Project in progress">
       <div>
         <div class="cs-badge">Project in Progress</div>
         <div class="cs-title">Next Case Study — Coming Soon</div>
@@ -440,6 +369,7 @@
     <div class="footer-btns">
       <a href="mailto:darshan.munkur@gmail.com" class="btn-primary">Email Me</a>
       <a href="https://linkedin.com/in/darshan-munkur" target="_blank" rel="noopener" class="btn-secondary">LinkedIn ↗</a>
+      <a href="./resume.pdf" download class="btn-secondary">Resume ↓</a>
       <a href="./about.html" class="btn-tertiary">About Me</a>
     </div>
   </div>
@@ -463,7 +393,7 @@
       setTimeout(function(){loader.style.display='none';},650);
     }
   }
-  setTimeout(function(){loaderMin=true;tryDismissLoader();},2000);
+  setTimeout(function(){loaderMin=true;tryDismissLoader();},800);
   window.addEventListener('load',function(){pageLoaded=true;tryDismissLoader();});
 
   /* Loader icon rotation — toggle .is-active so only one is visible at a time */
@@ -513,6 +443,15 @@
     }
   });
 
+  /* THEME-COLOR META — syncs <meta name="theme-color"> with data-theme */
+  (function(){
+    var mc=document.querySelector('meta[name="theme-color"]');
+    if(!mc)return;
+    function upd(){mc.content=document.documentElement.getAttribute('data-theme')==='dark'?'#121016':'#FBF9F4';}
+    upd();
+    new MutationObserver(upd).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+  })();
+
   /* SCROLL */
   var sf=document.getElementById('scroll-fill');
   window.addEventListener('scroll',function(){
@@ -533,6 +472,35 @@
   },{threshold:.06});
   revEls.forEach(function(el){ro.observe(el);});
 
+})();
+</script>
+<script>
+/* MOBILE NAV OVERLAY */
+(function(){
+  var hmb=document.getElementById('navHamburger'),ov=document.getElementById('nav-overlay');
+  if(!hmb||!ov)return;
+  function getFocusable(){return Array.from(ov.querySelectorAll('a[href],button:not([disabled]),[tabindex]:not([tabindex="-1"])'));}
+  function trapFocus(e){
+    if(e.key!=='Tab')return;
+    var els=getFocusable(),first=els[0],last=els[els.length-1];
+    if(e.shiftKey){if(document.activeElement===first){e.preventDefault();last.focus();}}
+    else{if(document.activeElement===last){e.preventDefault();first.focus();}}
+  }
+  function navOpen(){
+    ov.classList.add('is-open');hmb.classList.add('is-open');document.body.classList.add('nav-open');
+    hmb.setAttribute('aria-expanded','true');hmb.setAttribute('aria-label','Close navigation');
+    var els=getFocusable();if(els.length)els[0].focus();
+    document.addEventListener('keydown',trapFocus);
+  }
+  function navClose(){
+    ov.classList.remove('is-open');hmb.classList.remove('is-open');document.body.classList.remove('nav-open');
+    hmb.setAttribute('aria-expanded','false');hmb.setAttribute('aria-label','Open navigation');
+    document.removeEventListener('keydown',trapFocus);
+    hmb.focus();
+  }
+  hmb.addEventListener('click',function(){ov.classList.contains('is-open')?navClose():navOpen();});
+  ov.querySelectorAll('a').forEach(function(a){a.addEventListener('click',navClose);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('is-open'))navClose();});
 })();
 </script>
 </body>

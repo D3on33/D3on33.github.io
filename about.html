@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#FBF9F4">
+<link rel="icon" href="./favicon.svg" type="image/svg+xml">
 <meta name="description" content="About Darshan Munkur — Senior UX Designer with 5+ years in enterprise B2B.">
 <meta property="og:title" content="About Darshan Munkur — Senior UX Designer">
 <meta property="og:description" content="5+ years designing enterprise B2B platforms. MS in Human-Computer Interaction. Currently at Incedo Inc.">
@@ -86,7 +88,7 @@
 .bio-text strong { color: var(--t1); font-weight: 500; }
 .bio-image { width: 100%; aspect-ratio: 5/7; overflow: hidden; background: var(--bg2); position: relative; }
 .bio-image img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
-.bio-content { padding: clamp(48px,7vh,96px) var(--pad); display: flex; flex-direction: column; justify-content: center; }
+.bio-content { padding: clamp(48px,7vh,96px) var(--pad); display: flex; flex-direction: column; justify-content: flex-start; align-items: stretch; }
 @media (max-width: 880px) {
   .bio-image { aspect-ratio: 3/4; width: 100%; }
   .bio-content { padding: clamp(24px,4vh,40px) var(--pad); }
@@ -144,8 +146,8 @@
 .history-node.in { opacity: 1; transform: translateX(0); }
 .history-node:last-child { padding-bottom: 0; }
 
-/* Spine dot */
-.history-node::before { content: ''; position: absolute; left: -28px; top: 8px; width: 9px; height: 9px; border-radius: 50%; background: var(--bg); border: 1.5px solid var(--bd2); transition: border-color .2s, background .2s; }
+/* Spine dot — transform centers the 9px circle on the 1px line */
+.history-node::before { content: ''; position: absolute; left: -28px; top: 8px; width: 9px; height: 9px; border-radius: 50%; background: var(--bg); border: 1.5px solid var(--bd2); transform: translateX(-50%); transition: border-color .2s, background .2s; }
 .history-node:first-child::before { background: var(--accent); border-color: var(--accent); }
 .history-node:hover::before { border-color: var(--accent); }
 
@@ -225,9 +227,9 @@
 .cred-block { padding: clamp(32px,5vh,52px) var(--pad); border-right: 1px solid var(--bd); }
 .cred-block:last-child { border-right: none; }
 .cred-label { font-family: var(--mono); font-size: var(--fs-utility); font-weight: var(--fw-medium); letter-spacing: var(--ls-utility); text-transform: uppercase; color: var(--t3); margin-bottom: 16px; }
-.cred-item { display: flex; flex-direction: column; gap: 3px; padding: 12px 0; border-bottom: 1px solid var(--bd); transition: border-color .25s, padding-left .25s; }
+.cred-item { display: flex; flex-direction: column; gap: 3px; padding: 12px 0; border-bottom: 1px solid var(--bd); transition: border-color .25s, transform .25s; }
 .cred-item:last-child { border-bottom: none; }
-.cred-item:hover { border-color: rgba(var(--accent-r),.3); padding-left: 8px; }
+.cred-item:hover { border-color: rgba(var(--accent-r),.3); transform: translateX(8px); }
 .cred-name { font-size: var(--fs-body-md); color: var(--t1); font-weight: 400; }
 .cred-sub { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--t3); }
 
@@ -290,12 +292,27 @@
     <li><a href="./index.html#work">Work</a></li>
     <li><a href="./about.html" class="active">About</a></li>
     <li><a href="mailto:darshan.munkur@gmail.com">Contact</a></li>
+    <li><a href="./resume.pdf" download class="nav-resume">Resume</a></li>
   </ul>
   <div class="nav-right">
     <div class="nav-status"><div class="nav-dot"></div><span>Open to work</span></div>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle colour theme"><span class="theme-icon">☀</span></button>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </header>
+<div id="nav-overlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <ul class="overlay-links">
+    <li><a href="./index.html#work">Work</a></li>
+    <li><a href="./about.html">About</a></li>
+    <li><a href="mailto:darshan.munkur@gmail.com">Contact</a></li>
+    <li><a href="./resume.pdf" download>Resume</a></li>
+  </ul>
+  <div class="overlay-divider"></div>
+  <div class="overlay-foot">
+    <a href="mailto:darshan.munkur@gmail.com" class="overlay-foot-email">darshan.munkur@gmail.com</a>
+    <div class="overlay-status"><div class="nav-dot"></div><span>Open to work</span></div>
+  </div>
+</div>
 
 <main id="main-content">
 <div class="page">
@@ -318,7 +335,7 @@
   <!-- BIO -->
   <section class="bio-section">
     <div class="bio-image">
-      <img src="./photo-about-bio.jpg" alt="Darshan Munkur" loading="lazy" width="600" height="800">
+      <img src="./photo-about-bio.jpg" alt="Darshan Munkur" loading="lazy">
     </div>
     <div class="bio-content">
       <div class="bio-label">About</div>
@@ -528,14 +545,13 @@
       </div>
       <div class="otc-photos">
         <div class="otc-photo reveal">
-          <!-- Replace with your photo -->
-          <div class="otc-photo-ph">[ Photo 01 — Cafes / NYC ]</div>
+          <img src="./photo-otc-01.jpg" alt="Cafes and NYC spots" loading="lazy">
         </div>
         <div class="otc-photo reveal">
-          <div class="otc-photo-ph">[ Photo 02 — Lego / Gundam ]</div>
+          <img src="./photo-otc-02.jpg" alt="Lego and Gundam builds" loading="lazy">
         </div>
         <div class="otc-photo reveal">
-          <div class="otc-photo-ph">[ Photo 03 — Gaming / Hobby ]</div>
+          <img src="./photo-otc-03.jpg" alt="Gaming and hobbies" loading="lazy">
         </div>
       </div>
     </div>
@@ -640,7 +656,37 @@
       updateThemeIcon(t);
     }
   });
+  (function(){var mc=document.querySelector('meta[name="theme-color"]');if(!mc)return;function upd(){mc.content=document.documentElement.getAttribute('data-theme')==='dark'?'#121016':'#FBF9F4';}upd();new MutationObserver(upd).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});})();
 
+})();
+</script>
+<script>
+/* MOBILE NAV OVERLAY */
+(function(){
+  var hmb=document.getElementById('navHamburger'),ov=document.getElementById('nav-overlay');
+  if(!hmb||!ov)return;
+  function getFocusable(){return Array.from(ov.querySelectorAll('a[href],button:not([disabled]),[tabindex]:not([tabindex="-1"])'));}
+  function trapFocus(e){
+    if(e.key!=='Tab')return;
+    var els=getFocusable(),first=els[0],last=els[els.length-1];
+    if(e.shiftKey){if(document.activeElement===first){e.preventDefault();last.focus();}}
+    else{if(document.activeElement===last){e.preventDefault();first.focus();}}
+  }
+  function navOpen(){
+    ov.classList.add('is-open');hmb.classList.add('is-open');document.body.classList.add('nav-open');
+    hmb.setAttribute('aria-expanded','true');hmb.setAttribute('aria-label','Close navigation');
+    var els=getFocusable();if(els.length)els[0].focus();
+    document.addEventListener('keydown',trapFocus);
+  }
+  function navClose(){
+    ov.classList.remove('is-open');hmb.classList.remove('is-open');document.body.classList.remove('nav-open');
+    hmb.setAttribute('aria-expanded','false');hmb.setAttribute('aria-label','Open navigation');
+    document.removeEventListener('keydown',trapFocus);
+    hmb.focus();
+  }
+  hmb.addEventListener('click',function(){ov.classList.contains('is-open')?navClose():navOpen();});
+  ov.querySelectorAll('a').forEach(function(a){a.addEventListener('click',navClose);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('is-open'))navClose();});
 })();
 </script>
 </body>

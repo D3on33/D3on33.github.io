@@ -1,0 +1,129 @@
+{
+  "buildPath": "code",
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-font-size",
+        "value": "17px",
+        "createdAt": "2026-08-23T03:57:41.468Z",
+        "reason": "nav-logo intentional one-off — larger than utility label for brand hierarchy"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "11px",
+        "createdAt": "2026-08-23T03:57:41.533Z",
+        "reason": "nav-links, status — matches --type-mono-lbl token, consistent with type scale"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "10px",
+        "createdAt": "2026-08-23T03:57:41.599Z",
+        "reason": "footer/overlay small mono labels — intentional below-ramp utility label size"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "60px",
+        "createdAt": "2026-08-23T03:57:41.662Z",
+        "reason": "inside clamp() display type expression — ramp-consistent at computed value"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "9px",
+        "createdAt": "2026-08-23T03:58:23.009Z",
+        "reason": "section-label, card metadata — intentional micro-label below ramp, predates impeccable"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "44px",
+        "createdAt": "2026-08-23T03:58:23.075Z",
+        "reason": "inside clamp() for overlay nav links — ramp-consistent at computed value"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "instrument serif",
+        "createdAt": "2026-08-23T03:58:52.742Z",
+        "reason": "confirmed brand font stack — serif display, per PRODUCT.md brand commitments"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "dm sans",
+        "createdAt": "2026-08-23T03:58:52.808Z",
+        "reason": "confirmed brand font stack — sans body, per PRODUCT.md brand commitments"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "dm mono",
+        "createdAt": "2026-08-23T03:58:52.874Z",
+        "reason": "confirmed brand font stack — mono utility, per PRODUCT.md brand commitments"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "36px",
+        "createdAt": "2026-08-23T03:58:52.938Z",
+        "reason": "inside clamp() for gate-title — ramp-consistent at computed value, predates impeccable"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "21px",
+        "createdAt": "2026-08-23T03:59:19.490Z",
+        "reason": "inside clamp() for card-title — ramp-consistent, predates impeccable"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "26px",
+        "createdAt": "2026-08-23T03:59:19.555Z",
+        "reason": "inside clamp() for card-outcome-num — ramp-consistent, predates impeccable"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "15px",
+        "createdAt": "2026-08-23T03:59:19.619Z",
+        "reason": "matches --type-body-md / --fs-body-md token, confirmed in token system"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "52px",
+        "createdAt": "2026-08-23T03:59:19.682Z",
+        "reason": "inside clamp() for stat-val — ramp-consistent, predates impeccable"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "28px",
+        "createdAt": "2026-08-23T04:00:07.785Z",
+        "reason": "inside clamp() for history-company — ramp-consistent, predates impeccable"
+      },
+      {
+        "rule": "overused-font",
+        "value": "instrument serif",
+        "createdAt": "2026-08-23T04:03:10.959Z",
+        "reason": "confirmed brand commitment per PRODUCT.md; not on hook overused list (Inter/Roboto/Fraunces/Geist/Plus Jakarta Sans/Space Grotesk)"
+      },
+      {
+        "rule": "layout-transition",
+        "value": "width",
+        "createdAt": "2026-08-23T04:03:11.032Z",
+        "reason": "scroll-fill and ldrFill progress bars; scaleX alternative would need transform-origin rework; visual impact is a 3px bar"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "56px",
+        "createdAt": "2026-08-23T04:04:33.721Z",
+        "reason": "inside clamp() for metric-num display type — ramp-consistent, predates impeccable"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "22px",
+        "createdAt": "2026-08-23T04:04:33.799Z",
+        "reason": "inside clamp() for cs-why serif italic — ramp-consistent, predates impeccable"
+      },
+      {
+        "rule": "layout-transition",
+        "value": "height",
+        "createdAt": "2026-08-23T04:06:24.009Z",
+        "reason": "loader progress bar and sidebar indicator use height/width animations — absolute-positioned decorative elements, negligible layout impact"
+      }
+    ]
+  }
+}
