@@ -21,7 +21,7 @@
 <body>
 <a href="#main-content" class="skip-link">Skip to main content</a>
 <div id="scroll-bar"><div id="scroll-fill"></div></div>
-<div id="btt" role="button" tabindex="0" aria-label="Back to top">↑</div>
+<button id="btt" aria-label="Back to top">↑</button>
 
 <header class="nav">
   <a href="./index.html" class="nav-logo">Darshan Munkur</a>
@@ -457,8 +457,25 @@
 (function(){
   var hmb=document.getElementById('navHamburger'),ov=document.getElementById('nav-overlay');
   if(!hmb||!ov)return;
-  function navOpen(){ov.classList.add('is-open');hmb.classList.add('is-open');document.body.classList.add('nav-open');hmb.setAttribute('aria-expanded','true');hmb.setAttribute('aria-label','Close navigation');}
-  function navClose(){ov.classList.remove('is-open');hmb.classList.remove('is-open');document.body.classList.remove('nav-open');hmb.setAttribute('aria-expanded','false');hmb.setAttribute('aria-label','Open navigation');}
+  function getFocusable(){return Array.from(ov.querySelectorAll('a[href],button:not([disabled]),[tabindex]:not([tabindex="-1"])'));}
+  function trapFocus(e){
+    if(e.key!=='Tab')return;
+    var els=getFocusable(),first=els[0],last=els[els.length-1];
+    if(e.shiftKey){if(document.activeElement===first){e.preventDefault();last.focus();}}
+    else{if(document.activeElement===last){e.preventDefault();first.focus();}}
+  }
+  function navOpen(){
+    ov.classList.add('is-open');hmb.classList.add('is-open');document.body.classList.add('nav-open');
+    hmb.setAttribute('aria-expanded','true');hmb.setAttribute('aria-label','Close navigation');
+    var els=getFocusable();if(els.length)els[0].focus();
+    document.addEventListener('keydown',trapFocus);
+  }
+  function navClose(){
+    ov.classList.remove('is-open');hmb.classList.remove('is-open');document.body.classList.remove('nav-open');
+    hmb.setAttribute('aria-expanded','false');hmb.setAttribute('aria-label','Open navigation');
+    document.removeEventListener('keydown',trapFocus);
+    hmb.focus();
+  }
   hmb.addEventListener('click',function(){ov.classList.contains('is-open')?navClose():navOpen();});
   ov.querySelectorAll('a').forEach(function(a){a.addEventListener('click',navClose);});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('is-open'))navClose();});

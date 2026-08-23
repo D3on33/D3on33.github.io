@@ -22,7 +22,8 @@
   --dot:       #5D3FD3;
   --nav-bg:    rgba(247,245,241,0.94);
   --hero-fade: rgba(247,245,241,0.90);
-  --panel-bg:  #1e1a2e;
+  /* Semantic status tokens */
+  --error:     #C0392B;   /* 5.08:1 on canvas — WCAG AA for large text; use error-dark in dark mode */
 
   /* Type families */
   --serif:     'Instrument Serif', Georgia, serif;
@@ -127,12 +128,19 @@
   /* Nav & hero overlays keyed to canvas */
   --nav-bg:    rgba(18,16,22,0.96);
   --hero-fade: rgba(18,16,22,0.90);
-  --panel-bg:  #1a1625;
+
+  /* Semantic status tokens */
+  --error:     #F07070;   /* 6.54:1 on dark canvas — WCAG AA */
 
   /* Semantic contrast tokens */
   --text-primary:    #F4F3F7;   /* Headlines, body copy         17.1:1 */
   --text-secondary:  #D1CDDA;   /* Nav rails, sub-headers       12.1:1 */
   --text-muted:      #9590A2;   /* Utility labels, timestamps    6.1:1 */
+}
+
+/* Error token for OS-preference dark before JS sets data-theme */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --error: #F07070; }
 }
 
 /* ── RESET ── */
@@ -159,7 +167,7 @@ section[id] { scroll-margin-top: var(--nav-h); }
 #scroll-fill { height: 100%; background: var(--accent); width: 0%; transition: width .06s linear; box-shadow: 0 0 8px rgba(var(--accent-r),.4); }
 
 /* ── BACK TO TOP ── */
-#btt { position: fixed; bottom: 28px; right: 28px; z-index: 400; width: 36px; height: 36px; border: 1px solid var(--bd2); display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--t3); opacity: 0; pointer-events: none; transition: opacity .3s, border-color .2s, color .2s; cursor: pointer; background: var(--bg); }
+#btt { position: fixed; bottom: 28px; right: 28px; z-index: 400; width: 36px; height: 36px; border: 1px solid var(--bd2); border-radius: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-family: inherit; color: var(--t3); opacity: 0; pointer-events: none; transition: opacity .3s, border-color .2s, color .2s; cursor: pointer; background: var(--bg); appearance: none; }
 #btt.visible { opacity: 1; pointer-events: auto; }
 #btt:hover { border-color: var(--accent); color: var(--accent); }
 
@@ -303,12 +311,21 @@ section[id] { scroll-margin-top: var(--nav-h); }
   color: var(--text-muted);
 }
 
-/* ── REDUCED MOTION ── */
+/* ── REDUCED MOTION ──
+   Kill spatial animation; preserve color/border state-change feedback.
+   transition-property whitelist means transform/filter changes are instant
+   while hover colors, focus outlines, and border changes still transition. */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-property: color, background-color, border-color, opacity !important;
+    transition-duration: .2s !important;
+  }
   html { scroll-behavior: auto; }
   body::before { display: none; }
   #nav-overlay::before { display: none; }
+  .proj-card:hover { transform: none; box-shadow: none; }
 }
 
 /* ── SCROLLBAR ── */
@@ -383,16 +400,6 @@ body::before {
   transition: transform .25s cubic-bezier(.23,1,.32,1);
 }
 .nav-links a:hover::after { transform: scaleX(1); }
-
-/* ══════════════════════════════════════════════
-   REDUCED MOTION — disable all grid animations
-   Grid stays visible but static, no transitions
-══════════════════════════════════════════════ */
-@media (prefers-reduced-motion: reduce) {
-  body::before { display: none; }
-  .proj-card { transition: none !important; }
-  .proj-card:hover { transform: none; box-shadow: none; }
-}
 
 /* ══════════════════════════════════════════════
    MOBILE NAV — hamburger + fullscreen overlay
