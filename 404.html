@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#FBF9F4">
 <link rel="icon" href="./favicon.svg" type="image/svg+xml">
 <title>404 — Darshan Munkur</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -77,6 +78,7 @@ a{color:inherit;text-decoration:none}
       if(tBtn)tBtn.textContent=t==='dark'?'☾':'☀';
     }
   });
+  (function(){var mc=document.querySelector('meta[name="theme-color"]');if(!mc)return;function upd(){mc.content=document.documentElement.getAttribute('data-theme')==='dark'?'#121016':'#FBF9F4';}upd();new MutationObserver(upd).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});})();
 
 })();
 </script>
