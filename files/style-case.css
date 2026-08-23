@@ -169,10 +169,10 @@
   .case-layout > .case-body .cs-sec{padding-left:0;padding-right:clamp(24px,3vw,48px)}
   .sidebar-nav{display:flex;flex-direction:column;gap:20px;list-style:none}
   .sidebar-nav a{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);transition:color .25s,opacity .25s;position:relative;display:block;padding-left:14px;line-height:1.4;white-space:nowrap;opacity:.65}
-  .sidebar-nav a::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:2px;height:0;background:var(--accent);transition:height .25s}
+  .sidebar-nav a::before{content:'';position:absolute;left:0;top:0;width:2px;height:100%;background:var(--accent);transform:scaleY(0);transform-origin:top;transition:transform .25s}
   .sidebar-nav a:hover{color:var(--accent);opacity:1}
   .sidebar-nav a.active{color:var(--accent);font-weight:500;opacity:1}
-  .sidebar-nav a.active::before{height:100%}
+  .sidebar-nav a.active::before{transform:scaleY(1)}
 }
 
 

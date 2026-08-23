@@ -117,6 +117,12 @@
         "value": "22px",
         "createdAt": "2026-08-23T04:04:33.799Z",
         "reason": "inside clamp() for cs-why serif italic — ramp-consistent, predates impeccable"
+      },
+      {
+        "rule": "layout-transition",
+        "value": "height",
+        "createdAt": "2026-08-23T04:06:24.009Z",
+        "reason": "loader progress bar and sidebar indicator use height/width animations — absolute-positioned decorative elements, negligible layout impact"
       }
     ]
   }
