@@ -42,7 +42,7 @@
 }
 @media (min-width: 900px) {
   .hero { grid-template-columns: 7fr 5fr; }
-  .hero-disciplines { display: flex !important; }
+  .hero-disciplines { display: block !important; }
 }
 .hero-left {
   padding: clamp(48px,7vh,96px) var(--pad) clamp(40px,6vh,72px);
@@ -71,86 +71,12 @@
 .cta-circle::after { content:""; position:absolute; inset:-4px; border-radius:50%; border:1px solid rgba(var(--accent-r),.2); animation:ctaPulse 2s ease infinite; }
 @keyframes ctaPulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0;transform:scale(1.4)} }
 
-/* ── DISCIPLINES PANEL — right column, desktop only ── */
-/* Note: to restore a portrait photo here, replace <aside class="hero-disciplines"> with
-   <div class="hero-panel"> and re-add the .hero-panel / .hero-panel-photo CSS. */
+/* ── HERO PHOTO PANEL — right column, desktop only ── */
 .hero-disciplines {
   display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: clamp(48px,7vh,96px) var(--pad) clamp(40px,6vh,72px) clamp(32px,4vw,56px);
+  overflow: hidden;
   border-left: 1px solid var(--bd);
-}
-.hero-disc-eyebrow {
-  font-family: var(--mono);
-  font-size: var(--fs-utility);
-  font-weight: var(--fw-medium);
-  letter-spacing: var(--ls-utility);
-  text-transform: uppercase;
-  color: var(--t3);
-  margin-bottom: clamp(20px,3vh,32px);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  opacity: 0;
-  animation: fadeUp .6s ease .42s forwards;
-}
-.hero-disc-eyebrow::before { content: ''; width: 16px; height: 1px; background: var(--t3); }
-.disciplines-list { list-style: none; flex: 1; }
-.discipline-item {
-  padding: clamp(14px,2vh,20px) 0;
-  border-bottom: 1px solid var(--bd);
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  opacity: 0;
-  animation: fadeUp .5s ease both;
-}
-.discipline-item:first-child { border-top: 1px solid var(--bd); }
-.discipline-item:nth-child(1) { animation-delay: .56s; }
-.discipline-item:nth-child(2) { animation-delay: .70s; }
-.discipline-item:nth-child(3) { animation-delay: .84s; }
-.discipline-item:nth-child(4) { animation-delay: .98s; }
-.discipline-name {
-  font-size: var(--fs-body-md);
-  font-weight: var(--fw-body);
-  color: var(--t1);
-  letter-spacing: -.01em;
-  line-height: 1.3;
-}
-.discipline-industry {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--t3);
-}
-.hero-disc-foot {
-  display: flex;
-  gap: clamp(20px,3vw,32px);
-  padding-top: clamp(18px,2.5vh,26px);
-  border-top: 1px solid var(--bd);
-  margin-top: clamp(16px,2.5vh,24px);
-  opacity: 0;
-  animation: fadeUp .5s ease 1.08s forwards;
-}
-.hero-disc-stat-n {
-  font-family: var(--sans);
-  font-size: clamp(20px,2.2vw,28px);
-  font-weight: 400;
-  color: var(--accent);
-  line-height: 1;
-  letter-spacing: -.02em;
-  display: block;
-}
-.hero-disc-stat-d {
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--t3);
-  display: block;
-  margin-top: 5px;
+  background: var(--bg2);
 }
 
 /* ── WORK — 2×2 GRID ── */
@@ -322,36 +248,9 @@
     </div>
   </div>
 
-  <aside class="hero-disciplines" aria-label="Design disciplines">
-    <div class="hero-disc-eyebrow">Design Practice</div>
-    <ul class="disciplines-list">
-      <li class="discipline-item">
-        <span class="discipline-name">B2B Systems Design</span>
-        <span class="discipline-industry">Banking · Fintech · Telecom</span>
-      </li>
-      <li class="discipline-item">
-        <span class="discipline-name">Financial Information Architecture</span>
-        <span class="discipline-industry">Wealth Management · Banking</span>
-      </li>
-      <li class="discipline-item">
-        <span class="discipline-name">Telecommunications Network Tooling</span>
-        <span class="discipline-industry">Enterprise · Change Management</span>
-      </li>
-      <li class="discipline-item">
-        <span class="discipline-name">White-Label Component Systems</span>
-        <span class="discipline-industry">Multi-BU · Design Tokens · Figma</span>
-      </li>
-    </ul>
-    <div class="hero-disc-foot">
-      <div>
-        <span class="hero-disc-stat-n">5+</span>
-        <span class="hero-disc-stat-d">Years Enterprise UX</span>
-      </div>
-      <div>
-        <span class="hero-disc-stat-n">F500</span>
-        <span class="hero-disc-stat-d">Client Scale</span>
-      </div>
-    </div>
+  <aside class="hero-disciplines" aria-label="Hero portrait">
+    <!-- DROP IN: photo-hero.jpg — portrait crop, fills this panel edge-to-edge -->
+    <img src="./photo-hero.jpg" alt="Darshan Munkur" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
   </aside>
 </section>
 
