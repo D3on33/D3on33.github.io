@@ -3,20 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>try{var t=localStorage.getItem('dm-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<script>try{if(sessionStorage.getItem('dm_seen'))document.documentElement.classList.add('no-loader')}catch(e){}</script>
+<noscript><style>#loader{display:none}</style></noscript>
 <meta name="theme-color" content="#FBF9F4">
 <link rel="icon" href="./favicon.svg" type="image/svg+xml">
 <meta name="description" content="Darshan Munkur — Senior UX Designer. 5+ years designing complex B2B platforms for Fortune 500 clients in Finance, Telecom, and Wealth Management.">
 <meta property="og:title" content="Darshan Munkur — Senior UX Designer">
 <meta property="og:description" content="Designing complex systems for the people inside them. 5+ years, Fortune 500.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://darshanmunkur.com">
-<meta property="og:image" content="https://darshanmunkur.com/og-image.jpg">
+<meta property="og:url" content="https://d3on33.github.io">
+<meta property="og:image" content="https://d3on33.github.io/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="https://darshanmunkur.com">
+<link rel="canonical" href="https://d3on33.github.io">
 <title>Darshan Munkur — Senior UX Designer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./style.css">
 <style>
 /* INDEX PAGE SPECIFIC */
@@ -26,11 +29,11 @@
 #ldrSwap { width: 36px; height: 36px; position: relative; }
 .ldr-slot { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; transform: scale(.85); transition: opacity .3s, transform .3s; }
 .ldr-slot.is-active { opacity: 1; transform: scale(1); }
-#ldrLabel { font-family: var(--mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--t3); }
+#ldrLabel { font-family: var(--mono); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--t3); }
 #ldrProgress { width: 160px; }
 #ldrBar { height: 1px; background: var(--bd2); position: relative; }
 #ldrFill { position: absolute; left: 0; top: 0; height: 100%; background: var(--accent); width: 0%; transition: width .06s linear; }
-#ldrPct { font-family: var(--mono); font-size: 10px; color: var(--t3); margin-top: 8px; text-align: right; letter-spacing: .1em; }
+#ldrPct { font-family: var(--mono); font-size: 11px; color: var(--t3); margin-top: 8px; text-align: right; letter-spacing: .1em; }
 
 /* ── HERO — 7fr/5fr proportional split on desktop ── */
 .hero {
@@ -54,7 +57,7 @@
 
 /* Hero typography */
 .hero-name { font-family: var(--serif); font-size: clamp(20px,2.4vw,32px); font-weight: 400; letter-spacing: -.015em; color: var(--t1); line-height: 1; margin-bottom: clamp(10px,1.5vh,16px); opacity: 0; animation: fadeUp .6s ease .06s forwards; }
-.hero-eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--t3); display: flex; align-items: center; gap: 12px; opacity: 0; animation: fadeUp .6s ease .14s forwards; }
+.hero-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--t3); display: flex; align-items: center; gap: 12px; opacity: 0; animation: fadeUp .6s ease .14s forwards; }
 .hero-eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--t3); }
 .hero-h1 { font-family: var(--serif); font-size: clamp(44px,6.5vw,88px); line-height: 1.12; letter-spacing: -.03em; font-weight: 400; color: var(--t1); margin-top: clamp(20px,3vh,36px); flex: 1; display: flex; align-items: center; }
 .hero-h1-inner { overflow: hidden; }
@@ -65,7 +68,7 @@
 .h1-line:nth-child(3) span { animation-delay: .46s; }
 .hero-foot { padding-top: clamp(20px,3vh,32px); border-top: 1px solid var(--bd); margin-top: clamp(20px,3vh,32px); display: flex; flex-direction: column; gap: clamp(14px,2vh,22px); opacity: 0; animation: fadeUp .7s ease .62s forwards; }
 .hero-desc { font-size: var(--fs-body-md); color: var(--t2); line-height: var(--lh-body); max-width: 42ch; }
-.hero-cta { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 10px; align-self: flex-start; text-decoration: none; transition: opacity .2s; }
+.hero-cta { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 10px; align-self: flex-start; text-decoration: none; transition: opacity .2s; }
 .hero-cta:hover { opacity: .75; }
 .cta-circle { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--accent); display: flex; align-items: center; justify-content: center; font-size: 13px; transition: background .2s, transform .2s; position: relative; }
 .hero-cta:hover .cta-circle { background: var(--accent-d); transform: translateY(3px); }
@@ -113,12 +116,10 @@
 .card-img { width: 100%; aspect-ratio: 16/9; background: var(--bg2); position: relative; overflow: hidden; flex-shrink: 0; }
 .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
 .proj-card:hover .card-img img { transform: scale(1.03); }
-.card-img-ph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
-.card-img-ph span { font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--t3); opacity: .45; }
 
 /* Card content — uniform 24px padding */
 .card-content { padding: var(--sp-lg); display: flex; flex-direction: column; flex: 1; }
-.card-domain { font-family: var(--mono); font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: 9px; display: flex; align-items: center; gap: 8px; }
+.card-domain { font-family: var(--mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: 9px; display: flex; align-items: center; gap: 8px; }
 .card-domain::before { content: ''; width: 12px; height: 1px; background: var(--accent); }
 .card-title { font-family: var(--serif); font-size: clamp(16px,1.7vw,21px); font-weight: 400; letter-spacing: -.01em; line-height: 1.2; color: var(--t1); margin-bottom: 12px; transition: color .2s; }
 .proj-card:hover .card-title { color: var(--accent); }
@@ -144,7 +145,7 @@
 }
 .card-outcome-label {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--t3);
@@ -153,17 +154,17 @@
 
 .card-desc { font-size: var(--fs-body-md); color: var(--t2); line-height: var(--lh-body); margin-bottom: 12px; max-width: 52ch; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .card-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 16px; }
-.card-tag { font-family: var(--mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: var(--t2); border: 1px solid var(--bd2); padding: 3px 8px; }
-.card-action { margin-top: auto; font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 8px; }
+.card-tag { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--t2); border: 1px solid var(--bd2); padding: 3px 8px; }
+.card-action { margin-top: auto; font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 8px; }
 .card-action-arrow { display: inline-block; transition: transform .2s; }
 .proj-card:hover .card-action-arrow { transform: translateX(5px); }
 
 /* Coming soon */
 .coming-soon-card { background: var(--bg); grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; padding: var(--sp-lg); border-top: 1px dashed var(--bd2); position: relative; overflow: hidden; }
-.cs-badge { font-family: var(--mono); font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); opacity: .6; margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
+.cs-badge { font-family: var(--mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
 .cs-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
 .cs-title { font-family: var(--serif); font-size: clamp(15px,1.6vw,19px); color: var(--t3); letter-spacing: -.01em; }
-.cs-sub { font-family: var(--mono); font-size: 9px; letter-spacing: .1em; color: var(--t3); margin-top: 3px; opacity: .6; }
+.cs-sub { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; color: var(--t3); margin-top: 3px; }
 
 /* ── STATS BANNER — upright sans-serif, utility-label scale ── */
 .stats { max-width: var(--max); margin: 0 auto; border-top: 1px solid var(--bd); }
@@ -199,10 +200,10 @@
 </head>
 <body>
 <a href="#main-content" class="skip-link">Skip to main content</a>
-<div id="scroll-bar"><div id="scroll-fill"></div></div>
+<div id="scroll-bar" aria-hidden="true"><div id="scroll-fill"></div></div>
 
 <!-- LOADER -->
-<div id="loader">
+<div id="loader" aria-hidden="true">
   <div id="ldrSwap">
     <div class="ldr-slot" data-label="Gaming"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="12" rx="4"/><line x1="7" y1="11" x2="7" y2="15"/><line x1="5" y1="13" x2="9" y2="13"/><circle cx="15" cy="11" r="1.2" fill="var(--accent)" stroke="none"/><circle cx="17" cy="13" r="1.2" fill="var(--accent)" stroke="none"/></svg></div>
     <div class="ldr-slot" data-label="Photography"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
@@ -242,7 +243,7 @@
   </div>
 </div>
 
-<main id="main-content">
+<main id="main-content" tabindex="-1">
 
 <section class="hero" aria-label="Introduction">
   <div class="hero-left">
@@ -374,29 +375,33 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <div class="footer-copy"><strong>Darshan Munkur</strong> · darshan.munkur@gmail.com · © 2025</div>
+    <div class="footer-copy"><strong>Darshan Munkur</strong> · darshan.munkur@gmail.com · © 2026</div>
     <ul class="footer-nav-links"><li><a href="https://linkedin.com/in/darshan-munkur" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="./about.html">About</a></li></ul>
   </div>
 </footer>
 </main>
 
+<script src="./site.js" defer></script>
 <script>
+/* Loader — shown once per session; skipped for reduced motion and repeat visits */
 (function(){
-  var html=document.documentElement;
-
-  /* LOADER — tied to page load state */
-  var loader=document.getElementById('loader'),loaderMin=false,pageLoaded=false;
-  function tryDismissLoader(){
-    if(loaderMin && pageLoaded){
-      loader.style.opacity='0';
-      loader.style.pointerEvents='none';
-      setTimeout(function(){loader.style.display='none';},650);
-    }
+  var loader=document.getElementById('loader');
+  if(!loader)return;
+  var root=document.documentElement;
+  if(root.classList.contains('no-loader')||matchMedia('(prefers-reduced-motion: reduce)').matches){loader.remove();return;}
+  try{sessionStorage.setItem('dm_seen','1');}catch(e){}
+  var MIN=800,minDone=false,loaded=false,gone=false;
+  function dismiss(){
+    if(gone)return;gone=true;
+    clearInterval(iT);clearInterval(pT);
+    loader.style.opacity='0';loader.style.pointerEvents='none';
+    setTimeout(function(){loader.style.display='none';},650);
   }
-  setTimeout(function(){loaderMin=true;tryDismissLoader();},800);
-  window.addEventListener('load',function(){pageLoaded=true;tryDismissLoader();});
+  function tryDismiss(){if(minDone&&loaded)dismiss();}
+  setTimeout(function(){minDone=true;tryDismiss();},MIN);
+  window.addEventListener('load',function(){loaded=true;tryDismiss();});
+  setTimeout(dismiss,4000);
 
-  /* Loader icon rotation — toggle .is-active so only one is visible at a time */
   var slots=document.querySelectorAll('.ldr-slot'),lbl=document.getElementById('ldrLabel');
   var fill=document.getElementById('ldrFill'),pct=document.getElementById('ldrPct');
   var ci=0,n=slots.length,start=Date.now();
@@ -406,101 +411,11 @@
     ci=(ci+1)%n;
     slots[ci].classList.add('is-active');
     lbl.textContent=slots[ci].getAttribute('data-label');
-  },700);
+  },400);
   var pT=setInterval(function(){
-    var elapsed=Date.now()-start;
-    var p=Math.min(elapsed/2000*100,100);
+    var p=Math.min((Date.now()-start)/MIN*100,100);
     fill.style.width=p+'%';pct.textContent=Math.round(p)+'%';
-    if(p>=100){clearInterval(pT);clearInterval(iT);}
   },30);
-
-  /* THEME */
-  var tBtn=document.getElementById('themeToggle');
-  var stored=localStorage.getItem('dm-theme');
-  var theme=stored||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
-  html.setAttribute('data-theme',theme);
-  updateThemeIcon(theme);
-
-  function updateThemeIcon(t){
-    var icon=tBtn.querySelector('.theme-icon');
-    if(icon){icon.textContent=t==='dark'?'☾':'☀';}
-  }
-
-  if(tBtn){
-    tBtn.addEventListener('click',function(){
-      var t=html.getAttribute('data-theme')==='dark'?'light':'dark';
-      html.setAttribute('data-theme',t);
-      localStorage.setItem('dm-theme',t);
-      updateThemeIcon(t);
-    });
-  }
-
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(e){
-    if(!localStorage.getItem('dm-theme')){
-      var t=e.matches?'dark':'light';
-      html.setAttribute('data-theme',t);
-      updateThemeIcon(t);
-    }
-  });
-
-  /* THEME-COLOR META — syncs <meta name="theme-color"> with data-theme */
-  (function(){
-    var mc=document.querySelector('meta[name="theme-color"]');
-    if(!mc)return;
-    function upd(){mc.content=document.documentElement.getAttribute('data-theme')==='dark'?'#121016':'#FBF9F4';}
-    upd();
-    new MutationObserver(upd).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
-  })();
-
-  /* SCROLL */
-  var sf=document.getElementById('scroll-fill');
-  window.addEventListener('scroll',function(){
-    var p=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight);
-    sf.style.width=Math.min(p*100,100)+'%';
-  },{passive:true});
-
-  /* REVEAL */
-  var revEls=document.querySelectorAll('.reveal'),revCount=revEls.length;
-  var ro=new IntersectionObserver(function(es){
-    es.forEach(function(e){
-      if(e.isIntersecting){
-        e.target.classList.add('in');
-        ro.unobserve(e.target);
-        if(--revCount<=0)ro.disconnect();
-      }
-    });
-  },{threshold:.06});
-  revEls.forEach(function(el){ro.observe(el);});
-
-})();
-</script>
-<script>
-/* MOBILE NAV OVERLAY */
-(function(){
-  var hmb=document.getElementById('navHamburger'),ov=document.getElementById('nav-overlay');
-  if(!hmb||!ov)return;
-  function getFocusable(){return Array.from(ov.querySelectorAll('a[href],button:not([disabled]),[tabindex]:not([tabindex="-1"])'));}
-  function trapFocus(e){
-    if(e.key!=='Tab')return;
-    var els=getFocusable(),first=els[0],last=els[els.length-1];
-    if(e.shiftKey){if(document.activeElement===first){e.preventDefault();last.focus();}}
-    else{if(document.activeElement===last){e.preventDefault();first.focus();}}
-  }
-  function navOpen(){
-    ov.classList.add('is-open');hmb.classList.add('is-open');document.body.classList.add('nav-open');
-    hmb.setAttribute('aria-expanded','true');hmb.setAttribute('aria-label','Close navigation');
-    var els=getFocusable();if(els.length)els[0].focus();
-    document.addEventListener('keydown',trapFocus);
-  }
-  function navClose(){
-    ov.classList.remove('is-open');hmb.classList.remove('is-open');document.body.classList.remove('nav-open');
-    hmb.setAttribute('aria-expanded','false');hmb.setAttribute('aria-label','Open navigation');
-    document.removeEventListener('keydown',trapFocus);
-    hmb.focus();
-  }
-  hmb.addEventListener('click',function(){ov.classList.contains('is-open')?navClose():navOpen();});
-  ov.querySelectorAll('a').forEach(function(a){a.addEventListener('click',navClose);});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('is-open'))navClose();});
 })();
 </script>
 </body>

@@ -3,20 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>try{var t=localStorage.getItem('dm-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <meta name="theme-color" content="#FBF9F4">
 <link rel="icon" href="./favicon.svg" type="image/svg+xml">
 <meta name="description" content="About Darshan Munkur — Senior UX Designer with 5+ years in enterprise B2B.">
 <meta property="og:title" content="About Darshan Munkur — Senior UX Designer">
 <meta property="og:description" content="5+ years designing enterprise B2B platforms. MS in Human-Computer Interaction. Currently at Incedo Inc.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://darshanmunkur.com/about.html">
-<meta property="og:image" content="https://darshanmunkur.com/og-image.jpg">
+<meta property="og:url" content="https://d3on33.github.io/about.html">
+<meta property="og:image" content="https://d3on33.github.io/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="https://darshanmunkur.com/about.html">
+<link rel="canonical" href="https://d3on33.github.io/about.html">
 <title>About — Darshan Munkur</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./style.css">
 <style>
 /* ── ABOUT HERO ── */
@@ -58,7 +59,7 @@
 }
 .status-left { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 11px; letter-spacing: .1em; color: var(--t2); }
 .s-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--dot); box-shadow: 0 0 4px rgba(var(--accent-r),.4); animation: pulse 2s infinite; flex-shrink: 0; }
-.status-right { font-family: var(--mono); font-size: 10px; color: var(--t3); }
+.status-right { font-family: var(--mono); font-size: 11px; color: var(--t3); }
 
 /* ── BIO — 5fr/7fr split ── */
 .bio-section {
@@ -160,11 +161,11 @@
 .history-company-link { transition: color .2s; }
 .history-company-link:hover .history-company { color: var(--accent); }
 .history-period {
-  font-family: var(--mono); font-size: 10px; letter-spacing: .1em;
+  font-family: var(--mono); font-size: 11px; letter-spacing: .1em;
   color: var(--t3); white-space: nowrap; text-align: right;
   padding-top: 5px; min-width: 130px; flex-shrink: 0;
 }
-.history-role { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--t3); margin-bottom: 12px; }
+.history-role { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--t3); margin-bottom: 12px; }
 .history-desc { font-size: var(--fs-body-md); color: var(--t2); line-height: var(--lh-body); max-width: 65ch; }
 .history-desc strong { color: var(--t1); font-weight: 500; }
 
@@ -231,7 +232,7 @@
 .cred-item:last-child { border-bottom: none; }
 .cred-item:hover { border-color: rgba(var(--accent-r),.3); transform: translateX(8px); }
 .cred-name { font-size: var(--fs-body-md); color: var(--t1); font-weight: 400; }
-.cred-sub { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--t3); }
+.cred-sub { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--t3); }
 
 /* ── OFF THE CLOCK — 4fr/8fr horizontal split ── */
 .otc-section {
@@ -259,7 +260,7 @@
 .otc-photo img { width: 100%; height: 100%; object-fit: cover; }
 .otc-photo-ph {
   position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-  font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase;
+  font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
   color: var(--t3); padding: 20px; text-align: center;
 }
 
@@ -284,7 +285,7 @@
 </head>
 <body>
 <a href="#main-content" class="skip-link">Skip to main content</a>
-<div id="scroll-bar"><div id="scroll-fill"></div></div>
+<div id="scroll-bar" aria-hidden="true"><div id="scroll-fill"></div></div>
 
 <header class="nav">
   <a href="./index.html" class="nav-logo">Darshan Munkur</a>
@@ -314,7 +315,7 @@
   </div>
 </div>
 
-<main id="main-content">
+<main id="main-content" tabindex="-1">
 <div class="page">
 
   <!-- HERO — text only, portrait image moved to bio-section -->
@@ -338,7 +339,7 @@
       <img src="./photo-about-bio.jpg" alt="Darshan Munkur" loading="lazy">
     </div>
     <div class="bio-content">
-      <div class="bio-label">About</div>
+      <h2 class="bio-label">About</h2>
       <div class="bio-text">
         <p>I began my career not as a designer, but as a <strong>content programmer</strong> — building algorithmic eLearning experiences to WCAG standards using HTML, CSS, and Python. That engineering foundation taught me to think in systems before I ever opened Figma.</p>
         <p>Craving a deeper understanding of why people interact with interfaces the way they do, I pivoted into <strong>Human-Computer Interaction</strong> at IUPUI — where I ran usability studies, shipped a pet health app concept, and taught Python to 30+ graduate students while finishing my MS.</p>
@@ -450,10 +451,10 @@
 
   <!-- SKILLS — open grid, no boxes -->
   <section class="skills-section">
-    <div class="bio-label">Skills &amp; Stack</div>
+    <h2 class="bio-label">Skills &amp; Stack</h2>
     <div class="skills-grid">
       <div class="skill-group reveal">
-        <div class="skill-cat">Design Systems</div>
+        <h3 class="skill-cat">Design Systems</h3>
         <ul class="skill-list">
           <li>Architecture &amp; multi-BU white-labeling</li>
           <li>Component libraries &amp; Figma tokens</li>
@@ -462,7 +463,7 @@
         </ul>
       </div>
       <div class="skill-group reveal">
-        <div class="skill-cat">Interaction Design</div>
+        <h3 class="skill-cat">Interaction Design</h3>
         <ul class="skill-list">
           <li>End-to-end flows &amp; IA</li>
           <li>Micro-interactions &amp; edge states</li>
@@ -471,7 +472,7 @@
         </ul>
       </div>
       <div class="skill-group reveal">
-        <div class="skill-cat">User Research</div>
+        <h3 class="skill-cat">User Research</h3>
         <ul class="skill-list">
           <li>Moderated interviews &amp; usability testing</li>
           <li>Contextual inquiry &amp; surveys</li>
@@ -480,7 +481,7 @@
         </ul>
       </div>
       <div class="skill-group reveal">
-        <div class="skill-cat">Strategy</div>
+        <h3 class="skill-cat">Strategy</h3>
         <ul class="skill-list">
           <li>Stakeholder alignment &amp; exec presentation</li>
           <li>Roadmapping &amp; prioritization</li>
@@ -489,7 +490,7 @@
         </ul>
       </div>
       <div class="skill-group reveal">
-        <div class="skill-cat">Tools</div>
+        <h3 class="skill-cat">Tools</h3>
         <ul class="skill-list">
           <li>Figma (AI), Figma Make</li>
           <li>Maze, Miro, Jira, Confluence</li>
@@ -498,7 +499,7 @@
         </ul>
       </div>
       <div class="skill-group reveal">
-        <div class="skill-cat">AI &amp; Emerging</div>
+        <h3 class="skill-cat">AI &amp; Emerging</h3>
         <ul class="skill-list">
           <li>AI-augmented design workflows</li>
           <li>Prompt design &amp; LLM tooling</li>
@@ -511,7 +512,7 @@
   <!-- CREDENTIALS -->
   <div class="cred-section">
     <div class="cred-block reveal">
-      <div class="cred-label">Education</div>
+      <h2 class="cred-label">Education</h2>
       <div class="cred-item">
         <div class="cred-name">MS, Human-Computer Interaction</div>
         <div class="cred-sub">Indiana University-Purdue University, Indianapolis · 2019–2021</div>
@@ -522,7 +523,7 @@
       </div>
     </div>
     <div class="cred-block reveal">
-      <div class="cred-label">Certifications</div>
+      <h2 class="cred-label">Certifications</h2>
       <div class="cred-item">
         <div class="cred-name">Salesforce Certified UX Designer</div>
         <div class="cred-sub">Salesforce · 2024</div>
@@ -538,7 +539,7 @@
   <section class="otc-section">
     <div class="otc-split">
       <div class="otc-narrative">
-        <div class="bio-label">Off the Clock</div>
+        <h2 class="bio-label">Off the Clock</h2>
         <p class="otc-text reveal">
           When I'm not designing, I'm usually exploring NYC's best cafes and photo spots or getting lost in a book. You might also find me building Lego and Gundam sets or diving into a game on my PC, PS5, or Switch. I'm a constant explorer of movies, music, and local restaurants — always on the hunt for a great story or a new dessert. Whether I'm behind a camera or a controller, I thrive on discovering new hobbies and hidden gems in the city.
         </p>
@@ -573,11 +574,11 @@
       <div class="footer-btns">
         <a href="mailto:darshan.munkur@gmail.com" class="btn-primary">Email Me</a>
         <a href="https://linkedin.com/in/darshan-munkur" target="_blank" rel="noopener" class="btn-secondary">LinkedIn ↗</a>
-        <a href="#" class="btn-tertiary">Download Resume</a>
+        <a href="./resume.pdf" download class="btn-tertiary">Download Resume</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="footer-copy"><strong>Darshan Munkur</strong> · darshan.munkur@gmail.com · © 2025</div>
+      <div class="footer-copy"><strong>Darshan Munkur</strong> · darshan.munkur@gmail.com · © 2026</div>
       <ul class="footer-nav-links">
         <li><a href="./index.html#work">Work</a></li>
         <li><a href="https://linkedin.com/in/darshan-munkur" target="_blank" rel="noopener">LinkedIn</a></li>
@@ -587,107 +588,6 @@
 </div>
 </main>
 
-<script>
-(function(){
-  var html=document.documentElement;
-
-
-  /* SCROLL PROGRESS */
-  var sf=document.getElementById('scroll-fill');
-  window.addEventListener('scroll',function(){
-    var p=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight);
-    sf.style.width=Math.min(p*100,100)+'%';
-  },{passive:true});
-
-  /* REVEAL on scroll */
-  var revEls=document.querySelectorAll('.reveal');
-  var revCount=revEls.length;
-  var ro=new IntersectionObserver(function(es){
-    es.forEach(function(e){
-      if(e.isIntersecting){
-        e.target.classList.add('in');
-        ro.unobserve(e.target);
-        if(--revCount<=0)ro.disconnect();
-      }
-    });
-  },{threshold:.08});
-  revEls.forEach(function(el){ro.observe(el);});
-
-  /* HISTORY nodes staggered reveal */
-  var no=new IntersectionObserver(function(es){
-    es.forEach(function(e){
-      if(e.isIntersecting){
-        var ns=document.querySelectorAll('.history-node');
-        var i=Array.from(ns).indexOf(e.target);
-        setTimeout(function(){e.target.classList.add('in');},i*80);
-        no.unobserve(e.target);
-      }
-    });
-  },{threshold:.1});
-  document.querySelectorAll('.history-node').forEach(function(el){no.observe(el);});
-
-  /* THEME */
-  var tBtn=document.getElementById('themeToggle');
-  var stored=localStorage.getItem('dm-theme');
-  var prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;
-  var theme=stored||(prefersDark?'dark':'light');
-  html.setAttribute('data-theme',theme);
-
-  function updateThemeIcon(t){
-    var icon=tBtn.querySelector('.theme-icon');
-    if(icon){icon.textContent=t==='dark'?'☾':'☀';}
-  }
-
-  updateThemeIcon(theme);
-
-  if(tBtn){
-    tBtn.addEventListener('click',function(){
-      var t=html.getAttribute('data-theme')==='dark'?'light':'dark';
-      html.setAttribute('data-theme',t);
-      localStorage.setItem('dm-theme',t);
-      updateThemeIcon(t);
-    });
-  }
-
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(e){
-    if(!localStorage.getItem('dm-theme')){
-      var t=e.matches?'dark':'light';
-      html.setAttribute('data-theme',t);
-      updateThemeIcon(t);
-    }
-  });
-  (function(){var mc=document.querySelector('meta[name="theme-color"]');if(!mc)return;function upd(){mc.content=document.documentElement.getAttribute('data-theme')==='dark'?'#121016':'#FBF9F4';}upd();new MutationObserver(upd).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});})();
-
-})();
-</script>
-<script>
-/* MOBILE NAV OVERLAY */
-(function(){
-  var hmb=document.getElementById('navHamburger'),ov=document.getElementById('nav-overlay');
-  if(!hmb||!ov)return;
-  function getFocusable(){return Array.from(ov.querySelectorAll('a[href],button:not([disabled]),[tabindex]:not([tabindex="-1"])'));}
-  function trapFocus(e){
-    if(e.key!=='Tab')return;
-    var els=getFocusable(),first=els[0],last=els[els.length-1];
-    if(e.shiftKey){if(document.activeElement===first){e.preventDefault();last.focus();}}
-    else{if(document.activeElement===last){e.preventDefault();first.focus();}}
-  }
-  function navOpen(){
-    ov.classList.add('is-open');hmb.classList.add('is-open');document.body.classList.add('nav-open');
-    hmb.setAttribute('aria-expanded','true');hmb.setAttribute('aria-label','Close navigation');
-    var els=getFocusable();if(els.length)els[0].focus();
-    document.addEventListener('keydown',trapFocus);
-  }
-  function navClose(){
-    ov.classList.remove('is-open');hmb.classList.remove('is-open');document.body.classList.remove('nav-open');
-    hmb.setAttribute('aria-expanded','false');hmb.setAttribute('aria-label','Open navigation');
-    document.removeEventListener('keydown',trapFocus);
-    hmb.focus();
-  }
-  hmb.addEventListener('click',function(){ov.classList.contains('is-open')?navClose():navOpen();});
-  ov.querySelectorAll('a').forEach(function(a){a.addEventListener('click',navClose);});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('is-open'))navClose();});
-})();
-</script>
+<script src="./site.js" defer></script>
 </body>
 </html>

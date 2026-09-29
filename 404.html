@@ -3,12 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>try{var t=localStorage.getItem('dm-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <meta name="theme-color" content="#FBF9F4">
 <link rel="icon" href="./favicon.svg" type="image/svg+xml">
 <title>404 — Darshan Munkur</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
 /* Tokens fully provided by the linked style.css — no overrides needed here.
    Removed inline :root block that contained circular var() self-references
@@ -22,18 +20,21 @@ a{color:inherit;text-decoration:none}
 #cur-ring{width:26px;height:26px;border:1px solid rgba(var(--accent-r),.3);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:8999;transform:translate(-50%,-50%);transition:width .2s,height .2s}
 .nav{padding:0 var(--pad);height:64px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--bd)}
 .nav-logo{font-family:var(--serif);font-size:17px;letter-spacing:-.01em}
-.nav-back{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);transition:color .2s}
+.nav-back{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);transition:color .2s}
 .nav-back:hover{color:var(--accent)}
 .main{flex:1;display:flex;align-items:center;padding:clamp(48px,8vh,96px) var(--pad)}
 .inner{max-width:600px}
 .err-num{font-family:var(--serif);font-size:clamp(96px,18vw,200px);font-weight:400;font-style:italic;color:var(--accent);line-height:.9;letter-spacing:-.04em;margin-bottom:8px}
-.err-label{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--t3);margin-bottom:28px}
+.err-label{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--t3);margin-bottom:28px}
 .err-title{font-family:var(--serif);font-size:clamp(22px,3vw,36px);font-weight:400;letter-spacing:-.02em;line-height:1.15;margin-bottom:16px}
 .err-desc{font-size:14px;color:var(--t2);line-height:1.75;margin-bottom:36px;max-width:44ch}
 .err-links{display:flex;gap:12px;flex-wrap:wrap}
 /* .err-btn styled by style.css .btn-outline rule */
-.foot{padding:18px var(--pad);border-top:1px solid var(--bd);font-family:var(--mono);font-size:10px;color:var(--t3)}
+.foot{padding:18px var(--pad);border-top:1px solid var(--bd);font-family:var(--mono);font-size:11px;color:var(--t3)}
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./style.css">
 </head>
 <body>
@@ -54,33 +55,7 @@ a{color:inherit;text-decoration:none}
     </div>
   </div>
 </main>
-<footer class="foot">Darshan Munkur · darshan.munkur@gmail.com · © 2025</footer>
-<script>
-(function(){
-
-  /* THEME — OS preference → localStorage override */
-  var html=document.documentElement,tBtn=document.getElementById('themeToggle');
-  var stored=localStorage.getItem('dm-theme');
-  var prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;
-  var theme=stored||(prefersDark?'dark':'light');
-  html.setAttribute('data-theme',theme);
-  if(tBtn){tBtn.textContent=theme==='dark'?'☾':'☀';}
-  if(tBtn){tBtn.addEventListener('click',function(){
-    var t=html.getAttribute('data-theme')==='dark'?'light':'dark';
-    html.setAttribute('data-theme',t);localStorage.setItem('dm-theme',t);
-    tBtn.textContent=t==='dark'?'☾':'☀';
-  });}
-  /* Listen for OS changes when no manual override */
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(e){
-    if(!localStorage.getItem('dm-theme')){
-      var t=e.matches?'dark':'light';
-      html.setAttribute('data-theme',t);
-      if(tBtn)tBtn.textContent=t==='dark'?'☾':'☀';
-    }
-  });
-  (function(){var mc=document.querySelector('meta[name="theme-color"]');if(!mc)return;function upd(){mc.content=document.documentElement.getAttribute('data-theme')==='dark'?'#121016':'#FBF9F4';}upd();new MutationObserver(upd).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});})();
-
-})();
-</script>
+<footer class="foot">Darshan Munkur · darshan.munkur@gmail.com · © 2026</footer>
+<script src="./site.js" defer></script>
 </body>
 </html>
