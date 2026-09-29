@@ -3,23 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>try{var t=localStorage.getItem('dm-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<script>try{if(sessionStorage.getItem('dm_unlocked')!=='1')location.replace('./password.html?next=verizon.html')}catch(e){location.replace('./password.html?next=verizon.html')}</script>
+<meta name="theme-color" content="#FBF9F4">
+<link rel="icon" href="./favicon.svg" type="image/svg+xml">
 <meta name="description" content="Verizon Kirke Unified Change Management — UX case study by Darshan Munkur.">
 <meta property="og:title" content="Verizon Kirke — Change Management | Darshan Munkur">
 <meta property="og:description" content="Redesign of Verizon's internal System of Record. +40% CSAT increase. Telecom.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://darshanmunkur.com/verizon.html">
-<meta property="og:image" content="https://darshanmunkur.com/og-image.jpg">
+<meta property="og:url" content="https://d3on33.github.io/verizon.html">
+<meta property="og:image" content="https://d3on33.github.io/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="https://darshanmunkur.com/verizon.html">
+<link rel="canonical" href="https://d3on33.github.io/verizon.html">
 <title>Verizon — Darshan Munkur</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./style.css">
 <link rel="stylesheet" href="./style-case.css">
 </head>
 <body>
 <a href="#main-content" class="skip-link">Skip to main content</a>
-<div id="scroll-bar"><div id="scroll-fill"></div></div>
-<div id="btt" role="button" tabindex="0" aria-label="Back to top">↑</div>
+<div id="scroll-bar" aria-hidden="true"><div id="scroll-fill"></div></div>
+<button id="btt" aria-label="Back to top">↑</button>
 
 <header class="nav">
   <a href="./index.html" class="nav-logo">Darshan Munkur</a>
@@ -27,20 +33,35 @@
     <li><a href="./index.html#work">Work</a></li>
     <li><a href="./about.html">About</a></li>
     <li><a href="mailto:darshan.munkur@gmail.com">Contact</a></li>
+    <li><a href="./resume.pdf" download class="nav-resume">Resume</a></li>
   </ul>
   <div class="nav-right">
     <div class="nav-status"><div class="nav-dot"></div><span>Open to work</span></div>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle colour theme"><span class="theme-icon">☀</span></button>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </header>
+<div id="nav-overlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <ul class="overlay-links">
+    <li><a href="./index.html#work">Work</a></li>
+    <li><a href="./about.html">About</a></li>
+    <li><a href="mailto:darshan.munkur@gmail.com">Contact</a></li>
+    <li><a href="./resume.pdf" download>Resume</a></li>
+  </ul>
+  <div class="overlay-divider"></div>
+  <div class="overlay-foot">
+    <a href="mailto:darshan.munkur@gmail.com" class="overlay-foot-email">darshan.munkur@gmail.com</a>
+    <div class="overlay-status"><div class="nav-dot"></div><span>Open to work</span></div>
+  </div>
+</div>
 
-<main id="main-content">
+<main id="main-content" tabindex="-1">
 <div class="page">
 
   <!-- HERO -->
   <section class="case-hero" aria-label="US Bank Case Study">
     <div class="case-cover">
-      <div class="cover-ph">[ Drop hero image — usbank-hero.jpg ]</div>
+      <img src="https://picsum.photos/seed/ver_cover/1440/540" alt="Verizon platform overview" loading="lazy">
     </div>
     <div class="case-hero-text">
       <div class="case-breadcrumb"><a href="./index.html">Home</a> / <a href="./index.html#work">Work</a> / <span>Telecom</span></div>
@@ -79,10 +100,12 @@
 <div class="case-layout">
 <aside class="case-sidebar" aria-label="Case study sections">
   <ul class="sidebar-nav">
-    <li><a href="#context" class="sidebar-link active">01. The Problem</a></li>
-    <li><a href="#research" class="sidebar-link">02. The Research</a></li>
-    <li><a href="#process" class="sidebar-link">03. The Solution</a></li>
-    <li><a href="#outcomes" class="sidebar-link">04. The Impact</a></li>
+    <li><a href="#context"  class="sidebar-link active">01. Context</a></li>
+    <li><a href="#problem"  class="sidebar-link">02. The Problem</a></li>
+    <li><a href="#research" class="sidebar-link">03. Research</a></li>
+    <li><a href="#process"  class="sidebar-link">04. Process</a></li>
+    <li><a href="#solution" class="sidebar-link">05. Solution</a></li>
+    <li><a href="#outcomes" class="sidebar-link">06. Outcomes</a></li>
   </ul>
 </aside>
 <div class="case-body">
@@ -131,7 +154,7 @@
         </div>
         <div class="cs-row-asset">
           <div class="img-full is-wide reveal">
-            <div class="img-full-ph"><div class="img-ph-label">[ Current State — Channel Dependency Analysis ]</div></div>
+            <img src="https://picsum.photos/seed/ver_current/1260/540" alt="Current state analysis" loading="lazy">
           </div>
         </div>
       </div>
@@ -180,7 +203,7 @@
             </div>
           </div>
           <div class="img-full is-landscape reveal">
-            <div class="img-full-ph"><div class="img-ph-label">[ Research Synthesis — Affinity Map, Miro ]</div></div>
+            <img src="https://picsum.photos/seed/ver_research/1200/675" alt="Research synthesis" loading="lazy">
           </div>
         </div>
       </div>
@@ -226,14 +249,14 @@
           </div>
         </div>
         <div class="zz-img">
-          <div class="zz-img-ph"><div class="img-ph-label">[ Wireframe Iterations ]</div></div>
+          <img src="https://picsum.photos/seed/ver_wire/800/600" alt="Wireframe iterations" loading="lazy">
         </div>
       </div>
 
       <!-- Zigzag reverse: image left, text right -->
       <div class="zigzag reverse reveal" style="margin-top:1px">
         <div class="zz-img">
-          <div class="zz-img-ph"><div class="img-ph-label">[ Design System — Figma ]</div></div>
+          <img src="https://picsum.photos/seed/ver_system/800/600" alt="Design system" loading="lazy">
         </div>
         <div class="zz-text">
           <div class="cs-why">
@@ -258,7 +281,7 @@
           </div>
         </div>
         <div class="zz-img">
-          <div class="zz-img-ph"><div class="img-ph-label">[ Banker Dashboard — Final UI ]</div></div>
+          <img src="https://picsum.photos/seed/ver_dash/800/600" alt="Final UI" loading="lazy">
         </div>
       </div>
 
@@ -270,21 +293,21 @@
         </div>
         <div class="ba-wrap" id="baWrap">
           <div class="ba-before">
-            <div class="ba-ph">[ Before: as-is workflow — print-dependent, fragmented ]</div>
+            <img src="https://picsum.photos/seed/ver_before/1200/675" alt="Before workflow" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
           </div>
           <div class="ba-clip" id="baClip">
             <div class="ba-after-inner">
-              <div class="ba-ph" style="color:var(--accent)">[ After: redesigned platform — unified, personalized ]</div>
+              <img src="https://picsum.photos/seed/ver_after/1200/675" alt="After platform" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
             </div>
           </div>
           <div class="ba-divider-line" id="baDivider">
-            <div class="ba-handle">⟺</div>
+            <div class="ba-handle" aria-hidden="true">⟺</div>
           </div>
         </div>
       </div>
 
       <div class="img-full is-wide reveal" style="margin-top:40px">
-        <div class="img-full-ph"><div class="img-ph-label">[ End-to-End Acquisition Flow ]</div></div>
+        <img src="https://picsum.photos/seed/ver_flow/1260/540" alt="End-to-end flow" loading="lazy">
       </div>
     </section>
 
@@ -342,7 +365,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <div class="footer-copy"><strong>Darshan Munkur</strong> · darshan.munkur@gmail.com · © 2025</div>
+        <div class="footer-copy"><strong>Darshan Munkur</strong> · darshan.munkur@gmail.com · © 2026</div>
         <ul class="footer-nav-links">
           <li><a href="./index.html#work">All Work</a></li>
           <li><a href="https://linkedin.com/in/darshan-munkur" target="_blank" rel="noopener">LinkedIn</a></li>
@@ -352,85 +375,7 @@
 </div><!-- /.page -->
 </main>
 
-<script>
-(function(){
-  /* PASSWORD */
-  if(sessionStorage.getItem('dm_unlocked')!=='1'){window.location.replace('./password.html?next=verizon.html');return;}
-
-  /* SCROLL + XP */
-  var sf=document.getElementById('scroll-fill');
-  var btt=document.getElementById('btt');
-  window.addEventListener('scroll',function(){
-    var p=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight);
-    sf.style.width=Math.min(p*100,100)+'%';
-    btt.classList.toggle('visible',window.scrollY>500);
-  },{passive:true});
-  btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
-  btt.addEventListener('keydown',function(e){if(e.key==='Enter')window.scrollTo({top:0,behavior:'smooth'});});
-
-  /* REVEAL */
-  var revEls=document.querySelectorAll('.reveal');
-  var revCount=revEls.length;
-  var ro=new IntersectionObserver(function(es){
-    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);if(--revCount<=0)ro.disconnect();}});
-  },{threshold:.07});
-  revEls.forEach(function(el){ro.observe(el);});
-  /* BEFORE/AFTER SLIDER */
-  var wrap=document.getElementById('baWrap'),clip=document.getElementById('baClip'),div=document.getElementById('baDivider'),drag=false;
-  function setPos(cx){var r=wrap.getBoundingClientRect();var p=Math.max(5,Math.min(95,(cx-r.left)/r.width*100));clip.style.width=p+'%';div.style.left=p+'%';}
-  div.addEventListener('mousedown',function(e){drag=true;e.preventDefault();});
-  document.addEventListener('mousemove',function(e){if(drag)setPos(e.clientX);});
-  document.addEventListener('mouseup',function(){drag=false;});
-  div.addEventListener('touchstart',function(){drag=true;},{passive:true});
-  document.addEventListener('touchmove',function(e){if(drag&&e.touches[0])setPos(e.touches[0].clientX);},{passive:true});
-  document.addEventListener('touchend',function(){drag=false;});
-
-  /* ── SIDEBAR NAV — rAF-throttled, viewport-aware active lock ── */
-  (function(){
-    var links = Array.prototype.slice.call(document.querySelectorAll('.sidebar-link'));
-    if(links.length === 0) return;
-    var pairs = links.map(function(link){
-      return { link: link, target: document.querySelector(link.getAttribute('href')) };
-    }).filter(function(p){ return p.target; });
-    var ticking = false;
-    function update(){
-      ticking = false;
-      var threshold = Math.max(100, window.innerHeight * 0.25);
-      var found = null;
-      for(var i = 0; i < pairs.length; i++){
-        if(pairs[i].target.getBoundingClientRect().top <= threshold) found = pairs[i].link;
-      }
-      links.forEach(function(l){ l.classList.remove('active'); });
-      (found || links[0]).classList.add('active');
-    }
-    window.addEventListener('scroll', function(){
-      if(!ticking){ requestAnimationFrame(update); ticking = true; }
-    }, {passive: true});
-    update();
-  })();
-
-  /* THEME — OS preference → localStorage override */
-  var html=document.documentElement,tBtn=document.getElementById('themeToggle');
-  var stored=localStorage.getItem('dm-theme');
-  var prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;
-  var theme=stored||(prefersDark?'dark':'light');
-  html.setAttribute('data-theme',theme);
-  if(tBtn){tBtn.textContent=theme==='dark'?'☾':'☀';}
-  if(tBtn){tBtn.addEventListener('click',function(){
-    var t=html.getAttribute('data-theme')==='dark'?'light':'dark';
-    html.setAttribute('data-theme',t);localStorage.setItem('dm-theme',t);
-    tBtn.textContent=t==='dark'?'☾':'☀';
-  });}
-  /* Listen for OS changes when no manual override */
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(e){
-    if(!localStorage.getItem('dm-theme')){
-      var t=e.matches?'dark':'light';
-      html.setAttribute('data-theme',t);
-      if(tBtn)tBtn.textContent=t==='dark'?'☾':'☀';
-    }
-  });
-
-})();
-</script>
+<script src="./site.js" defer></script>
+<script src="./case.js" defer></script>
 </body>
 </html>

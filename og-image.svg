@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#FBF9F4"/>
+  <rect x="0" y="0" width="8" height="630" fill="#5D3FD3"/>
+  <line x1="80" y1="0" x2="80" y2="630" stroke="#E8E4DA" stroke-width="1"/>
+  <text x="108" y="150" font-family="'DM Mono','Courier New',monospace" font-size="24" letter-spacing="6" fill="#5D3FD3">SENIOR UX DESIGNER</text>
+  <text x="108" y="292" font-family="'Instrument Serif',Georgia,serif" font-size="124" letter-spacing="-4" fill="#1C1A22">Darshan Munkur</text>
+  <line x1="108" y1="336" x2="520" y2="336" stroke="#5D3FD3" stroke-width="3"/>
+  <text x="108" y="410" font-family="'Instrument Serif',Georgia,serif" font-size="44" fill="#3A3644">Designing complex systems for the</text>
+  <text x="108" y="466" font-family="'Instrument Serif',Georgia,serif" font-size="44" font-style="italic" fill="#5D3FD3">people inside them.</text>
+  <text x="108" y="566" font-family="'DM Mono','Courier New',monospace" font-size="22" letter-spacing="3" fill="#6E6A78">ENTERPRISE UX · FINTECH · DESIGN SYSTEMS</text>
+  <circle cx="1094" cy="100" r="8" fill="#5D3FD3" opacity="0.25"/>
+  <circle cx="1122" cy="100" r="8" fill="#5D3FD3" opacity="0.55"/>
+  <circle cx="1150" cy="100" r="8" fill="#5D3FD3"/>
+</svg>
