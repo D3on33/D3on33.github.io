@@ -32,7 +32,7 @@
 #ldrLabel { font-family: var(--mono); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--t3); }
 #ldrProgress { width: 160px; }
 #ldrBar { height: 1px; background: var(--bd2); position: relative; }
-#ldrFill { position: absolute; left: 0; top: 0; height: 100%; background: var(--accent); width: 0%; transition: width .06s linear; }
+#ldrFill { position: absolute; left: 0; top: 0; height: 100%; width: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .06s linear; }
 #ldrPct { font-family: var(--mono); font-size: 11px; color: var(--t3); margin-top: 8px; text-align: right; letter-spacing: .1em; }
 
 /* ── HERO — 7fr/5fr proportional split on desktop ── */
@@ -414,7 +414,7 @@
   },400);
   var pT=setInterval(function(){
     var p=Math.min((Date.now()-start)/MIN*100,100);
-    fill.style.width=p+'%';pct.textContent=Math.round(p)+'%';
+    fill.style.transform='scaleX('+p/100+')';pct.textContent=Math.round(p)+'%';
   },30);
 })();
 </script>

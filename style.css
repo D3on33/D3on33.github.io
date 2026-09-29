@@ -433,7 +433,7 @@ body::before {
 .nav-hamburger span {
   display: block; width: 14px; height: 1px;
   background: currentColor;
-  transition: transform .35s cubic-bezier(.23,1,.32,1), opacity .2s, width .3s;
+  transition: transform .35s cubic-bezier(.23,1,.32,1), opacity .2s;
   transform-origin: center;
 }
 .nav-hamburger.is-open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
